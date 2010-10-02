@@ -18,6 +18,7 @@
                                     <input type="password" id="contraseña" name="contraseña"/>
                              <input type="reset"/>
                     </form>
+      <link href="comenzarRegistro" />
     </fieldset><br/>
 </div>
   </body>
