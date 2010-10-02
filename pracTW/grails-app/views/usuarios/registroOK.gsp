@@ -8,9 +8,11 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sample title</title>
+    <title>Registro Correcto</title>
   </head>
   <body>
-    <h1>Sample line</h1>
-  </body>
+    <h1>Registro Correcto</h1>
+
+  <link href="index">Registro exitoso, ahora logeate para disfrutar.' '.${usuario.nombre}</link>
+</body>
 </html>
