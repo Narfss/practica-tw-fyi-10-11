@@ -17,12 +17,12 @@
 	<form action="registro" method="post">
 			<label for="nombre">Nombre: </label>
 				<input type="text" id="nombre" name="nombre"/><br/>
-			<label for="apellido">Apellido: </label>
-				<input type="text" id="apellido" name="apellido" /><br/>
+			<label for="apellidos">Apellidos: </label>
+				<input type="text" id="apellidos" name="apellidos" /><br/>
                         <label for="localidad">Localidad: </label>
 				<input type="text" id="localidad" name="localidad"/><br/>
 			Fecha nacimiento:
-			<select id="pDia" name="pDia">
+			<select id="dia" name="dia">
 				<option value="1">01</option>
 				<option value="2">02</option>
 				<option value="3">03</option>
@@ -56,7 +56,7 @@
 				<option value="31">31</option>
 			</select>
 
-		<select id="pMes" name="pMes">
+		<select id="mes" name="mes">
 			<option value="1">Enero</option>
 			<option value="2">Febrero</option>
 			<option value="3">Marzo</option>
@@ -71,7 +71,7 @@
 			<option value="12">Diciembre</option>
 		</select>
 
-		<select id="pAnyo" name="pAnyo">
+		<select id="anyo" name="anyo">
 			<option value="1990">1990</option>
 			<option value="1991">1991</option>
 			<option value="1992">1992</option>
@@ -100,11 +100,11 @@
 			<label for="usuario" >Usuario: </label>
 				<input type="text" id="usuario" name="usuario"/><br/>
 			<label for="password" >Contraseña: </label>
-					<input type="password" id="contraseña" /><br/>
+					<input type="password" id="password" name="password" /><br/>
 			<label for="password">Confirmacion: </label>
-					<input type="password" id="conf" name="conf" />
+					<input type="password" id="password2" name="password2" />
 
-                        <select id="sexo">
+                        <select id="sexo" name="sexo"/>
                           <option value="H">Hombre</option>
                           <option value="M">Mujer</option>
 			<input type="submit" value="Enviar" /> <input type="reset" /><br/>

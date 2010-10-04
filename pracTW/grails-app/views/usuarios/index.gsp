@@ -18,7 +18,7 @@
                                     <input type="password" id="contraseña" name="contraseña"/>
                              <input type="reset"/>
                     </form>
-      <link href="comenzarRegistro">Únete a nosotros si aun no eres miembro, tus amigos te esperan...o no ^^</link>
+      <a href="comenzarRegistro">Únete a nosotros si aun no eres miembro, tus amigos te esperan...o no ^^</a>
     </fieldset><br/>
 </div>
   </body>
