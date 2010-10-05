@@ -19,10 +19,11 @@ body{
     background-image: url('../images/fondo.jpg');
 }
 
-.login{
+.intrologin{
     background-color: rgba(255,255,255,0.5);
     height: 100px;
-    width: 150px;
+    width: 200px;
     border: 1px black solid;
+    -moz-border-radius: 10px;
     border-radius: 5px;
 }
