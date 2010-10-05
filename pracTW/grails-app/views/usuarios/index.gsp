@@ -10,7 +10,7 @@
     <img src="../images/pika.jpg" alt="logo de TW">
     <h1>Fantabulandia: by Nafss and Isa </h1>
         <p>Donde todos y cada uno de nosotros , o puede que ninguno, disfrutamos de las tecnologias web este donde este...</p>
-        <div id="login">
+        <div id="intrologin">
     <fieldset>
                     <form action="autentificar" method="post" id="login">
                             <label for="login">Usuario: </label>
