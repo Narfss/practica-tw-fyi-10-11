@@ -8,9 +8,44 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sample title</title>
+    <title>Perfil de Usuario</title>
   </head>
   <body>
-    <h1>Sample line</h1>
+    <h1>Perfil de Usuario</h1>
+
+    <div id="sidebar">
+
+      <p>Bienvenido a nuestros dominios, pobre mortal, tu nombre sera recordad
+        por los siglos de los siglos ${usuario.nombre}
+      </p>
+      <fieldset>
+
+        <ul>
+
+          <li><a href="perfil">Perfil: </a></li>
+
+          <li><a href="formBusqueda">Busqueda: </a></li>
+
+          <li><a href="logout">Salir por patas: </a></li>
+
+        </ul>
+
+      </fieldset><br/>
+
+      
+      <img src="../images/logo.png"/>
+
+
+      <form action="" method="post">
+
+        <textbox> Comparte con nosotros:</textbox>
+
+        <input type="button" value="Actualizar estado"/><br/>
+        <input type="radio" name="missing" value="automatico" checked="true"/>Automatico<br/>
+        <input type="radio" name="missing" value="manual"/>Manual<br/>
+        <input type="radio" name="missing" value="no mostrar"/>no mostrar<br/>
+    </div>
+
   </body>
+
 </html>
