@@ -24,7 +24,7 @@ body{
     background-color: rgba(255,255,255,0.5);
     height: 100px;
     width: 200px;
-    border: 1px black solid;
+    border: black 8px ridge;
     -moz-border-radius: 10px;
     border-radius: 5px;
 }
