@@ -9,10 +9,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../css/usuario.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
-    <title>Perfil de Usuario</title>
+    <title>Mapa</title>
   </head>
   <body>
-    <h1>Perfil de Usuario</h1>
+    <h1>Mapa</h1>
 
     <div id="sidebar">
 

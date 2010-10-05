@@ -12,12 +12,12 @@
     <title>Perfil de Usuario</title>
   </head>
   <body>
-    <form action="guardarPerfil">
+    <form action="guardarPerfil" method="post">
       <!-- Igual que en pagina de registro -->
       <label for="nombre">Nombre: </label>
         <input type="text" id="nombre" name="nombre" value="${usuario.nombre}"/><br/>
       <label for="apellidos">Apellidos: </label>
-        <input type="text" id="apellidos" name="apellidos" value="${usuario.apellido}" /><br/>
+        <input type="text" id="apellidos" name="apellidos" value="${usuario.apellidos}" /><br/>
       <label for="localidad">Localidad: </label>
         <input type="text" id="localidad" name="localidad" value="${usuario.localidad}"/><br/>
       Fecha nacimiento:
@@ -109,6 +109,9 @@
                     <input type="submit" value="Enviar" /> <input type="reset" /><br/>
     </form>
 
+    <form action="cambiarImagenPerfil" method="post" enctype="multipart/form-data">
+      <input type="file" name="foto" id="foto"/>
+    </form>
 
   </body>
 </html>
