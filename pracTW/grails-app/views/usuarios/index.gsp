@@ -12,10 +12,10 @@
         <div id="login">
     <fieldset>
                     <form action="autentificar" method="post" id="login">
-                            <label for="usuario">Usuario: </label>
-                                    <input type="text" id="usuario" name="usuario" /> <input type="submit" value="Enviar"/><br/>
-                            <label for="contraseña">Contraseña: </label>
-                                    <input type="password" id="contraseña" name="contraseña"/>
+                            <label for="login">Usuario: </label>
+                                    <input type="text" id="login" name="login" /> <input type="submit" value="Enviar"/><br/>
+                            <label for="password">Contraseña: </label>
+                                    <input type="password" id="password" name="password"/>
                              <input type="reset"/>
                     </form>
       <a href="comenzarRegistro">Únete a nosotros si aun no eres miembro, tus amigos te esperan...o no ^^</a>

@@ -98,7 +98,7 @@
 			<label for="email" >email: </label>
 				<input type="text" id="email" name="email"/><br/>
 			<label for="usuario" >Usuario: </label>
-				<input type="text" id="usuario" name="usuario"/><br/>
+				<input type="text" id="login" name="login"/><br/>
 			<label for="password" >Contraseña: </label>
 					<input type="password" id="password" name="password" /><br/>
 			<label for="password">Confirmacion: </label>

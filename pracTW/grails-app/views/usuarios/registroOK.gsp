@@ -13,6 +13,6 @@
   <body>
     <h1>Registro Correcto</h1>
 
-  <link href="index">Registro exitoso, ahora logeate para disfrutar.' '.${usuario.nombre}</link>
+  <link href="index">Registro exitoso, ahora logeate para disfrutar ${usuario.nombre}.</link>
 </body>
 </html>
