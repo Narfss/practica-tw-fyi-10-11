@@ -33,7 +33,7 @@
       </fieldset><br/>
 
       
-      <img src="../images/logo.png"/>
+      <img src="../images/pika.jpeg"/>
 
 
       <form action="" method="post">

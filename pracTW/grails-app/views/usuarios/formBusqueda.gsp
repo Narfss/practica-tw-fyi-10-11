@@ -21,7 +21,8 @@
 			<input type="text" id="apellidos" name="apellidos" /><br/>
                 <label for="Localidad">Localidad: </label>
 			<input type="text" id="localidad" name="localidad" /><br/>
-	</fieldset>
+                <input type="button" value="Buscar" />
+        </fieldset>
 	</form>
 </div>
   </body>
