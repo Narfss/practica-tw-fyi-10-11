@@ -14,31 +14,37 @@
   <body>
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
-        <span style="float:left;">
+        <span id="leftspan">
             <div>
-              <h1>Mapa</h1>
-              <p>Bienvenido a nuestros dominios, pobre mortal, tu nombre sera recordad por los siglos de los siglos ${usuario.nombre}</p>
+              <h1>${usuario.nombre}</h1>
+              <center>
+                <a href="perfil"><img src="../images/default/buscar.png" alt="Perfil"/></a>
+                <a href="formBusqueda"><img src="../images/default/perfil.png" alt="Buscar"/></a>
+                <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
+              </center>
+              <!--<ul>
+                <li><a href="perfil">Perfil: </a></li>
+                <li><a href="formBusqueda">Busqueda: </a></li>
+                <li><a href="logout">Salir por patas: </a></li>
+              </ul>-->
+
+              <form action="" method="post">
+                <h1>Comparte:</h1>
+                <textarea name="comments" cols="22" rows=·4"></textarea><br/>
+                <!--<textbox> Comparte con nosotros:</textbox>-->
+                Localizacion:<br/>
+                <input type="radio" name="missing" value="automatico" checked="true"/>Automatico<br/>
+                <input type="radio" name="missing" value="manual"/>Manual<br/>
+                <input type="radio" name="missing" value="no mostrar"/>No mostrar<br/>
+                <input type="button" value="Actualizar estado" class="button"/>
+              </form>
             </div>
         </span>
-        <span style="float:right;">
-          <img src="../images/default/intrologo.png" id="intrologo" alt="Skyks">
+        <span id="rightspan">
+          <img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks">
           <div>
-            <h1>¿What is that?</h1>
-            <ul>
-              <li><a href="perfil">Perfil: </a></li>
-              <li><a href="formBusqueda">Busqueda: </a></li>
-              <li><a href="logout">Salir por patas: </a></li>
-            </ul>
-            <br/>
-
-            <form action="" method="post">
-
-            <textbox> Comparte con nosotros:</textbox>
-
-            <input type="button" value="Actualizar estado" class="button"/><br/>
-            <input type="radio" name="missing" value="automatico" checked="true"/>Automatico<br/>
-            <input type="radio" name="missing" value="manual"/>Manual<br/>
-            <input type="radio" name="missing" value="no mostrar"/>no mostrar<br/>
+              <h1>Mapa</h1>
+              <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>
           </div>
         </span>
   </body>
