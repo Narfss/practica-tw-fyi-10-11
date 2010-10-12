@@ -8,23 +8,38 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/usuario.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <title>Pagina de busqueda</title>
   </head>
   <body>
-    <h1>Pagina de busqueda</h1>
-    <div>
-	<form method="get" action="buscar">
-	<fieldset>
-		<label for="Nombre">Nombre: </label>
-			<input type="text" id="nombre" name="nombre" /><br/>
-		<label for="Apellidos">Apellidos: </label>
-			<input type="text" id="apellidos" name="apellidos" /><br/>
-                <label for="Localidad">Localidad: </label>
-			<input type="text" id="localidad" name="localidad" /><br/>
-                <input type="button" value="Buscar" />
-        </fieldset>
-	</form>
-</div>
+   <img src="../images/default/marcaagua.png" id="marcaagua"/>
+      <div id="body">
+        <span id="leftspan">
+            <div>
+              <h1>Busqueda</h1>
+              <form method="get" action="buscar">
+              <fieldset>
+                      <label for="Nombre">Nombre: </label>
+                              <input type="text" id="nombre" name="nombre" /><br/>
+                      <label for="Apellidos">Apellidos: </label>
+                              <input type="text" id="apellidos" name="apellidos" /><br/>
+                      <label for="Localidad">Localidad: </label>
+                              <input type="text" id="localidad" name="localidad" /><br/>
+                      <center><input type="button" value="Buscar" class="button" /></center>
+              </fieldset>
+              </form>
+            </div>
+        </span>
+        <span id="rightspan">
+          <img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks">
+          <div>
+            <table id="busqueda">
+              <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
+              <tr><td>Icono</td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr>
+              <tr><td>Icono</td><td>Isa</td><td>...</td><td>Alicante</td></tr>
+            </table>
+          </div>
+        </span>
+    </div>
   </body>
 </html>

@@ -65,7 +65,7 @@ div{
         background-color: rgba(255,255,255,0.5);
         border: 0px white solid;
         -moz-border-radius: 10px;
-        -webkit-border-radius: 5px;
+        -webkit-border-radius: 10px;
         -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
         -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
         padding: 30px;
@@ -82,7 +82,7 @@ fieldset{
 input{
         border: 1px white solid;
         -moz-border-radius: 10px;
-        -webkit-border-radius: 5px;
+        -webkit-border-radius: 10px;
         -moz-box-shadow: 0 1px 3px #999;
         -webkit-box-shadow: 0 1px 3px #999;
         margin: 5px;
@@ -96,7 +96,7 @@ input{
         background-color: rgb(120,120,255);
         color:white;
         -moz-border-radius: 10px;
-        -webkit-border-radius: 5px;
+        -webkit-border-radius: 10px;
         -moz-box-shadow: 0 1px 3px #999;
         -webkit-box-shadow: 0 1px 3px #999;
         font-weight: bolder;
@@ -121,6 +121,8 @@ input{
         width: 400px;
         margin: 10px;
         margin-top:20px;
+        position:relative;
+        left:40px;
 }
 
 /*Dos columnas al 50%, lo mas seguro esque en el resto del documento utilicemos una barra y no dos columnas iguales*/
@@ -161,7 +163,7 @@ span{
 textarea{
         border: 1px white solid;
         -moz-border-radius: 10px;
-        -webkit-border-radius: 5px;
+        -webkit-border-radius: 10px;
         -moz-box-shadow: 0 1px 3px #999;
         -webkit-box-shadow: 0 1px 3px #999;
         margin: 5px;
@@ -171,4 +173,42 @@ textarea{
 
 img{
     border:none;
+}
+
+
+#busqueda{
+    width:100%;
+    padding:0px;
+    margin: 0px;
+    border-spacing: 0px;
+}
+
+#busqueda tr{
+
+        border: 1px white solid;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin: 5px;
+        padding:2.5px;
+        opacity: 1;
+        padding:0px;
+        margin: 0px;
+}
+
+#busqueda td{
+    padding:0px;
+    margin: 0px;
+}
+/*
+#busqueda td{
+    border-top: 1px blue solid;
+}
+*/
+/*
+#busqueda tr:nth-child(even) {
+    background-color:rgba(255,255,255,0.75);
+}
+*/
+#busqueda tr:nth-child(odd) {
+    background-color:rgba(255,255,255,0.5);
 }
