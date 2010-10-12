@@ -51,16 +51,16 @@
 	    <span style="float:left;">
 		<div id="introtexto">
 			<h1>¿Que es esto?</h1>
-			<p>Bienvenidos al este servicio web, skyks es un servicio "socio localizador de comentarios". Su sistema de funcionamiento se basa en la localizacion por mediod e coordenadas los comentarios de los usuarios del sistema.</p>
+			<p>Bienvenidos al este servicio web, skyks es un servicio "socio localizador de comentarios". Su sistema de funcionamiento se basa en la localización por medio de coordenadas los comentarios de los usuarios del sistema.</p>
 			<h1>¿Para que sirve?</h1>
-			<p>Por este metodo siempre podras conocer las opiniones o comentarios de tus amigos o familiares esten donde esten y siempre en el contexto de su situación.</p>
+			<p>Por este método siempre podrás conocer las opiniones o comentarios de tus amigos o familiares estén donde estén y siempre en el contexto de su situación.</p>
 			<h1>¿Cuando podre utilizarlo?</h1>
-			<p>Si siempre has querido poder colocar en lo alto de la torre eifel una nota diciendo yo estube aqui, o simplemente quedar para ver uan pelicula en tu propia casa, skyks te proporciona una manera sencilla de poder darle un lugar a todos estos y mas cosas que queiras decir a la red.
+			<p>Si siempre has querido poder colocar en lo alto de la torre Eifel una nota diciendo yo estuve aquí, o simplemente quedar para ver una película en tu propia casa, skyks te proporciona una manera sencilla de poder darle un lugar a todos estos y mas cosas que quieras decir a la red.
 			El equipo de skyks espera que disfrute de la experiencia.</p>
 			<h1>¿Cuanto cuesta?</h1>
 			<p>El servicio es gratuito, tan solo hay que registrarse.</p>
-			<h1>¿Necesito algun aparato especial?</h1>
-			<p>No es necesario, ya que la conexion de internet da tu localizacion aproximada, pero es recomendable y mucho mas exacto tenr un dispositivo con capacidades GPS</p>
+			<h1>¿Necesito algún aparato especial?</h1>
+			<p>No es necesario, ya que la conexión de internet da tu localización aproximada, pero es recomendable y mucho mas exacto tener un dispositivo con capacidades geolicalizadoras (GPS)</p>
 		</div>
 	   </span>
 	   <span style="float:right;">

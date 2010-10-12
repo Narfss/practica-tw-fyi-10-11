@@ -17,11 +17,11 @@
       <span style="float:left;">
         <div>
           <h1>Modificaciones</h1>
-          Como usuario de nuestro servicio tiens derecho a cambiar y modificar cualquier dato incluso finalizar el servicio. Desde aqui puedes modificar tanto tu nombre como la contraseña.
+          Como usuario de nuestro servicio tienes derecho a cambiar y modificar cualquier dato incluso finalizar el servicio. Desde aquí puedes modificar tanto tu nombre como la contraseña.
           <h1>Imagen</h1>
-          Por favor, haga un uso responsable de la imagen publica que tome, en caso de ser obscena, ilegal, racista... skyks se reserva el derecho de retirar la imagen para una mejor conviencia de la comunidad.
+          Por favor, haga un uso responsable de la imagen publica que tome, en caso de ser obscena, ilegal, racista... Skyks se reserva el derecho de retirar la imagen para una mejor convivencia de la comunidad.
           <h1>Protección de datos</h1>
-          Skyks reservara para uso personal lso datos de registro, no seran utilizados por ningunotro grupo. De la misma forma para la mejora del sistema se recivira informacion anonima del uso y funcionamiento.
+          Skyks reservara para uso personal los datos de registro, no serán utilizados por ningún otro grupo. De la misma forma para la mejora del sistema se recibirá información anónima del uso y funcionamiento.
         </div>
       </span>
       <span style="float:right;">
@@ -112,7 +112,7 @@
                     </select>
                 </td></tr>
 
-              <tr><td class="left"><label for="email" >email: </label></td>
+              <tr><td class="left"><label for="email" >Correo electronico: </label></td>
                   <td><input type="text" id="email" name="email"  value="${usuario.email}"/>*</td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
@@ -121,7 +121,7 @@
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
                   <td><input type="password" id="password" name="password" />*</td></tr>
 
-              <tr><td class="left"><label for="password">Confirmacion: </label></td>
+              <tr><td class="left"><label for="password">Confirmación: </label></td>
                   <td><input type="password" id="password2" name="password2" />*</td></tr>
 
               <tr><td class="left"><label for="sexo">Sexo: </label></td>

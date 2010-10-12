@@ -19,9 +19,9 @@
           <h1>Bienvenido</h1>
           Esta a punto de formar parte de al comunidad Skyks, por favor tome tiempo y complete los datos de registro correctamente. Los campos marcados con un asterisco son de especial importancia.
           <h1>Servicio</h1>
-          El sercio es gratuito, tan solo podran ser cargados las cuotas o conexioens a internet a la squ estes abonado, por favor consultes su proveedor telefonico.
+          El servicio es gratuito, tan solo podrán ser cargados las cuotas o conexiones a internet a las que estés abonado, por favor consultes su proveedor telefónico.
           <h1>Protección de datos</h1>
-          Skyks reservara para uso personal lso datos de registro, no seran utilizados por ningunotro grupo. De la misma forma para la mejora del sistema se recivira informacion anonima del uso y funcionamiento.
+          Skyks reservara para uso personal los datos de registro, no serán utilizados por ningún otro grupo. De la misma forma para la mejora del sistema se recibirá información anónima del uso y funcionamiento.
         </div>
       </span>
       <span style="float:right;">
@@ -111,7 +111,7 @@
                     </select>
                 </td></tr>
 
-              <tr><td class="left"><label for="email" >email: </label></td>
+              <tr><td class="left"><label for="email" >Correo electronico: </label></td>
                   <td><input type="text" id="email" name="email"/>*</td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
@@ -120,7 +120,7 @@
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
                   <td><input type="password" id="password" name="password" />*</td></tr>
 
-              <tr><td class="left"><label for="password">Confirmacion: </label></td>
+              <tr><td class="left"><label for="password">Confirmación: </label></td>
                   <td><input type="password" id="password2" name="password2" />*</td></tr>
 
               <tr><td class="left"><label for="sexo">Sexo: </label></td>

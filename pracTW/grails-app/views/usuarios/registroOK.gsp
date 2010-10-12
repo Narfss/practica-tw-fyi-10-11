@@ -19,14 +19,14 @@
 			<h1>Bienvenido</h1>
 			<p>Ahora formas parte del servicio Skyks, puedes comenzar a disfrutar de la comunidad y tus amigos más localizada.</p>
                         <h1>¿Que hacer ahora?</h1>
-                        <p>Comienza revisando tu perfil, tus amigos y saludalos a todos, para que sepan que un nuuo usuario ha llegaod a la ciudad.</p>
+                        <p>Comienza revisando tu perfil, tus amigos y saludados a todos, para que sepan que un nuevo usuario ha llegado a la ciudad.</p>
                 </div>
 	   </span>
 	   <span style="float:right;">
 		<img src="../images/default/intrologo.png" id="intrologo" alt="Skyks">
                 <div>
                   <h1>Registro Correcto</h1>
-                  <link href="index">Registro exitoso, ahora logeate para disfrutar ${usuario.nombre}.</link>
+                  <link href="index">El registro como ${usuario.nombre} a finalizado con éxito.</link>
                 </div>
            </span>
     </div>
