@@ -16,6 +16,11 @@
     <div id="body">
       <span style="float:left;">
         <div>
+          <center>
+                <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
+                <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
+                <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
+          </center>
           <h1>Modificaciones</h1>
           Como usuario de nuestro servicio tienes derecho a cambiar y modificar cualquier dato incluso finalizar el servicio. Desde aquí puedes modificar tanto tu nombre como la contraseña.
           <h1>Imagen</h1>
@@ -25,7 +30,7 @@
         </div>
       </span>
       <span style="float:right;">
-        <img src="../images/default/intrologo.png" id="intrologo" alt="Skyks">
+        <a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
         <div>
         <h1>Cambiar perfil</h1>
             <form action="guardarPerfil" method="post">

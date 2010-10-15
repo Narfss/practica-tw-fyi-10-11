@@ -14,8 +14,13 @@
   <body>
    <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
-        <span id="leftspan">
+      <span id="leftspan">
             <div>
+              <center>
+                <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
+                <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
+                <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
+              </center>
               <h1>Busqueda</h1>
               <form method="get" action="buscar">
               <fieldset>
@@ -31,12 +36,12 @@
             </div>
         </span>
         <span id="rightspan">
-          <img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks">
+          <a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>
           <div>
             <table id="busqueda">
               <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
               <tr><td>Icono</td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr>
-              <tr><td>Icono</td><td>Isa</td><td>...</td><td>Alicante</td></tr>
+              <tr><td>Icono</td><td>Isa</td><td>Martin</td><td>Alicante</td></tr>
             </table>
           </div>
         </span>

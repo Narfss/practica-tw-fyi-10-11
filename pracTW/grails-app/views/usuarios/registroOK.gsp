@@ -23,7 +23,7 @@
                 </div>
 	   </span>
 	   <span style="float:right;">
-		<img src="../images/default/intrologo.png" id="intrologo" alt="Skyks">
+		<a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
                 <div>
                   <h1>Registro Correcto</h1>
                   <link href="index">El registro como ${usuario.nombre} a finalizado con éxito.</link>

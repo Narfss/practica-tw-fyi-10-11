@@ -14,14 +14,14 @@
   <body>
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
-        <span id="leftspan">
+      <span id="leftspan">
             <div>
-              <h1>${usuario.nombre}</h1>
               <center>
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
               </center>
+              <h1>${usuario.nombre}</h1>
               <!--<ul>
                 <li><a href="perfil">Perfil: </a></li>
                 <li><a href="formBusqueda">Busqueda: </a></li>
@@ -41,7 +41,7 @@
             </div>
         </span>
         <span id="rightspan">
-          <img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks">
+          <a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>
           <div>
               <h1>Mapa</h1>
               <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>

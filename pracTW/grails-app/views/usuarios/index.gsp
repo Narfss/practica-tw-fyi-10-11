@@ -64,7 +64,7 @@
 		</div>
 	   </span>
 	   <span style="float:right;">
-		<img src="../images/default/intrologo.png" id="intrologo" alt="Skyks">
+		<a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
 		<div id="intrologin">
 			<fieldset>
 				    <form action="autentificar" method="post" id="login">
