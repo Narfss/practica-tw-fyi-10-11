@@ -17,7 +17,7 @@
       <span style="float:left;">
         <div>
           <h1>Bienvenido</h1>
-          Esta a punto de formar parte de al comunidad Skyks, por favor tome tiempo y complete los datos de registro correctamente. Los campos marcados con un asterisco son de especial importancia.
+          Esta a punto de formar parte de al comunidad Skyks, por favor tome tiempo y complete los datos de registro correctamente. Los campos marcados con una estrella son de especial importancia.
           <h1>Servicio</h1>
           El servicio es gratuito, tan solo podrán ser cargados las cuotas o conexiones a internet a las que estés abonado, por favor consultes su proveedor telefónico.
           <h1>Protección de datos</h1>
@@ -112,16 +112,16 @@
                 </td></tr>
 
               <tr><td class="left"><label for="email" >Correo electronico: </label></td>
-                  <td><input type="text" id="email" name="email"/>*</td></tr>
+                  <td><input type="text" id="email" name="email"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
-                  <td><input type="text" id="login" name="login"/>*</td></tr>
+                  <td><input type="text" id="login" name="login"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
-                  <td><input type="password" id="password" name="password" />*</td></tr>
+                  <td><input type="password" id="password" name="password" /><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password">Confirmación: </label></td>
-                  <td><input type="password" id="password2" name="password2" />*</td></tr>
+                  <td><input type="password" id="password2" name="password2" /><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="sexo">Sexo: </label></td>
                   <td><select id="sexo" name="sexo"/>
