@@ -39,7 +39,7 @@ body{
         height: 100%;
         width: 60%;
         min-width:920px;
-        background-color: white;
+        background-image: none;
         border: 0px red solid;
 
         padding: 0px;
@@ -66,9 +66,8 @@ h1{
 /*Divs redondeados de color y con sombras*/
 div{
         border: 0px white solid;
-        background-color: white; /*Por IE, comprobar qus e vea el texto*/
-        filter:alpha(opacity=50); /*Por IE, comprobar qus e vea el texto*/
-        background-color: rgba(255,255,255,0.5);
+        background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
+        /*background-color: rgba(255,255,255,0.5);*/
         padding: 30px;
         margin: 20px;
 
@@ -88,7 +87,6 @@ fieldset{
 
 /*Modelo de inputs de texto*/
 input{
-        border: 1px white solid;
         margin: 5px;
         padding:2.5px;
 
@@ -128,7 +126,7 @@ input{
         z-index: -1;
 
         opacity: 0.10;
-        filter:alpha(opacity=10);
+        filter:alpha(opacity=10); /*Transparencia de imagen para IE*/
 }
 
 #intrologo
@@ -143,7 +141,7 @@ input{
 /*Dos columnas al 50%, lo mas seguro esque en el resto del documento utilicemos una barra y no dos columnas iguales*/
 span{
         width: 49%;
-        border: 1px green solid;
+        border: 0px green solid;
         padding: 0px;
         margin: 0px;
         
@@ -155,13 +153,19 @@ span{
 }
 
 #leftspan{
-        float:left;
-        width:30%;
+        float: left;
+        /*width: 30%;*/
+        width:300px;
+        padding: 0px;
+        marggin: 0px;
 }
 
 #rightspan{
-        float:right;
-        width:70%;
+        float: right;
+        /*width: 70%;*/
+        width: 610;
+        padding: 0px;
+        marggin: 0px;
 }
 
 #generallogo
@@ -196,7 +200,8 @@ img{
 
 
 #busqueda{
-        width:100%;
+        /*width:100%;*/
+        width:530px;
         padding:0px;
         margin: 0px;
         border-spacing: 0px;
@@ -231,9 +236,8 @@ img{
 }
 */
 #busqueda tr:nth-child(odd) {
-        background-color: white; /*Por IE, comprobar qus e vea el texto*/
-        filter:alpha(opacity=50); /*Por IE, comprobar qus e vea el texto*/
-        background-color:rgba(255,255,255,0.5);
+        background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
+        /*background-color:rgba(255,255,255,0.5);*/
 }
 
 img{

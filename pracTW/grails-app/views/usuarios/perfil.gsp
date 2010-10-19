@@ -17,6 +17,7 @@
       <span style="float:left;">
         <div>
           <center>
+                <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
@@ -118,16 +119,16 @@
                 </td></tr>
 
               <tr><td class="left"><label for="email" >Correo electronico: </label></td>
-                  <td><input type="text" id="email" name="email"  value="${usuario.email}"/>*</td></tr>
+                  <td><input type="text" id="email" name="email"  value="${usuario.email}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
-                  <td><input type="text" id="login" name="login"/>*</td></tr>
+                  <td><input type="text" id="login" name="login"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
-                  <td><input type="password" id="password" name="password" />*</td></tr>
+                  <td><input type="password" id="password" name="password" /><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password">Confirmación: </label></td>
-                  <td><input type="password" id="password2" name="password2" />*</td></tr>
+                  <td><input type="password" id="password2" name="password2" /><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="sexo">Sexo: </label></td>
                   <td><select id="sexo" name="sexo"/>
