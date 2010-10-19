@@ -22,10 +22,10 @@ root {
 }
 
 body{
-        margin:0;
-        background-color: #7d7dff;
-        background-image:url('../images/default/fondo.png');
-        background-repeat:repeat-x;
+        background-color: white;
+        background-image: url('../images/default/fondo2.png');
+        background-repeat: repeat-y;
+        background-position:center; 
         font-family: arial;
         color: #323296;
         padding: 0px;
@@ -34,25 +34,16 @@ body{
 }
 
 /*Columna central al 60%*/
-#body
-{
-        height: 100%;
+#body{
+        border: 0px green solid;
+        height: auto%;
         width: 60%;
         min-width:920px;
-        background-image: none;
-        border: 0px red solid;
-
+        background-image: url('../images/default/intrologo.png');
+        background-repeat: no-repeat;
         padding: 0px;
         margin: 0px auto;
         text-align:left;
-
-        opacity: 1;
-        border-radius: 0px;
-        box-shadow: none;
-        -moz-border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
 }
 
 /*Titulos*/
@@ -71,18 +62,10 @@ h2{
 /*Divs redondeados de color y con sombras*/
 div{
         border: 0px white solid;
-        background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
-        /*background-color: rgba(255,255,255,0.5);*/
         padding: 30px;
         margin: 20px;
+        padding-top: 0px;
 
-        border-radius: 10px;
-        box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-        -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-        opacity: 1;
 }
 
 fieldset{
@@ -94,14 +77,6 @@ fieldset{
 input{
         margin: 5px;
         padding:2.5px;
-        
-        border-radius: 10px;
-        box-shadow: 0 1px 3px #999;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-box-shadow: 0 1px 3px #999;
-        -webkit-box-shadow: 0 1px 3px #999;
-        opacity: 1;
 }
 
 /*Modelo de botones*/
@@ -112,34 +87,27 @@ input{
         font-weight: bolder;
         margin: 5px;
         padding:10px 20px 10px 20px;
-
-        border-radius: 10px;
-        box-shadow: 0 1px 3px #999;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-box-shadow: 0 1px 3px #999;
-        -webkit-box-shadow: 0 1px 3px #999;
-        opacity: 1;
 }
 
 /*Imagen entrada en el fondo para marga de agua*/
-#marcaagua
-{
+#marcaagua{
         width: 80%;
         position: absolute;
         left: 10%;
-        z-index: -1;
+        z-index: -10;
 
         opacity: 0.10;
         filter:alpha(opacity=10); /*Transparencia de imagen para IE*/
 }
 
 #intrologo {
-        width: 400px;
-        margin: 10px;
-        margin-top:20px;
-        position:relative;
-        left:40px;
+        width: 800px;
+        margin: 0px;
+        margin-top:0px;
+        position:absolute;
+        left: 250px;
+        z-index: -5;
+        visibility: hidden;
 }
 
 /*Dos columnas al 50%, lo mas seguro esque en el resto del documento utilicemos una barra y no dos columnas iguales*/
@@ -157,15 +125,18 @@ span{
 }
 
 #leftspan{
-        float: left;
+        /*float: right;*/
         /*width: 30%;*/
         width:300px;
+        position: absolute;
+        right:0px;
+
         padding: 0px;
         marggin: 0px;
 }
 
 #rightspan{
-        float: right;
+        /*float: left;*/
         /*width: 70%;*/
         width: 610;
         padding: 0px;
@@ -174,28 +145,13 @@ span{
 
 #generallogo
 {
-        width: 70%;
-        position: relative;
-        left: 15%;
-        margin: 10px;
-        margin-top:20px;
-        padding-bottom:-16%;
-        margin-bottom:-16%;
-        z-index: -1;
+        visibility:hidden;
 }
 
 textarea{
         border: 1px white solid;
         margin: 5px;
         padding:2.5px;
-
-        border-radius: 10px;
-        box-shadow: 0 1px 3px #999;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-box-shadow: 0 1px 3px #999;
-        -webkit-box-shadow: 0 1px 3px #999;
-        opacity: 1;
 }
 
 img{
@@ -218,11 +174,6 @@ img{
         padding:2.5px;
         padding:0px;
         margin: 0px;
-
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        opacity: 1;
 }
 
 #busqueda td{
@@ -251,13 +202,16 @@ img{
 
 #floatleft{
     float:left;
+    margin-top:300px;
+    width: 70%;
 }
 
 #floatright{
-    float:right;
+    text-align:right;
 }
 
 #avatar{
     width:150px;
     padding:10px;
+    posision:absolute;
 }

@@ -8,6 +8,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <title>Mapa</title>
   </head>
@@ -17,26 +18,24 @@
       <span id="leftspan">
             <div>
               <center>
+                <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="avatar"/><br/>
                 <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
               </center>
-              <h1>${usuario.nombre}</h1>
-              <!--<ul>
-                <li><a href="perfil">Perfil: </a></li>
-                <li><a href="formBusqueda">Busqueda: </a></li>
-                <li><a href="logout">Salir por patas: </a></li>
-              </ul>-->
+              <h1>Bienvenido</h1>
+              <h2>${usuario.nombre} comparte:</h2>
 
               <form action="" method="post">
-                <h1>Comparte:</h1>
-                <textarea name="comments" cols="22" rows="4"></textarea><br/>
-                <!--<textbox> Comparte con nosotros:</textbox>-->
+                <textarea name="comment" cols="22" rows="4"></textarea><br/>
                 Localizacion:<br/>
-                <input type="radio" name="missing" value="automatico" checked="true"/>Automatico<br/>
-                <input type="radio" name="missing" value="manual"/>Manual<br/>
-                <input type="radio" name="missing" value="no mostrar"/>No mostrar<br/>
+                <input type="radio" name="posicion" value="automatico" checked="true"/>Automatico<br/>
+                <input type="radio" name="posicion" value="manual"/>Manual
+                <center id="infomanual">
+                  <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button"/><br/>
+                </center>
+                <input type="radio" name="posicion" value="no mostrar"/>No mostrar<br/>
                 <input type="button" value="Actualizar estado" class="button"/>
               </form>
             </div>
@@ -46,6 +45,9 @@
           <div>
               <h1>Mapa</h1>
               <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>
+              <center>
+                <div id="ejemplo"  class="ejemplo" style="background-image:url('../images/ejemplos/ejemplo.jpg');  height: 320px; width: 320px;"></div>
+              </center>
           </div>
         </span>
   </body>

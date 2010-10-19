@@ -9,7 +9,31 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <title>Perfil de Usuario</title>
+
+    <script type="text/javascript">
+        function testtamimagen(){
+          var valido=true;
+          var file = document.getElementById("imagentest").src="file:"+document.getElementById("foto").value;
+
+          if(document.getElementById("foto").files[0].size>204800){
+            valido=false;
+          }
+
+          var mime = file.substr(file.lastIndexOf('.'));
+          if (mime!= '.gif' && mime!= '.jpg' && mime!= '.png'){
+            valido=false;
+          }
+          
+          if (valido){
+            document.getElementById("imagenvalida").style.visibility = "hidden";
+          }else{
+            document.getElementById("imagenvalida").style.visibility = "visible";
+          }
+        }
+    </script>
+
   </head>
   <body>
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
@@ -17,6 +41,7 @@
       <span style="float:left;">
         <div>
           <center>
+                <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
                 <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
@@ -26,6 +51,7 @@
           Como usuario de nuestro servicio tienes derecho a cambiar y modificar cualquier dato incluso finalizar el servicio. Desde aquí puedes modificar tanto tu nombre como la contraseña.
           <h1>Imagen</h1>
           Por favor, haga un uso responsable de la imagen publica que tome, en caso de ser obscena, ilegal, racista... Skyks se reserva el derecho de retirar la imagen para una mejor convivencia de la comunidad.
+          La imagen tiene un limite de tamaño de 200kb y solo esta permitido de lso formatos gif, png y jpg.
           <h1>Protección de datos</h1>
           Skyks reservara para uso personal los datos de registro, no serán utilizados por ningún otro grupo. De la misma forma para la mejora del sistema se recibirá información anónima del uso y funcionamiento.
         </div>
@@ -122,7 +148,7 @@
                   <td><input type="text" id="email" name="email"  value="${usuario.email}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
-                  <td><input type="text" id="login" name="login"/><img src="../images/default/estrella.png"></td></tr>
+                  <td><input type="text" id="login" name="login" value="${usuario.login}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
                   <td><input type="password" id="password" name="password" /><img src="../images/default/estrella.png"></td></tr>
@@ -136,12 +162,14 @@
                         <option value="M">Mujer</option>
                       </select></td></tr>
             </table>
-            <center><input type="submit" value="Enviar" class="button"/></center>
+            <center><input type="submit" value="Cambiar perfil" class="button"/></center>
           </form>
         <h1>Imagen de perfil</h1>
           <form action="cambiarImagenPerfil" method="post" enctype="multipart/form-data">
-            <center><input type="file" name="foto" id="foto"/>
-              <td class="left"><input type="submit" value="Enviar" class="button"/>
+            <center>
+               <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="imagentest" alt="imagen de perfil de ${usuario.login}"/><br/>
+               <input type="file" name="foto" id="foto" onChange="testtamimagen()"/> <img src="../images/default/Error.png" style="visibility:hidden;" id="imagenvalida"/>
+               <td class="left"><input type="submit" value="Cambiar imagen" class="button"/>
             </center>
           </form>
         </div>

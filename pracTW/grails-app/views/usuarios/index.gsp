@@ -3,8 +3,13 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../css/index2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <link href="../css/index.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+
+    <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
+    <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
     <title>Skyks</title>
 
     <script type="text/javascript">
@@ -48,7 +53,7 @@
   <body onload="animacionejemplos();">
 	<img src="../images/default/marcaagua.png" id="marcaagua"/>
 	<div id="body">
-	    <span style="float:left;">
+	    <span id="floatleft">
 		<div id="introtexto">
 			<h1>¿Que es esto?</h1>
 			<p>Bienvenidos al este servicio web, skyks es un servicio "socio localizador de comentarios". Su sistema de funcionamiento se basa en la localización por medio de coordenadas los comentarios de los usuarios del sistema.</p>
@@ -63,11 +68,11 @@
 			<p>No es necesario, ya que la conexión de internet da tu localización aproximada, pero es recomendable y mucho mas exacto tener un dispositivo con capacidades geolicalizadoras (GPS)</p>
 		</div>
 	   </span>
-	   <span style="float:right;">
+	   <span id="floatright">
 		<a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
 		<div id="intrologin">
 			<fieldset>
-				    <form action="autentificar" method="post" id="login">
+				    <form action="autentificar" method="post">
 					    <label for="login">Usuario: </label>
 						    <input type="text" id="login" name="login"/><br/>
 					    <label for="password">Contraseña: </label>
