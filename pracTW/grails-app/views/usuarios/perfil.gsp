@@ -8,8 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
-    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <title>Perfil de Usuario</title>
 
     <script type="text/javascript">
@@ -42,7 +42,7 @@
         <div>
           <center>
                 <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
-                <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
+                <!--<a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
@@ -148,6 +148,7 @@
                   <td><input type="text" id="email" name="email"  value="${usuario.email}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
+                  <td><input type="text" id=usuario" name="usuario"/><img src="../images/default/estrella.png"></td></tr>
                   <td><input type="text" id="login" name="login" value="${usuario.login}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
@@ -167,7 +168,7 @@
         <h1>Imagen de perfil</h1>
           <form action="cambiarImagenPerfil" method="post" enctype="multipart/form-data">
             <center>
-               <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="imagentest" alt="imagen de perfil de ${usuario.login}"/><br/>
+               <!-- Es algo redundnate, ya se ve arriba<img src="../images/perfiles/${usuario.login}/perfil.jpg" id="imagentest" alt="imagen de perfil de ${usuario.login}"/><br/>-->
                <input type="file" name="foto" id="foto" onChange="testtamimagen()"/> <img src="../images/default/Error.png" style="visibility:hidden;" id="imagenvalida"/>
                <td class="left"><input type="submit" value="Cambiar imagen" class="button"/>
             </center>

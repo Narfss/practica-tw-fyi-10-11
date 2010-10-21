@@ -3,9 +3,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/index2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
-    <link href="../css/index.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
@@ -16,7 +14,7 @@
 	/*Animacion para las 3 imagenes de ejemplo*/
 	var imagen='';
 	var opacidad=0;
-	var refresco=0.2;
+	var refresco=0.5;
 	function reaparecer(nombre,intervalo){
 		var div = document.getElementById(nombre);
 		div.style.opacity = opacidad;

@@ -8,8 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
-    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
     <title>Pagina de busqueda</title>
   </head>
   <body>
@@ -19,7 +19,7 @@
             <div>
               <center>
                 <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
-                <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
+                <!--<a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>

@@ -8,8 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
-    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
+        <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+        <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <title>Mapa</title>
   </head>
   <body>
@@ -18,8 +18,8 @@
       <span id="leftspan">
             <div>
               <center>
-                <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="avatar"/><br/>
-                <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>
+                <!--No funciona, faltara conexion la tabla <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="avatar"/><br/>-->
+                <!--El link no funciona <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
@@ -41,7 +41,8 @@
             </div>
         </span>
         <span id="rightspan">
-          <a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>
+          <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->>
+          <div id="generallogo"></div>
           <div>
               <h1>Mapa</h1>
               <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>

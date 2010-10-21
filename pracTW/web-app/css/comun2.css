@@ -27,7 +27,7 @@ body{
         background-repeat: repeat-y;
         background-position:center; 
         font-family: arial;
-        color: #323296;
+        color: #656565;
         padding: 0px;
         margin: 0px;
         text-align: center;
@@ -39,8 +39,7 @@ body{
         height: auto%;
         width: 60%;
         min-width:920px;
-        background-image: url('../images/default/intrologo.png');
-        background-repeat: no-repeat;
+
         padding: 0px;
         margin: 0px auto;
         text-align:left;
@@ -55,7 +54,7 @@ h1{
 
 h2{
         /*font-family: "Adventure";*/
-        color: rgb(100,100,255);
+        color: rgb(100,100,100);
         text-align:left;
 }
 
@@ -77,6 +76,7 @@ fieldset{
 input{
         margin: 5px;
         padding:2.5px;
+        -webkit-border-radius: 10px 0px 10px 0px;
 }
 
 /*Modelo de botones*/
@@ -87,6 +87,7 @@ input{
         font-weight: bolder;
         margin: 5px;
         padding:10px 20px 10px 20px;
+        -webkit-border-radius: 10px 0px 10px 0px;
 }
 
 /*Imagen entrada en el fondo para marga de agua*/
@@ -141,11 +142,16 @@ span{
         width: 610;
         padding: 0px;
         marggin: 0px;
+
 }
 
 #generallogo
 {
-        visibility:hidden;
+        background-image: url('../images/default/intrologo.png');
+        background-repeat: no-repeat;
+        background-size:auto 200px; /*hay que redimensionar la imagen*/
+        height:200px;
+        width: 450px;
 }
 
 textarea{
@@ -214,4 +220,53 @@ img{
     width:150px;
     padding:10px;
     posision:absolute;
+}
+
+/*estilo index 2*/
+
+#introtexto {
+        width: 100%;
+        text-align:justify;
+
+        margin: 0px;
+}
+
+#intrologin{
+        text-align:right;
+        height: 100%;
+        width: auto;
+
+}
+
+#login {
+    width: 150px;
+}
+
+#password {
+    width: 150px;
+}
+
+
+#titulo {
+        border: 0px white solid;
+        margin-top:100px;
+        margin-left:0px;
+        position: absolute;
+        width:800px;
+
+}
+
+#nuevousuario{
+        border: 0px white solid;
+        margin-top:0px;
+        margin-left:0px;
+        vertical-align:middle;
+}
+
+.ejemplo{
+        /*background-image:url('../images/ejemplos/ejemplo.jpg');*/
+        background-position:center;
+        height: 320px;
+        width: 320px;
+        visibility: hidden;
 }
