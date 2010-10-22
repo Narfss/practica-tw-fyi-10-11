@@ -37,7 +37,7 @@ body{
 #body
 {
         height: 100%;
-        width: 80%;
+        width: 100%;
         min-width:920px;
         background-image: none;
         border: 0px red solid;
@@ -304,7 +304,7 @@ img{
         opacity:1;
         width: 380px;
         text-align:justify;
-        filter:alpha(opacity=100);
+        /*filter:alpha(opacity=100);*/
 }
 
 #intrologin
@@ -313,7 +313,7 @@ img{
         text-align:right;
         height: 120px;
         width: 320px;
-        filter:alpha(opacity=100);
+        /filter:alpha(opacity=100);*/
 }
 
 #login {

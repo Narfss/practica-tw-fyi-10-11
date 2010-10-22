@@ -17,8 +17,7 @@
       <div id="body">
       <span id="leftspan">
             <div>
-              <center>
-                
+              <center>      
                 <!--<a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
                 <a href="formBusqueda"><img src="../images/default/buscar.png" alt="Buscar"/></a>
