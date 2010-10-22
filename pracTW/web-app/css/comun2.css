@@ -77,6 +77,8 @@ input{
         margin: 5px;
         padding:2.5px;
         -webkit-border-radius: 10px 0px 10px 0px;
+        border-style: solid;
+        border-width: 1px;
 }
 
 /*Modelo de botones*/
@@ -155,7 +157,7 @@ span{
 }
 
 textarea{
-        border: 1px white solid;
+       -webkit-border-radius: 10px 0px 10px 0px;
         margin: 5px;
         padding:2.5px;
 }
@@ -208,7 +210,7 @@ img{
 
 #floatleft{
     float:left;
-    margin-top:300px;
+/*    margin-top:300px;*/
     width: 70%;
 }
 
@@ -225,6 +227,11 @@ img{
 /*estilo index 2*/
 
 #introtexto {
+            background-image: url('../images/default/intrologo.png');
+        background-repeat: no-repeat;
+        background-size:auto 200px; /*hay que redimensionar la imagen*/
+        padding-top:200px;
+        
         width: 100%;
         text-align:justify;
 
@@ -269,4 +276,14 @@ img{
         height: 320px;
         width: 320px;
         visibility: hidden;
+}
+
+table{
+            border: 1px solid black;
+}
+td{
+            border: 1px solid black;
+}
+tr{
+            border: 1px solid black;
 }

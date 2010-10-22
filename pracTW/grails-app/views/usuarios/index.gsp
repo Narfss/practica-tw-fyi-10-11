@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun2.css" type="text/css" rel="alternate stylesheet" media="screen" title="secundario" />
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>

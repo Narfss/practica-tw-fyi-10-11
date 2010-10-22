@@ -8,8 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="principal" />
     <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun.css" type="text/css" rel="alternate stylesheet" media="screen" title="principal" />
     <title>Perfil de Usuario</title>
 
     <script type="text/javascript">
@@ -38,7 +38,7 @@
   <body>
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
     <div id="body">
-      <span style="float:left;">
+      <span id="floatleft">
         <div>
           <center>
                 <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
@@ -56,8 +56,8 @@
           Skyks reservara para uso personal los datos de registro, no serán utilizados por ningún otro grupo. De la misma forma para la mejora del sistema se recibirá información anónima del uso y funcionamiento.
         </div>
       </span>
-      <span style="float:right;">
-        <a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
+      <span id="floatright">
+        <div id="generallogo"></div>
         <div>
         <h1>Cambiar perfil</h1>
             <form action="guardarPerfil" method="post">
@@ -148,7 +148,6 @@
                   <td><input type="text" id="email" name="email"  value="${usuario.email}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
-                  <td><input type="text" id=usuario" name="usuario"/><img src="../images/default/estrella.png"></td></tr>
                   <td><input type="text" id="login" name="login" value="${usuario.login}"/><img src="../images/default/estrella.png"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
