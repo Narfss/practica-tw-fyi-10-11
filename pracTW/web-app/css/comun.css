@@ -37,8 +37,9 @@ body{
 #body
 {
         height: 100%;
-        width: 100%;
-        min-width:920px;
+        width: 1024px;
+       /* width: 100%;
+        min-width:920px;*/
         background-image: none;
         border: 0px red solid;
 
@@ -71,7 +72,7 @@ h2{
 
 /*Divs redondeados de color y con sombras*/
 div{
-        border: 1px white solid;
+        border: 0px white solid;
         background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
         /*background-color: rgba(255,255,255,0.5);*/
         padding: 30px;
@@ -147,7 +148,7 @@ input{
 /*Dos columnas al 50%, lo mas seguro esque en el resto del documento utilicemos una barra y no dos columnas iguales*/
 span{
         width: 49%; /*Por IE el valor real deberia ser 50%*/
-        border: 1px green solid;
+        border: 0px green solid;
         padding: 0px;
         margin: 0px;
         opacity: 1;

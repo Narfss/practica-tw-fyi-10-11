@@ -38,7 +38,8 @@
             </div>
         </span>
         <span id="rightspan">
-          <a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>
+          <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->
+          <div id="generallogo"></div>
           <div>
             <table id="busqueda">
               <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
