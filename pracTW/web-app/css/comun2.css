@@ -149,9 +149,9 @@ span{
 
 #generallogo
 {
-        background-image: url('../images/default/intrologo.png');
+        background-image: url('../images/default/intrologo2.png');
         background-repeat: no-repeat;
-        background-size:auto 200px; /*hay que redimensionar la imagen*/
+        /*background-size:auto 200px; /*hay que redimensionar la imagen*/
         height:200px;
         width: 450px;
 }
