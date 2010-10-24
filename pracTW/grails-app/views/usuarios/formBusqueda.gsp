@@ -8,8 +8,11 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun2.css" type="text/css" rel="alternate stylesheet" media="screen" title="principal" />
-    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="secundario" />
+    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" id="CSSprincipal"/>
+    <link href="../css/comun2.css" type="text/css" rel="alternate stylesheet" media="screen" title="secundario" id="CSSsecundario"/>
+
+    <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
+    <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
     <title>Pagina de busqueda</title>
   </head>
   <body>
@@ -38,7 +41,6 @@
             </div>
         </span>
         <span id="rightspan">
-          <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->
           <div id="generallogo"></div>
           <div>
             <table id="busqueda">

@@ -76,6 +76,7 @@ fieldset{
 input{
         margin: 5px;
         padding:2.5px;
+        -moz-border-radius: 10px 0px 10px 0px;
         -webkit-border-radius: 10px 0px 10px 0px;
         border-style: solid;
         border-width: 1px;
@@ -89,6 +90,7 @@ input{
         font-weight: bolder;
         margin: 5px;
         padding:10px 20px 10px 20px;
+        -moz-border-radius: 10px 0px 10px 0px;
         -webkit-border-radius: 10px 0px 10px 0px;
 }
 
@@ -129,7 +131,7 @@ span{
 
 #leftspan{
         /*float: right;*/
-        /*width: 30%;*/
+        /*width: 30%;*/ /*Fijado para compatibilidad con IE*/
         width:300px;
         position: absolute;
         right:0px;
@@ -140,7 +142,7 @@ span{
 
 #rightspan{
         /*float: left;*/
-        /*width: 70%;*/
+        /*width: 70%;*/ /*Fijado para compatibilidad con IE*/
         width: 610;
         padding: 0px;
         marggin: 0px;
@@ -151,15 +153,17 @@ span{
 {
         background-image: url('../images/default/intrologo2.png');
         background-repeat: no-repeat;
-        /*background-size:auto 200px; /*hay que redimensionar la imagen*/
+        /*background-size:auto 200px; /*Ni firefox ni IE redimensionan la imagne de fondo*/
         height:200px;
         width: 450px;
 }
 
 textarea{
-       -webkit-border-radius: 10px 0px 10px 0px;
         margin: 5px;
         padding:2.5px;
+
+        -moz-border-radius: 10px 0px 10px 0px;
+        -webkit-border-radius: 10px 0px 10px 0px;
 }
 
 img{
@@ -168,7 +172,6 @@ img{
 
 
 #busqueda{
-        /*width:100%;*/
         width:530px;
         padding:0px;
         margin: 0px;
@@ -177,7 +180,7 @@ img{
 
 #busqueda tr{
 
-        border: 1px white solid;
+        border: 0px white solid;
         margin: 5px;
         padding:2.5px;
         padding:0px;
@@ -199,8 +202,8 @@ img{
 }
 */
 #busqueda tr:nth-child(odd) {
-        background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
-        /*background-color:rgba(255,255,255,0.5);*/
+        color: white;
+        background-color: rgb(120,120,255);
 }
 
 img{
@@ -276,14 +279,4 @@ img{
         height: 320px;
         width: 320px;
         visibility: hidden;
-}
-
-table{
-            border: 1px solid black;
-}
-td{
-            border: 1px solid black;
-}
-tr{
-            border: 1px solid black;
 }
