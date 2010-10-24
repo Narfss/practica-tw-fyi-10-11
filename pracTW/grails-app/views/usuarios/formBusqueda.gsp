@@ -29,11 +29,11 @@
               <h1>Busqueda</h1>
               <form method="get" action="buscar">
               <fieldset>
-                      <label for="Nombre">Nombre: </label>
+                      <label for="Nombre">Nombre: </label><br/>
                               <input type="text" id="nombre" name="nombre" /><br/>
-                      <label for="Apellidos">Apellidos: </label>
+                      <label for="Apellidos">Apellidos: </label><br/>
                               <input type="text" id="apellidos" name="apellidos" /><br/>
-                      <label for="Localidad">Localidad: </label>
+                      <label for="Localidad">Localidad: </label><br/>
                               <input type="text" id="localidad" name="localidad" /><br/>
                       <center><input type="button" value="Buscar" class="button" /></center>
               </fieldset>

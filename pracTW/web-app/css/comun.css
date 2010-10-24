@@ -185,8 +185,8 @@ span{
         left: auto;
         margin: 0px;
         padding: 0px;
-        padding-bottom:-150px;
-        margin-bottom:-150px;
+        padding-bottom:-100px;
+        margin-bottom:-100px;
         z-index: -1;
 
         border: none;
