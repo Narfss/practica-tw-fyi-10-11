@@ -41,7 +41,7 @@
   <body>
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
     <div id="body">
-      <span id="floatleft">
+      <span id="leftspan">
         <div>
           <center>
                 <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
@@ -59,7 +59,7 @@
           Skyks reservara para uso personal los datos de registro, no serán utilizados por ningún otro grupo. De la misma forma para la mejora del sistema se recibirá información anónima del uso y funcionamiento.
         </div>
       </span>
-      <span id="floatright">
+      <span id="rightspan">
         <div id="generallogo"></div>
         <div>
         <h1>Cambiar perfil</h1>

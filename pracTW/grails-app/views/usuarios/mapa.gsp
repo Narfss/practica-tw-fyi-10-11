@@ -31,7 +31,7 @@
               <h2>${usuario.nombre} comparte:</h2>
 
               <form action="" method="post">
-                <textarea name="comment" cols="22" rows="4"></textarea><br/>
+                <textarea name="comment" cols="33" rows="4"></textarea><br/>
                 Localizacion:<br/>
                 <input type="radio" name="posicion" value="automatico" checked="true"/>Automatico<br/>
                 <input type="radio" name="posicion" value="manual"/>Manual
