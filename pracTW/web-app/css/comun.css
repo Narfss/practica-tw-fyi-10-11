@@ -183,6 +183,8 @@ span{
         height: 200px;
         position: relative;
         left: auto;
+        margin: 0px;
+        padding: 0px;
         padding-bottom:-150px;
         margin-bottom:-150px;
         z-index: -1;
