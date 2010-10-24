@@ -82,6 +82,17 @@ input{
         border-width: 1px;
 }
 
+.cambia-img{
+
+    float:left;
+    background-color:#7878FF;
+border:0 solid black;
+color:white;
+font-weight:bolder;
+margin:5px;
+padding:10px 20px;
+
+}
 /*Modelo de botones*/
 .button{
         border: 0px black solid;

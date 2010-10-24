@@ -8,8 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../css/comun.css" type="text/css" rel="stylesheet" media="screen" title="principal" id="CSSprincipal"/>
-    <link href="../css/comun2.css" type="text/css" rel="alternate stylesheet" media="screen" title="secundario" id="CSSsecundario"/>
+    <link href="../css/comun2.css" type="text/css" rel="stylesheet" media="screen" title="principal" id="CSSprincipal"/>
+    <link href="../css/comun.css" type="text/css" rel="alternate stylesheet" media="screen" title="secundario" id="CSSsecundario"/>
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
@@ -171,8 +171,8 @@
           <form action="cambiarImagenPerfil" method="post" enctype="multipart/form-data">
             <center>
                <!-- Es algo redundnate, ya se ve arriba<img src="../images/perfiles/${usuario.login}/perfil.jpg" id="imagentest" alt="imagen de perfil de ${usuario.login}"/><br/>-->
-               <input type="file" name="foto" id="foto" onChange="testtamimagen()"/> <img src="../images/default/Error.png" style="visibility:hidden;" id="imagenvalida"/>
-               <td class="left"><input type="submit" value="Cambiar imagen" class="button"/>
+               <input class="cambia-img" type="file" name="foto" id="foto" onChange="testtamimagen()"/> <img src="../images/default/Error.png" style="visibility:hidden;" id="imagenvalida"/>
+               <td class="left"><input class="cambia-img" type="submit" value="Cambiar imagen" class="button"/>
             </center>
           </form>
         </div>
