@@ -45,8 +45,8 @@
           <div>
             <table id="busqueda">
               <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
-              <tr><td>Icono</td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr>
-              <tr><td>Icono</td><td>Isa</td><td>Martin</td><td>Alicante</td></tr>
+              <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr>
+              <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr>
             </table>
           </div>
         </span>
