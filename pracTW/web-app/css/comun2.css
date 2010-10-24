@@ -223,20 +223,21 @@ img{
         background-color: none;
 }
 
-/*
+
 #floatleft{
-    border: 1px green solid;
     float:left;
-    margin-top:250px;
-    width: 500px;
+    padding: 50px;
+    width: 800px;
 }
 
 #floatright{
-    border: 1px green solid;
+    float:right;
     text-align:left;
-    width: 500px;
+    padding: 15px;
+    padding-top:100px;
+    width: 400px;
 }
-*/
+
 
 #avatar{
     width:150px;
@@ -300,4 +301,18 @@ img{
 
 .icono{
     height: 50px;
+}
+
+#cambioestilo{
+    position: absolute;
+    right:0px;
+    top: 0px;
+    padding: 5px;
+    -moz-border-radius: 0 0 0 10px;
+    -webkit-border-radius: 0 0 0 10px;
+    background-image: url("../images/default/BlancoAl20.png");
+}
+
+#cambioestilo img{
+    margin: 2px;
 }

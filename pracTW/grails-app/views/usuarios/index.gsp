@@ -49,6 +49,7 @@
 
   </head>
   <body onload="animacionejemplos();">
+    
 	<img src="../images/default/marcaagua.png" id="marcaagua"/>
 	<div id="body">
 	    <span id="floatleft">
@@ -86,5 +87,15 @@
 		<div id="ejemplo3" class="ejemplo" style="opacity: 0; margin-top: -400px; background-image:url('../images/ejemplos/ejemplo3.jpg'); -moz-box-shadow: none;-webkit-box-shadow: none;"></div>
 	    </span>
  	</div>
+        <script type="text/javascript">
+            function cambiarCSS(nombre) {
+              document.getElementById("CSSprincipal").setAttribute("href",nombre);
+            }
+        </script>
+        <center id="cambioestilo">
+          Cambio de estilo<br/>
+          <a href="javascript:cambiarCSS('../css/comun.css');"><img src="../images/default/cssPrimario.png"/></a>
+          <a href="javascript:cambiarCSS('../css/comun2.css');"><img src="../images/default/cssSegundario.png"/></a>
+        </center>
   </body>
 </html>

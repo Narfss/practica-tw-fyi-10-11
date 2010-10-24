@@ -53,5 +53,15 @@
           </div>
         </span>
     </div>
+    <script type="text/javascript">
+        function cambiarCSS(nombre) {
+          document.getElementById("CSSprincipal").setAttribute("href",nombre);
+        }
+    </script>
+    <center id="cambioestilo">
+      Cambio de estilo<br/>
+      <a href="javascript:cambiarCSS('../css/comun.css');"><img src="../images/default/cssPrimario.png"/></a>
+      <a href="javascript:cambiarCSS('../css/comun2.css');"><img src="../images/default/cssSegundario.png"/></a>
+    </center>
   </body>
 </html>
