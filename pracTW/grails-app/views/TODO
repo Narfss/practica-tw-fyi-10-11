@@ -1,0 +1,42 @@
+TODO (thinks TO DO) 
+	Fecha limmite 28 Noviembre
+
+	Leyenda
+	   "-"= sin hacer
+	   "I|F"=Trabajando Isa|Fran
+	   "P"=Necesario pruebas
+	   "X"=Hecho
+
+perfil.gsp y registro.gsp:
+	Comprobar campos antes de enviar:
+		- Login no vacio
+		- Dos passwords iguales y no vacios.
+		- Dia/mes/año valido
+	Comprobar con AJAX
+		- Comprobar login disponible
+	Edicion perfil.gsp
+		- Mostrar fecha nacimiento
+		- Mostrar sexo
+		- Imagen por defecto
+mapa.gsp:
+	Mostrar el mapa:
+		- Incluir librerias
+		- Incluir mapa
+		- Dibujar icono usuario (Marker)
+	Motrar licalizacion amigos en mapa (AJAX y temporizador):
+		- Pedir cada minuto la posicion de lso amigos con AJAX
+		- Dibujar iconos (Marker) de amigos en su posicion del mapa
+		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
+			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
+	Geolocalizacion:
+		- "Modo automatico" toma posicion de API (Marker inamobible)
+		- "No mostrar posicion" No enviar posicion al servidor.
+
+Adicional:
+	- Permitir actualizar "status quo, is not quo"
+	- Posicionamiento manual
+		- Al pulsar el radio button los campos pasaran a ser visibles
+		- Busqueda de direccion
+		- Actualizaciond eposicion
+		- Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
+	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion,
