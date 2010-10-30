@@ -6,15 +6,20 @@ TODO (thinks TO DO)
 	   "I|F"=Trabajando Isa|Fran
 	   "P"=Necesario pruebas
 	   "X"=Hecho
+           "?"=cuestionable
 
 perfil.gsp y registro.gsp:
 	Comprobar campos antes de enviar:
 		P Login no vacio
                 P email valido (añadido narf)
 		P Dos passwords iguales y no vacios.
-		- Dia/mes/año valido
+		P Dia/mes/año valido
+                    P Auto rellenar dias al cambiar fecha
+                    ? Los nombres de los mes tambien deben de ser autocompletados?
+                    ? Hacemos la franja de edad dinamica a al fecha actual?
 	Comprobar con AJAX
-		- Comprobar login disponible
+		P Comprobar login disponible
+                ? Deberiamos diferenciar el error de campo vacio y nombre ya existente?
 	Edicion perfil.gsp
 		- Mostrar fecha nacimiento
 		- Mostrar sexo

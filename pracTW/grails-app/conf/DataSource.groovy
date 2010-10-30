@@ -13,32 +13,35 @@ hibernate {
 environments {
     development {
         dataSource {
-            //cuidado, "create" se carga el contenido de la BD cada vez que se inicializa la aplicación
-            dbCreate = "create-drop"
+            dbCreate = "update"
             url = "jdbc:mysql://localhost/test"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
             password = ""
             pooled = true
-            logSql = "true"
-        }
+            }
 
     }
     test {
         dataSource {
-            dbCreate = "create-drop"
+            dbCreate = "update"
             url = "jdbc:mysql://localhost/test"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
             password = ""
             pooled = true
-            logSql = "true"
+            logSql = "false"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+            url = "jdbc:mysql://localhost/test"
+            driverClassName = "com.mysql.jdbc.Driver"
+            username = "root"
+            password = ""
+            pooled = true
+            logSql = "false"
         }
     }
 }
