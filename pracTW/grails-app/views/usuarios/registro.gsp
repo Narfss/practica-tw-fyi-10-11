@@ -13,6 +13,9 @@
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
+
+    <script type="text/javascript" src="../js/camposReg.js"></script>
+
     <title>Pagina de registro para nuevos usuarios</title>
   </head>
   <body>
@@ -32,7 +35,7 @@
         <div id="generallogo"></div>
         <div>
         <h1>Formulario</h1>
-	<form action="registro" method="post">
+	<form name="registro" action="registro" method="post" onSubmit="return formValidacion()">
           <table>
             <tr><td class="left"><label for="nombre">Nombre:</label></td>
                 <td><input type="text" id="nombre" name="nombre"/></td></tr>
@@ -116,16 +119,16 @@
                 </td></tr>
 
               <tr><td class="left"><label for="email" >Correo electronico: </label></td>
-                  <td><input type="text" id="email" name="email"/><img src="../images/default/estrella.png"></td></tr>
+                  <td><input type="text" id="email" name="email" onchange="javascript:emailValidacion(this.value)"/><img src="../images/default/estrella.png" id="emailVal"></td></tr>
 
               <tr><td class="left"><label for="usuario" >Usuario: </label></td>
-                  <td><input type="text" id="login" name="login"/><img src="../images/default/estrella.png"></td></tr>
+                  <td><input type="text" id="login" name="login" onchange="javascript:loginValidacion(this.value)"/><img src="../images/default/estrella.png" id="loginVal"></td></tr>
 
               <tr><td class="left"><label for="password" >Contraseña: </label></td>
-                  <td><input type="password" id="password" name="password" /><img src="../images/default/estrella.png"></td></tr>
+                  <td><input type="password" id="password" name="password" onchange="javascript:passValidacion(this.value)"/><img src="../images/default/estrella.png" id="passVal"></td></tr>
 
               <tr><td class="left"><label for="password">Confirmación: </label></td>
-                  <td><input type="password" id="password2" name="password2" /><img src="../images/default/estrella.png"></td></tr>
+                  <td><input type="password" id="password2" name="password2" onchange="javascript:pass2Validacion(this.value)"/><img src="../images/default/estrella.png" id="pass2Val"></td></tr>
 
               <tr><td class="left"><label for="sexo">Sexo: </label></td>
                   <td><select id="sexo" name="sexo"/>

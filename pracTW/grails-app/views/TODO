@@ -9,8 +9,9 @@ TODO (thinks TO DO)
 
 perfil.gsp y registro.gsp:
 	Comprobar campos antes de enviar:
-		- Login no vacio
-		- Dos passwords iguales y no vacios.
+		P Login no vacio
+                P email valido (añadido narf)
+		P Dos passwords iguales y no vacios.
 		- Dia/mes/año valido
 	Comprobar con AJAX
 		- Comprobar login disponible
