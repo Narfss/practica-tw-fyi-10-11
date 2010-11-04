@@ -59,6 +59,7 @@ function daysInFebruary (year){
     // EXCEPT for centurial years which are not also divisible by 400.
     return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
 }
+
 function diasenMes(mes,anyo){
     dias = 31
     if (mes==4 || mes==6 || mes==9 || mes==11) { dias = 30}
@@ -103,4 +104,31 @@ function rellenarAnyos(){
 function rellenarFechas(){
     rellenarAnyos();
     rellenarDias();
+}
+
+function testtamimagen(){
+          var valido=true;
+          var file = document.getElementById("imagentest").src="file:"+document.getElementById("foto").value;
+
+          if(document.getElementById("foto").files[0].size>204800){
+            valido=false;
+          }
+
+          var mime = file.substr(file.lastIndexOf('.'));
+          if (mime!= '.gif' && mime!= '.jpg' && mime!= '.png'){
+            valido=false;
+          }
+
+          if (valido){
+            document.getElementById("imagenvalida").style.visibility = "hidden";
+          }else{
+            document.getElementById("imagenvalida").style.visibility = "visible";
+          }
+}
+
+function rellenarCampos(dia,mes,anyo,sexo){
+    document.getElementById("anyo").value=anyo;
+    document.getElementById("mes").value=mes;
+    document.getElementById("dia").value=dia;
+    document.getElementById("sexo").value=sexo;
 }

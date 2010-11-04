@@ -13,32 +13,12 @@
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
+
+    <script type="text/javascript" src="../js/camposReg.js"></script>
+
     <title>Perfil de Usuario</title>
-
-    <script type="text/javascript">
-        function testtamimagen(){
-          var valido=true;
-          var file = document.getElementById("imagentest").src="file:"+document.getElementById("foto").value;
-
-          if(document.getElementById("foto").files[0].size>204800){
-            valido=false;
-          }
-
-          var mime = file.substr(file.lastIndexOf('.'));
-          if (mime!= '.gif' && mime!= '.jpg' && mime!= '.png'){
-            valido=false;
-          }
-          
-          if (valido){
-            document.getElementById("imagenvalida").style.visibility = "hidden";
-          }else{
-            document.getElementById("imagenvalida").style.visibility = "visible";
-          }
-        }
-    </script>
-
   </head>
-  <body>
+  <body onload="rellenarCampos('${usuario.fechaNac.day}','${usuario.fechaNac.month}','${usuario.fechaNac.year}','${usuario.sexo}');">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
     <div id="body">
       <span id="leftspan">

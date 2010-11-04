@@ -1,4 +1,6 @@
-TODO (thinks TO DO) 
+TODO (thinks TO DO)
+
+Javascript
 	Fecha limmite 28 Noviembre
 
 	Leyenda
@@ -7,6 +9,11 @@ TODO (thinks TO DO)
 	   "P"=Necesario pruebas
 	   "X"=Hecho
            "?"=cuestionable
+
+
+Antiguos Errores cometidos
+    - hoja de estilo css, imagne de perfil sobre sale del bloque en el caso de paris/paris
+
 
 perfil.gsp y registro.gsp:
 	Comprobar campos antes de enviar:
@@ -21,8 +28,9 @@ perfil.gsp y registro.gsp:
 		P Comprobar login disponible
                 ? Deberiamos diferenciar el error de campo vacio y nombre ya existente?
 	Edicion perfil.gsp
-		- Mostrar fecha nacimiento
-		- Mostrar sexo
+		P Mostrar fecha nacimiento
+                    - El año hay que ampliarse, al menso asta "1980"
+		P Mostrar sexo
 		- Imagen por defecto
 mapa.gsp:
 	Mostrar el mapa:
