@@ -13,9 +13,47 @@
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true_or_false" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    var map = null;
+    
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(0, 0), 10);
+      }
+    }
+
+    function anyadirMarker(position, usuario){
+       var icon = new GIcon();
+
+        icon.image = "../images/perfiles/" + usuario + "/icono.jpg";
+        icon.iconAnchor = new GPoint(32, 64);
+        icon.infoWindowAnchor = new GPoint(32, 0);
+        icon.iconSize = new GSize(64, 64);
+        //icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
+        //icon.shadowSize = new GSize(32,32);
+
+        map.addOverlay(new GMarker(new GLatLng(position.coords.latitude, position.coords.longitude),icon))
+        //map.addOverlay(new GMarker(new GLatLng(position.coords.latitude, position.coords.longitude))) //simplemente es un test
+    }
+
+    function centrarMap(position) {
+      if (map != null){
+        map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
+        anyadirMarker(position, "tw");
+      }
+    }
+
+    navigator.geolocation.getCurrentPosition(centrarMap);
+
+    </script>
+
     <title>Mapa</title>
   </head>
-  <body>
+  <body onload="initialize()" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
       <span id="leftspan">
@@ -50,7 +88,7 @@
               <h1>Mapa</h1>
               <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>
               <center>
-                <div id="ejemplo"  class="ejemplo" style="background-image:url('../images/ejemplos/ejemplo.jpg');  height: 320px; width: 320px;"></div>
+                <div id="map_canvas"  style="height: 320px; width: 320px;"></div>
               </center>
           </div>
         </span>

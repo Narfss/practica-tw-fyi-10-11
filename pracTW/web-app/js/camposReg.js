@@ -50,10 +50,6 @@ function formValidacion(){
     return email && login && pass && pass2;
 }
 
-
-function rellenarFechas(){
-}
-
 function daysInFebruary (year){
     // February has 29 days in any year evenly divisible by four,
     // EXCEPT for centurial years which are not also divisible by 400.
@@ -84,12 +80,14 @@ function rellenarSelect(minimo,maximo,elSel){
 }
 
 function rellenarDias(){
+    diaprevio=document.getElementById("dia").value;
     mes=document.getElementById("mes").value;
     anyo=document.getElementById("anyo").value;
     dias=diasenMes(mes,anyo);
     var elSel = document.getElementById('dia');
 
     rellenarSelect(1,dias,elSel);
+    document.getElementById("dia").value=diaprevio;
 }
 
 function rellenarAnyos(){

@@ -59,7 +59,6 @@
                       <option value="11">Noviembre</option>
                       <option value="12">Diciembre</option>
                     </select>
-
                     <select id="anyo" name="anyo" onchange="javascript:rellenarDias()"></select>
                 </td></tr>
 
