@@ -42,9 +42,11 @@ function pass2Validacion(cadena){
     return Estrella("pass2Val", noVacio(cadena) && (cadena = document.getElementById("passVal").value));
 }
 
-function formValidacion(){
+function formValidacion(usuario){
     email = emailValidacion(document.getElementById("email").value);
-    login = loginValidacion(document.getElementById("login").value);
+    login = true;
+    if (usuario != document.getElementById("login").value)
+        login = loginValidacion(document.getElementById("login").value);
     pass  = passValidacion(document.getElementById("password").value);
     pass2 = pass2Validacion(document.getElementById("password2").value);
     return email && login && pass && pass2;
@@ -92,7 +94,7 @@ function rellenarDias(){
 
 function rellenarAnyos(){
     var elSel = document.getElementById('anyo');
-    var minAnyo=1990;
+    var minAnyo=1980;
     var maxAnyo=2010; //estaria bien la fecha actual o 18 años menos de la actual
 
     elSel.length=0;

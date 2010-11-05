@@ -18,11 +18,25 @@
     <script type="text/javascript">
 
     var map = null;
+    var usuario=null;
     
-    function initialize() {
-      if (GBrowserIsCompatible()) {
-        map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(0, 0), 10);
+    function initialize(usu) {
+      //asignar nombre usuario
+      usuario=usu
+      navigator.geolocation.getCurrentPosition(centrarMap);
+      setInterval(anyadirAmigos,6000);
+
+    }
+
+    function anyadirAmigos(){
+      //buscar amigos
+      var req = new XMLHttpRequest();
+      req.open('GET', "../locations/getLocalizacionesAmigos?minutos=60", false);
+      req.send(null);
+
+      if (req.status == 200){
+        var myObject = JSON.parse(req.responseText)
+        // y ahora que hago con un hijo de J***** **** vacio?
       }
     }
 
@@ -41,19 +55,18 @@
     }
 
     function centrarMap(position) {
-      if (map != null){
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
-        anyadirMarker(position, "tw");
+        anyadirMarker(position, usuario);
       }
     }
-
-    navigator.geolocation.getCurrentPosition(centrarMap);
 
     </script>
 
     <title>Mapa</title>
   </head>
-  <body onload="initialize()" onunload="GUnload()">
+  <body onload="initialize('${usuario.login}')" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
       <span id="leftspan">

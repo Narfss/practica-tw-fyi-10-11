@@ -28,10 +28,11 @@ perfil.gsp y registro.gsp:
                     P Cuando el año o mes se cmabian el dia se vuelve a poner en el 1, no es comodo
 	Comprobar con AJAX
 		P Comprobar login disponible
+                P En editar perfil, si pregunto si el nombre esta disponible...?
                 ? Deberiamos diferenciar el error de campo vacio y nombre ya existente?
 	Edicion perfil.gsp
 		P Mostrar fecha nacimiento
-                    - El año hay que ampliarse, al menos asta "1980"
+                    ? hacemos los años dinamicos a la fecha?
 		P Mostrar sexo
 		- Imagen por defecto
 mapa.gsp:
@@ -42,7 +43,7 @@ mapa.gsp:
                     ? el mapa no puede tener bordes redondeados
 		F Dibujar icono usuario (Marker)
 	Mostrar localizacion amigos en mapa (AJAX y temporizador):
-		- Pedir cada minuto la posicion de los amigos con AJAX
+		F Pedir cada minuto la posicion de los amigos con AJAX
 		- Dibujar iconos (Marker) de amigos en su posicion del mapa
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
