@@ -21,11 +21,9 @@
     var usuario=null;
     
     function initialize(usu) {
-      //asignar nombre usuario
       usuario=usu
       navigator.geolocation.getCurrentPosition(centrarMap);
       setInterval(anyadirAmigos,6000);
-
     }
 
     function anyadirAmigos(){
@@ -33,11 +31,11 @@
       var req = new XMLHttpRequest();
       req.open('GET', "../locations/getLocalizacionesAmigos?minutos=60", false);
       req.send(null);
-
+/***
       if (req.status == 200){
         var myObject = JSON.parse(req.responseText)
         // y ahora que hago con un hijo de J***** **** vacio?
-      }
+      }*****/
     }
 
     function anyadirMarker(position, usuario){
@@ -62,6 +60,41 @@
       }
     }
 
+    function showinfomanual(mostrar){
+      if(mostrar=="manual"){
+        document.getElementById("infomanual").style.height="47px";
+        document.getElementById("infomanual").style.visibility = "visible";
+      }else{
+        document.getElementById("infomanual").style.height="0px";
+        document.getElementById("infomanual").style.visibility = "hidden";
+      }
+    }
+
+
+    function guardarPosicion(position){
+      lat=position.coords.latitude;
+      long=position.coords.longitude;
+      posAJAX="../locations/guardar"
+      params="?lat="+lat+"long="+long;
+      var req = new XMLHttpRequest();
+      req.open('GET', posAJAX+params, false);
+      req.send(null);
+    }
+
+    function guardarEstado(){
+      navigator.geolocation.getCurrentPosition(guardarPosicion);
+
+      estado=document.getElementById("comment").value;
+      staAJAX="../locations/guardarStatus"
+      params="?status="+estado;
+      
+      var req = new XMLHttpRequest();
+      req.open('GET', staAJAX+params, false);
+      //req.open("POST", staAJAX, true);
+      //req.setRequestHeader("status", estado);
+      req.send(null);
+    }
+
     </script>
 
     <title>Mapa</title>
@@ -82,15 +115,15 @@
               <h2>${usuario.nombre} comparte:</h2>
 
               <form action="" method="post">
-                <textarea name="comment" cols="33" rows="4"></textarea><br/>
+                <textarea id="comment" name="comment" cols="33" rows="4"></textarea><br/>
                 Localizacion:<br/>
-                <input type="radio" name="posicion" value="automatico" checked="true"/>Automatico<br/>
-                <input type="radio" name="posicion" value="manual"/>Manual
+                <input type="radio" name="posicion" value="automatico" checked="true" onchange="showinfomanual(this.value);"/>Automatico<br/>
+                <input type="radio" name="posicion" value="manual" onchange="showinfomanual(this.value);"/>Manual
                 <center id="infomanual">
                   <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button"/><br/>
                 </center>
-                <input type="radio" name="posicion" value="no mostrar"/>No mostrar<br/>
-                <input type="button" value="Actualizar estado" class="button"/>
+                <input type="radio" name="posicion" value="no mostrar" onchange="showinfomanual(this.value);"/>No mostrar<br/>
+                <input type="button" value="Actualizar estado" class="button" onclick="guardarEstado()"/>
               </form>
             </div>
         </span>

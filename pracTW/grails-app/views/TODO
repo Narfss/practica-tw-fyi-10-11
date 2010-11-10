@@ -7,13 +7,14 @@ Javascript
 	   "-"= sin hacer
 	   "I|F"=Trabajando Isa|Fran
 	   "P"=Necesario pruebas
+           "*"=Reparar, corregir error (error a corregir)
 	   "X"=Hecho
            "?"=cuestionable
 
 
 Antiguos Errores cometidos
     - hoja de estilo css, imagne de perfil sobre sale del bloque en el caso de paris/paris
-    - Las estrelals de los formulariso necesitan tags o globos de informacion.
+    - Las estrellas de los formulariso necesitan tags o globos de informacion.
 
 
 perfil.gsp y registro.gsp:
@@ -36,6 +37,9 @@ perfil.gsp y registro.gsp:
 		P Mostrar sexo
 		- Imagen por defecto
 mapa.gsp:
+        Estado:
+                F Guardar estado
+                    ? Comprobar cadena vacia
 	Mostrar el mapa:
 		P Incluir librerias
 		P Incluir mapa
@@ -52,10 +56,10 @@ mapa.gsp:
 		- "No mostrar posicion" No enviar posicion al servidor.
 
 Adicional:
-	- Permitir actualizar "status quo, is not quo"
+	P Permitir actualizar "status quo, is not quo"
 	- Posicionamiento manual
-		- Al pulsar el radio button los campos pasaran a ser visibles
+		* Al pulsar el radio button los campos pasaran a ser visibles
 		- Busqueda de direccion
-		- Actualizaciond eposicion
+		P Actualizacion de posicion
 		- Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
 	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion,

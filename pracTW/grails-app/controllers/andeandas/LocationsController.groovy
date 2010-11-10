@@ -6,6 +6,12 @@ class LocationsController {
     def locationsService
 
     def guardar = {            
+        //obtiene el usuario actual de la sesión HTTP
+        Usuario u = session.user;
+        //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
+        //hay que reattacharlo
+        if (!u.isAttached())
+            u.attach();
         //Si el usuario ya tiene localización la borramos
         if (u.localizacion) {
             u.localizacion.delete()
@@ -32,7 +38,10 @@ class LocationsController {
             u.attach();
         if (u.localizacion) {
             u.localizacion.status = params.status
-            u.save()
+            if (u.save())
+                render("OK")
+            else
+                render("error")
         }
     }
 
