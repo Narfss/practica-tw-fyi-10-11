@@ -26,17 +26,18 @@
     }
 
     function anyadirAmigos(){
-      /*var req = new XMLHttpRequest();
+      var req = new XMLHttpRequest();
       req.open('GET', "../locations/getLocalizacionesAmigos?minutos=60", false);
       req.send(null);
 
       if (req.status == 200){
-        var amigos = eval("("+req.responseText+")")
+        var amigos = eval("{amigos: "+req.responseText+"}")
         for(i in amigos){
-          anyadirMarker(new GLatLng(38.3872926, -0.5116648), i.usuario)
+          //var txt = document.createTextNode("hola: ");
+          //document.getElementById('generallogo').appendChild(txt);
+          anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
         }
       }
- */
     }
 
     function anyadirMarker(position, usuarioIcon){

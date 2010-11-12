@@ -48,7 +48,7 @@ mapa.gsp:
 		F Dibujar icono usuario (Marker)
 	Mostrar localizacion amigos en mapa (AJAX y temporizador):
 		F Pedir cada minuto la posicion de los amigos con AJAX
-		- Dibujar iconos (Marker) de amigos en su posicion del mapa
+		P Dibujar iconos (Marker) de amigos en su posicion del mapa
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
 	Geolocalizacion:
