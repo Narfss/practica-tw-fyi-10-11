@@ -58,7 +58,7 @@ mapa.gsp:
 Adicional:
 	P Permitir actualizar "status quo, is not quo"
 	- Posicionamiento manual
-		* Al pulsar el radio button los campos pasaran a ser visibles
+		P Al pulsar el radio button los campos pasaran a ser visibles
 		- Busqueda de direccion
 		P Actualizacion de posicion
 		- Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)

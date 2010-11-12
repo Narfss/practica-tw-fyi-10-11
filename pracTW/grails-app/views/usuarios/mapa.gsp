@@ -63,13 +63,11 @@
       }
     }
 
-    function showinfomanual(mostrar){
-      if(mostrar=="manual"){
-        document.getElementById("infomanual").style.height="47px";
-        document.getElementById("infomanual").style.visibility = "visible";
+    function showinfomanual(){
+      if(document.formestado.posicion[1].checked){
+        document.getElementById("infomanual").style.display = 'block';
       }else{
-        document.getElementById("infomanual").style.height="0px";
-        document.getElementById("infomanual").style.visibility = "hidden";
+        document.getElementById("infomanual").style.display = 'none';
       }
     }
 
@@ -108,7 +106,7 @@
 
     <title>Mapa</title>
   </head>
-  <body onload="initialize('${usuario.login}')" onunload="GUnload()">
+  <body onload="showinfomanual();initialize('${usuario.login}')" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
       <span id="leftspan">
@@ -123,15 +121,15 @@
               <h1>Bienvenido</h1>
               <h2>${usuario.nombre} comparte:</h2>
 
-              <form action="" method="post">
+              <form name="formestado" action="" method="post">
                 <textarea id="comment" name="comment" cols="33" rows="4"></textarea><br/>
                 Localizacion:<br/>
-                <input type="radio" name="posicion" value="automatico" checked="true" onchange="showinfomanual(this.value);"/>Automatico<br/>
-                <input type="radio" name="posicion" value="manual" onchange="showinfomanual(this.value);"/>Manual
+                <input type="radio" name="posicion" value="automatico" checked="true" onchange="showinfomanual();"/>Automatico<br/>
+                <input type="radio" name="posicion" value="manual" onclick="showinfomanual();"/>Manual<br/>
                 <center id="infomanual">
                   <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button"/><br/>
                 </center>
-                <input type="radio" name="posicion" value="no mostrar" onchange="showinfomanual(this.value);"/>No mostrar<br/>
+                <input type="radio" name="posicion" value="no mostrar" onchange="showinfomanual();"/>No mostrar<br/>
                 <input type="button" value="Actualizar estado" class="button" onclick="guardarEstado()"/>
               </form>
             </div>
