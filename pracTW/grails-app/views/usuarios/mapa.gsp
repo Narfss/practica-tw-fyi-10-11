@@ -23,7 +23,7 @@
     function initialize(usu) {
       usuario=usu
       navigator.geolocation.getCurrentPosition(centrarMap);
-      setInterval(anyadirAmigos,6000);
+      //setInterval(anyadirAmigos,6000);
     }
 
     function anyadirAmigos(){
@@ -35,7 +35,8 @@
       if (req.status == 200){
         var myObject = JSON.parse(req.responseText)
         // y ahora que hago con un hijo de J***** **** vacio?
-      }*****/
+      }
+ *****/
     }
 
     function anyadirMarker(position, usuario){
@@ -71,28 +72,34 @@
     }
 
 
-    function guardarPosicion(position){
+    function guardarPosicionyEstado(position){
       lat=position.coords.latitude;
-      long=position.coords.longitude;
+      lon=position.coords.longitude;
+      estado=document.getElementById("comment").value;
       posAJAX="../locations/guardar"
-      params="?lat="+lat+"long="+long;
+      params="?lat="+lat+"&lon="+lon+"&status="+estado;
+
+      var req = new XMLHttpRequest();
+      req.open('GET', posAJAX+params, false);
+      req.send(null);
+    }
+
+    function guardarPosicionyEstado(position){
+      estado=document.getElementById("comment").value;
+      posAJAX="../locations/guardarStatus"
+      params="?status="+estado;
+
       var req = new XMLHttpRequest();
       req.open('GET', posAJAX+params, false);
       req.send(null);
     }
 
     function guardarEstado(){
-      navigator.geolocation.getCurrentPosition(guardarPosicion);
-
-      estado=document.getElementById("comment").value;
-      staAJAX="../locations/guardarStatus"
-      params="?status="+estado;
-      
-      var req = new XMLHttpRequest();
-      req.open('GET', staAJAX+params, false);
-      //req.open("POST", staAJAX, true);
-      //req.setRequestHeader("status", estado);
-      req.send(null);
+      //aqui se ha deseleccionar si guardar solo estado o estado y posicion
+      //condicion de guardar posicion o no
+        navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
+      //else
+        //guardarPosicionyEstado();
     }
 
     </script>
