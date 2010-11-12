@@ -17,47 +17,48 @@
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true_or_false" type="text/javascript"></script>
     <script type="text/javascript">
 
-    var map = null;
+    var map=null;
     var usuario=null;
     
     function initialize(usu) {
       usuario=usu
       navigator.geolocation.getCurrentPosition(centrarMap);
-      //setInterval(anyadirAmigos,6000);
     }
 
     function anyadirAmigos(){
-      //buscar amigos
-      var req = new XMLHttpRequest();
+      /*var req = new XMLHttpRequest();
       req.open('GET', "../locations/getLocalizacionesAmigos?minutos=60", false);
       req.send(null);
-/***
+
       if (req.status == 200){
-        var myObject = JSON.parse(req.responseText)
-        // y ahora que hago con un hijo de J***** **** vacio?
+        var amigos = eval("("+req.responseText+")")
+        for(i in amigos){
+          anyadirMarker(new GLatLng(38.3872926, -0.5116648), i.usuario)
+        }
       }
- *****/
+ */
     }
 
-    function anyadirMarker(position, usuario){
+    function anyadirMarker(position, usuarioIcon){
        var icon = new GIcon();
 
-        icon.image = "../images/perfiles/" + usuario + "/icono.jpg";
+        icon.image = "../images/perfiles/" + usuarioIcon + "/icono.jpg";
         icon.iconAnchor = new GPoint(32, 64);
         icon.infoWindowAnchor = new GPoint(32, 0);
         icon.iconSize = new GSize(64, 64);
         //icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
         //icon.shadowSize = new GSize(32,32);
-
-        map.addOverlay(new GMarker(new GLatLng(position.coords.latitude, position.coords.longitude),icon))
-        //map.addOverlay(new GMarker(new GLatLng(position.coords.latitude, position.coords.longitude))) //simplemente es un test
+        
+        map.addOverlay(new GMarker(position,icon))
+        //map.addOverlay(new GMarker(position)) //simplemente es un test
     }
 
     function centrarMap(position) {
       if (GBrowserIsCompatible()) {
-        map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
-        anyadirMarker(position, usuario);
+          map = new GMap2(document.getElementById("map_canvas"));
+          map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
+          anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
+          setInterval(anyadirAmigos,6000);
       }
     }
 
@@ -84,7 +85,7 @@
       req.send(null);
     }
 
-    function guardarPosicionyEstado(position){
+    function guardarEstado(){
       estado=document.getElementById("comment").value;
       posAJAX="../locations/guardarStatus"
       params="?status="+estado;
@@ -99,7 +100,7 @@
       //condicion de guardar posicion o no
         navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
       //else
-        //guardarPosicionyEstado();
+        //guardarEstado();
     }
 
     </script>
