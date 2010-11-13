@@ -14,12 +14,14 @@
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
 
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true_or_false" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script type="text/javascript">
 
     var map=null;
     var usuario=null;
-    
+    var MarkerUsuario;
+
     function initialize(usu) {
       usuario=usu
       navigator.geolocation.getCurrentPosition(centrarMap);
@@ -41,7 +43,7 @@
     }
 
     function anyadirMarker(position, usuarioIcon){
-       var icon = new GIcon();
+        var icon = new GIcon();
 
         icon.image = "../images/perfiles/" + usuarioIcon + "/icono.jpg";
         icon.iconAnchor = new GPoint(32, 64);
@@ -49,28 +51,39 @@
         icon.iconSize = new GSize(64, 64);
         //icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
         //icon.shadowSize = new GSize(32,32);
-        
-        map.addOverlay(new GMarker(position,icon))
-        //map.addOverlay(new GMarker(position)) //simplemente es un test
+
+        marker=new GMarker(position,{ icon: icon, draggable: true})
+        map.addOverlay(marker)
+        return marker;
     }
 
     function centrarMap(position) {
       if (GBrowserIsCompatible()) {
           map = new GMap2(document.getElementById("map_canvas"));
           map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
-          anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
+          MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
           setInterval(anyadirAmigos,6000);
+          showinfomanual();
       }
+    }
+
+    function checkedRadio(r){
+      for each (i in r){if(i.checked)return i.value;}
     }
 
     function showinfomanual(){
-      if(document.formestado.posicion[1].checked){
-        document.getElementById("infomanual").style.display = 'block';
-      }else{
+      modo=checkedRadio(document.formestado.posicion)
+      console.log(MarkerUsuario);
+      if((modo=="automatico") || (modo=="no mostrar")){
         document.getElementById("infomanual").style.display = 'none';
+        MarkerUsuario.draggable=false;
+        MarkerUsuario.disableDragging();
+      }else if(modo=="manual"){
+        document.getElementById("infomanual").style.display = 'block';
+        MarkerUsuario.draggable=true;
+        MarkerUsuario.enableDragging();
       }
     }
-
 
     function guardarPosicionyEstado(position){
       lat=position.coords.latitude;
@@ -94,19 +107,63 @@
       req.send(null);
     }
 
+      
+    function posicionManual(){
+     //guardarPosicionyEstado(MarkerUsuario.getLatLng())
+     guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})
+     /*
+      var geocoder = new google.maps.Geocoder();
+       if (geocoder) {
+         geocoder.geocode({ 'address': nameManualPos }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              posicion = new GLatLng(results[0].geometry.location.ra, results[0].geometry.location.sa)
+              map.setCenter(posicion, 13);
+              MarkerUsuario.setLatLng(posicion);
+              guardarPosicionyEstado({"coords" : {"latitude": ""+results[0].geometry.location.ra, "longitude": ""+results[0].geometry.location.sa}})
+            }
+            else {
+              console.log('No results found: ' + status); //deberiamso hacer lago si no se encuentra?
+            }
+         });
+      }   */
+    }
+
+    
+    function MostrarPosicionManual(){
+      //console.log(
+      nameManualPos=document.getElementById("namepos").value;
+      var geocoder = new google.maps.Geocoder();
+       if (geocoder) {
+         geocoder.geocode({ 'address': nameManualPos }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              posicion = new GLatLng(results[0].geometry.location.ra, results[0].geometry.location.sa)
+              map.setCenter(posicion, 13);
+              MarkerUsuario.setLatLng(posicion);
+            }
+            else {
+              console.log('No results found: ' + status); //deberiamso hacer lago si no se encuentra?
+            }
+         });
+      }
+    }
+
     function guardarEstado(){
-      //aqui se ha deseleccionar si guardar solo estado o estado y posicion
-      //condicion de guardar posicion o no
+      modo=checkedRadio(document.formestado.posicion)
+      if(modo=="automatico"){
         navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
-      //else
-        //guardarEstado();
+        //navigator.geolocation.watchPosition()   ????
+      }else if(modo=="manual"){
+        posicionManual();
+      }else if(modo=="no mostrar"){
+        guardarEstado();
+      }
     }
 
     </script>
 
     <title>Mapa</title>
   </head>
-  <body onload="showinfomanual();initialize('${usuario.login}')" onunload="GUnload()">
+  <body onload="initialize('${usuario.login}');" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body">
       <span id="leftspan">
@@ -127,7 +184,7 @@
                 <input type="radio" name="posicion" value="automatico" checked="true" onchange="showinfomanual();"/>Automatico<br/>
                 <input type="radio" name="posicion" value="manual" onclick="showinfomanual();"/>Manual<br/>
                 <center id="infomanual">
-                  <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button"/><br/>
+                  <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button" onclick="MostrarPosicionManual()"/><br/>
                 </center>
                 <input type="radio" name="posicion" value="no mostrar" onchange="showinfomanual();"/>No mostrar<br/>
                 <input type="button" value="Actualizar estado" class="button" onclick="guardarEstado()"/>

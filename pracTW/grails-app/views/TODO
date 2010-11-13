@@ -52,14 +52,14 @@ mapa.gsp:
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
 	Geolocalizacion:
-		- "Modo automatico" toma posicion de API (Marker inamobible)
+		P "Modo automatico" toma posicion de API (Marker inamobible)
 		- "No mostrar posicion" No enviar posicion al servidor.
 
 Adicional:
 	P Permitir actualizar "status quo, is not quo"
-	- Posicionamiento manual
+	P Posicionamiento manual
 		P Al pulsar el radio button los campos pasaran a ser visibles
-		- Busqueda de direccion
+		P Busqueda de direccion
 		P Actualizacion de posicion
-		- Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
+		P Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
 	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion,
