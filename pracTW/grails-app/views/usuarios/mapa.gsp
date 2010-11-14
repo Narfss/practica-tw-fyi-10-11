@@ -159,6 +159,15 @@
       }
     }
 
+    fuction infowindow(Posicion, usuarioIcon){
+      var marker=anyadirMarker(position, usuarioIcon);
+      var infowindow = new google.maps.InfoWindow({
+      content: });
+
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(Gmap,marker);});
+    }
+
     </script>
 
     <title>Mapa</title>
