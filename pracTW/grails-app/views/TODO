@@ -13,8 +13,11 @@ Javascript
 
 
 Antiguos Errores cometidos
-    - hoja de estilo css, imagne de perfil sobre sale del bloque en el caso de paris/paris
-    - Las estrellas de los formulariso necesitan tags o globos de informacion.
+	- hoja de estilo css, imagne de perfil sobre sale del bloque en el caso de paris/paris
+	- Las estrellas de los formulariso necesitan tags o globos de informacion.
+	- Envio de form en busqueda
+	- En registo OK hay que volver a login pro un link
+	- Unir cambios de CSS, ¿añadir guardado de cookie?
 
 
 perfil.gsp y registro.gsp:
@@ -42,6 +45,7 @@ mapa.gsp:
                     ? Comprobar cadena vacia
 	Mostrar el mapa:
 		P Incluir librerias
+			- Mapa.gsp tiene dos librerias de Gmap incluidas, ¿cual es la buena?
 		P Incluir mapa
                     P el mapa se auto centra a la posicion actual
                     ? el mapa no puede tener bordes redondeados
@@ -51,12 +55,18 @@ mapa.gsp:
 		P Dibujar iconos (Marker) de amigos en su posicion del mapa
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
+                - Guardar markers de amigso en un vector/Json
+                - Los markers de los amigos deben ser inamobibles
+                - Imagen de cargando en mapa
+                - La carga de amigos deve ser inmediata, no pasados 60 segundos
 	Geolocalizacion:
 		P "Modo automatico" toma posicion de API (Marker inamobible)
 		- "No mostrar posicion" No enviar posicion al servidor.
 
 Adicional:
 	P Permitir actualizar "status quo, is not quo"
+		- Una vez enviado el estao se deberia corrobolar
+			- Hacer boton cambiante segun el onchange de los campos y el envio
 	P Posicionamiento manual
 		P Al pulsar el radio button los campos pasaran a ser visibles
 		P Busqueda de direccion
