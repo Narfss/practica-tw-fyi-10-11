@@ -71,7 +71,7 @@
       for each (i in r){if(i.checked)return i.value;}
     }
 
-    function showinfomanual(){
+    function showinfomanual(){ 
       modo=checkedRadio(document.formestado.posicion)
       console.log(MarkerUsuario);
       if((modo=="automatico") || (modo=="no mostrar")){
