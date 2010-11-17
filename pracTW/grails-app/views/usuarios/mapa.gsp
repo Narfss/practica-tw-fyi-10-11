@@ -54,10 +54,8 @@
           <div id="generallogo"></div>
           <div>
               <h1>Mapa</h1>
-              <p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>
-              <center>
-                <div id="map_canvas"  style="height: 320px; width: 320px;"></div>
-              </center>
+              <!--<p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>-->
+              <div id="map_canvas"  style="height: 450px; width: 425px;"></div>
           </div>
         </span>
         

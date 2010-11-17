@@ -363,3 +363,6 @@ img{
         -webkit-box-shadow: none;
         opacity: 1;
 }
+#infomanual{
+    display:none;
+}

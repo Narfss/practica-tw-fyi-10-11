@@ -18,6 +18,7 @@ Antiguos Errores cometidos
 	- Envio de form en busqueda
 	- En registo OK hay que volver a login pro un link
 	- Unir cambios de CSS, ¿añadir guardado de cookie?
+        - Hacer el mapa más grande
 
 
 perfil.gsp y registro.gsp:
@@ -56,9 +57,9 @@ mapa.gsp:
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
                 - Guardar markers de amigso en un vector/Json
-                - Los markers de los amigos deben ser inamobibles
+                P Los markers de los amigos deben ser inamobibles
                 - Imagen de cargando en mapa
-                - La carga de amigos deve ser inmediata, no pasados 60 segundos
+                P La carga de amigos deve ser inmediata, no pasados 60 segundos
 	Geolocalizacion:
 		P "Modo automatico" toma posicion de API (Marker inamobible)
 		- "No mostrar posicion" No enviar posicion al servidor.

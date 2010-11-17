@@ -59,8 +59,22 @@ function centrarMap(position) {
 	}
 }
 
-function checkedRadio(r){
-	for each (i in r){if(i.checked)return i.value;}
+function checkedRadio(radioObj){
+	if(!radioObj)
+		return "";
+	var radioLength = radioObj.length;
+	if(radioLength == undefined)
+		if(radioObj.checked)
+			return radioObj.value;
+		else
+			return "";
+        for(var i = 0; i < radioLength; i++) {
+		if(radioObj[i].checked) {
+			return radioObj[i].value;
+		}
+	}
+	return "";
+        /*for each (var i in r){if(i.checked)return i.value;}return "";*/
 }
 
 function showinfomanual(){ 
