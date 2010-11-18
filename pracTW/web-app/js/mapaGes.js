@@ -1,35 +1,57 @@
 var map=null;
 var usuario=null;
 var MarkerUsuario;
+var amigosArray=new Array();
 
 function initialize(usu) {
 	usuario=usu
 	navigator.geolocation.getCurrentPosition(centrarMap);
 }
 
-var Umarker;
-var Uinfowindow;
-var UcontentString;
+function existeMarker(login){
+    for (i in amigosArray)
+        if (amigosArray[i][0]==login)
+            return i
+    return -1
+}
+
+function marcarAmigosViejos(){
+    for (i in amigosArray)
+        amigosArray[i][3]="viejo"
+}
+
+function borrarAmigosViejos(){
+    for (i in amigosArray)
+        if (amigosArray[i][3]=="viejo"){
+            amigosArray[i][1].remove()
+            /*eliminar infowindow*/
+            delete amigosArray[i]
+        }
+}
+
 function anyadirAmigos(){
 	var req = new XMLHttpRequest();
-	req.open('GET', "../locations/getLocalizacionesAmigos?minutos=60", false);
+	req.open('GET', "../locations/getLocalizacionesAmigos?minutos=2", false); /*reducido el tiempo para test (60)*/
 	req.send(null);
 
 	if (req.status == 200){
+                marcarAmigosViejos();
 		var amigos = eval("{amigos: "+req.responseText+"}")
 		for(i in amigos){
-			var Umarker=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
-			Umarker.draggable=false;
-			Umarker.disableDragging();
-			//var contentString='<div id="content">'+'<h1>'+amigos[i].nombre+'</h1>'+'<p>'+amigos[i].status+'</p></div>';
-			UcontentString="<div id=\'content\'><div id=\'siteNotice\'></div><h1>Titulo</h1><div id=\'bodyContent\'><p>esto es un infowindow</p></div></div>";
-			Uinfowindow=new google.maps.InfoWindow({content: contentString});
-			//console.log(Uinfowindow)
-			google.maps.event.addListener(Umarker, 'click', function(){
-		                                              //console.log("click en marker");
-		                                              Uinfowindow.open(map,Umarker);
-		                                            })
-		}
+			//Umarker.draggable=false;
+			//Umarker.disableDragging();
+                        var nAmigo=existeMarker(amigos[i].login)
+                        if (nAmigo<0){
+                            var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
+                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow","nuevo")
+                            amigosArray.push(newAmigoArray)
+                        }else{
+                            amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
+                            //amigosArray[nAmigo][2]=infowindowAmigo
+                            amigosArray[nAmigo][3]="actualizado"
+                        }
+                }
+                borrarAmigosViejos()
 	}
 }
 
