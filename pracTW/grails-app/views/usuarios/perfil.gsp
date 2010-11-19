@@ -20,9 +20,9 @@
   </head>
   <body onload="rellenarFechas();rellenarCampos('${usuario.fechaNac.day}','${usuario.fechaNac.month}','${usuario.fechaNac.year}','${usuario.sexo}');">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
-    <div id="body">
+    <div id="body" class="div">
       <span id="leftspan">
-        <div>
+        <div class="div">
           <center>
                 <img src="../images/perfiles/${usuario.login}/perfil.jpg" style="padding: 10px;"/><br/>
                 <!--<a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
@@ -40,8 +40,8 @@
         </div>
       </span>
       <span id="rightspan">
-        <div id="generallogo"></div>
-        <div>
+        <div id="generallogo" class="div"></div>
+        <div class="div">
         <h1>Cambiar perfil</h1>
             <form action="guardarPerfil" method="post" onSubmit="return formValidacion('${usuario.nombre}')">
             <!-- Igual que en pagina de registro -->

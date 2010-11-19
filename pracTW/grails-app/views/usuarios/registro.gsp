@@ -20,9 +20,9 @@
   </head>
   <body onload="javascript:rellenarFechas()" >
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
-    <div id="body">
+    <div id="body" class="div">
       <span style="float:left;">
-        <div>
+        <div class="div">
           <h1>Bienvenido</h1>
           Esta a punto de formar parte de al comunidad Skyks, por favor tome tiempo y complete los datos de registro correctamente. Los campos marcados con una estrella son de especial importancia.
           <h1>Servicio</h1>
@@ -32,8 +32,8 @@
         </div>
       </span>
       <span style="float:right;">
-        <div id="generallogo"></div>
-        <div>
+        <div id="generallogo" class="div"></div>
+        <div class="div">
         <h1>Formulario</h1>
 	<form name="registro" action="registro" method="post" onSubmit="return formValidacion(null)">
           <table>

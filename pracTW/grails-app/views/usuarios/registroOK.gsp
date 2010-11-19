@@ -17,9 +17,9 @@
   </head>
   <body>
    <img src="../images/default/marcaagua.png" id="marcaagua"/>
-    <div id="body">
+    <div id="body" class="div">
             <span style="float:left;">
-		<div>
+		<div class="div">
 			<h1>Bienvenido</h1>
 			<p>Ahora formas parte del servicio Skyks, puedes comenzar a disfrutar de la comunidad y tus amigos más localizada.</p>
                         <h1>¿Que hacer ahora?</h1>
@@ -27,8 +27,8 @@
                 </div>
 	   </span>
 	   <span style="float:right;">
-		<div id="generallogo"></div>
-                <div>
+		<div id="generallogo" class="div"></div>
+                <div class="div">
                   <h1>Registro Correcto</h1>
                   <link href="index">El registro como ${usuario.nombre} a finalizado con éxito.</link>
                 </div>

@@ -51,9 +51,9 @@
   <body onload="animacionejemplos();">
     
 	<img src="../images/default/marcaagua.png" id="marcaagua"/>
-	<div id="body">
+	<div id="body" class="div">
 	    <span id="floatleft">
-		<div id="introtexto">
+		<div id="introtexto" class="div">
 			<h1>¿Que es esto?</h1>
 			<p>Bienvenidos al este servicio web, skyks es un servicio "socio localizador de comentarios". Su sistema de funcionamiento se basa en la localización por medio de coordenadas los comentarios de los usuarios del sistema.</p>
 			<h1>¿Para que sirve?</h1>
@@ -69,7 +69,7 @@
 	   </span>
 	   <span id="floatright">
 		<a href="index"><img src="../images/default/intrologo.png" id="intrologo" alt="Skyks"></a>
-		<div id="intrologin">
+		<div id="intrologin" class="div">
 			<fieldset>
 				    <form action="autentificar" method="post">
 					    <label for="login">Usuario: </label>
@@ -82,9 +82,9 @@
 			<!--<a href="comenzarRegistro">Crear nuevo usuario</a>-->
 			</fieldset>
 		</div>
-		<div id="ejemplo"  class="ejemplo" style="background-image:url('../images/ejemplos/ejemplo.jpg');"></div>
-		<div id="ejemplo2" class="ejemplo" style="opacity: 0; margin-top: -400px; background-image:url('../images/ejemplos/ejemplo2.jpg'); -moz-box-shadow: none;-webkit-box-shadow: none;"></div>
-		<div id="ejemplo3" class="ejemplo" style="opacity: 0; margin-top: -400px; background-image:url('../images/ejemplos/ejemplo3.jpg'); -moz-box-shadow: none;-webkit-box-shadow: none;"></div>
+		<div id="ejemplo"  class="div ejemplo" style="background-image:url('../images/ejemplos/ejemplo.jpg');"></div>
+		<div id="ejemplo2" class="div ejemplo" style="opacity: 0; margin-top: -400px; background-image:url('../images/ejemplos/ejemplo2.jpg'); -moz-box-shadow: none;-webkit-box-shadow: none;"></div>
+		<div id="ejemplo3" class="div ejemplo" style="opacity: 0; margin-top: -400px; background-image:url('../images/ejemplos/ejemplo3.jpg'); -moz-box-shadow: none;-webkit-box-shadow: none;"></div>
 	    </span>
  	</div>
         <script type="text/javascript">

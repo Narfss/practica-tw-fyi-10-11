@@ -23,9 +23,9 @@
   </head>
   <body onload="initialize('${usuario.login}');" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
-      <div id="body">
+      <div id="body" class="div">
       <span id="leftspan">
-            <div>
+            <div class="div">
               <center>
                 <!--No funciona, faltara conexion la tabla <img src="../images/perfiles/${usuario.login}/perfil.jpg" id="avatar"/><br/>-->
                 <!--El link no funciona <a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
@@ -51,11 +51,11 @@
         </span>
         <span id="rightspan">
           <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->
-          <div id="generallogo"></div>
-          <div>
+          <div id="generallogo" class="div"></div>
+          <div class="div">
               <h1>Mapa</h1>
               <!--<p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>-->
-              <div id="map_canvas"  style="height: 450px; width: 425px;"></div>
+              <div id="map_canvas" class="div" style="height: 450px; width: 425px;"></div>
           </div>
         </span>
         

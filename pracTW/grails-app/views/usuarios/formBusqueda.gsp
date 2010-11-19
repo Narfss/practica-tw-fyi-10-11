@@ -17,9 +17,9 @@
   </head>
   <body>
    <img src="../images/default/marcaagua.png" id="marcaagua"/>
-      <div id="body">
+      <div id="body" class="div">
       <span id="leftspan">
-            <div>
+            <div class="div">
               <center>      
                 <!--<a href="mapa"><img src="../images/default/compartir.png" alt="Compartir"/></a>-->
                 <a href="perfil"><img src="../images/default/perfil.png" alt="Perfil"/></a>
@@ -41,8 +41,8 @@
             </div>
         </span>
         <span id="rightspan">
-          <div id="generallogo"></div>
-          <div>
+          <div id="generallogo" class="div"</div>
+          <div class="div">
             <table id="busqueda">
               <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
               <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
