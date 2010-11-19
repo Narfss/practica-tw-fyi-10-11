@@ -54,9 +54,13 @@ mapa.gsp:
 	Mostrar localizacion amigos en mapa (AJAX y temporizador):
 		F Pedir cada minuto la posicion de los amigos con AJAX
 		P Dibujar iconos (Marker) de amigos en su posicion del mapa
+                    P Markers se mueven en las actualizaciones
+                    P Markers son eliminados si dejan de tener actualizacion
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
                 - Guardar markers de amigso en un vector/Json
+                    ? El AJAX aporta los amigos ordenados por la fecha? nos podriamos ahorrar el buscar viejos
+                    ? La fecha de localizacion se cmabia al cambiar el estado?
                 P Los markers de los amigos deben ser inamobibles
                 - Imagen de cargando en mapa
                 P La carga de amigos deve ser inmediata, no pasados 60 segundos

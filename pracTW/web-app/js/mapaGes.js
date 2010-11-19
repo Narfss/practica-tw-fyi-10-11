@@ -2,6 +2,7 @@ var map=null;
 var usuario=null;
 var MarkerUsuario;
 var amigosArray=new Array();
+var lapsoMin=2
 
 function initialize(usu) {
 	usuario=usu
@@ -15,27 +16,29 @@ function existeMarker(login){
     return -1
 }
 
-function marcarAmigosViejos(){
-    for (i in amigosArray)
-        amigosArray[i][3]="viejo"
-}
-
 function borrarAmigosViejos(){
-    for (i in amigosArray)
-        if (amigosArray[i][3]=="viejo"){
+    var d=new Date()
+    var ahora=d.getTime()
+    console.log("Eliminamos?")
+    for (i in amigosArray){
+        var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
+        console.log(antes)
+        console.log(ahora)
+        if (antes<ahora){
             amigosArray[i][1].remove()
-            /*eliminar infowindow*/
+            //eliminar infowindow
             delete amigosArray[i]
+            console.log("Eliminadooooooo")
         }
+    }
 }
 
 function anyadirAmigos(){
 	var req = new XMLHttpRequest();
-	req.open('GET', "../locations/getLocalizacionesAmigos?minutos=2", false); /*reducido el tiempo para test (60)*/
+	req.open('GET', "../locations/getLocalizacionesAmigos?minutos="+lapsoMin, false); /*reducido el tiempo para test (60)*/
 	req.send(null);
 
 	if (req.status == 200){
-                marcarAmigosViejos();
 		var amigos = eval("{amigos: "+req.responseText+"}")
 		for(i in amigos){
 			//Umarker.draggable=false;
@@ -43,12 +46,12 @@ function anyadirAmigos(){
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
-                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow","nuevo")
+                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
-                        }else{
+                        }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
                             //amigosArray[nAmigo][2]=infowindowAmigo
-                            amigosArray[nAmigo][3]="actualizado"
+                            amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
                         }
                 }
                 borrarAmigosViejos()
