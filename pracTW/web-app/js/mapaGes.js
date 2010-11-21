@@ -49,6 +49,8 @@ function anyadirAmigos(){
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
 
+                            var now=amigos[i].localizacion.fecha.getTime();
+                            alert(now);
                             UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
                             markerAmigo.title=UcontentString;
 
@@ -77,7 +79,7 @@ function anyadirMarker(position, usuarioIcon){
 	//icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
 	//icon.shadowSize = new GSize(32,32);
 
-	marker=new GMarker(position,{ icon: icon, draggable: true})
+	marker=new GMarker(position,{icon: icon, draggable: true})
 	map.addOverlay(marker)
 	return marker;
 }
@@ -157,7 +159,7 @@ function MostrarPosicionManual(){
 	nameManualPos=document.getElementById("namepos").value;
 	var geocoder = new google.maps.Geocoder();
 	if (geocoder) {
-		geocoder.geocode({ 'address': nameManualPos }, function (results, status) {
+		geocoder.geocode({'address': nameManualPos}, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			posicion = new GLatLng(results[0].geometry.location.ra, results[0].geometry.location.sa)
 			map.setCenter(posicion, 13);
