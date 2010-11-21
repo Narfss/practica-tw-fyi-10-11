@@ -69,7 +69,7 @@ h2{
 }
 
 /*Divs redondeados de color y con sombras*/
-div{
+.div{
         border: 0px white solid;
         background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
         /*background-color: rgba(255,255,255,0.5);*/

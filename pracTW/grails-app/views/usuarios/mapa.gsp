@@ -18,7 +18,6 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
     <script type="text/javascript" src="../js/mapaGes.js"></script>
-
     <title>Mapa</title>
   </head>
   <body onload="initialize('${usuario.login}');" onunload="GUnload()">
@@ -51,7 +50,9 @@
         </span>
         <span id="rightspan">
           <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->
-          <div id="generallogo" class="div"></div>
+          
+            <a href="index"><div id="generallogo" class="div"></div></a>
+          
           <div class="div">
               <h1>Mapa</h1>
               <!--<p>Desde este punto del sitio web puedes ver las actividades de tus amigos.</p>-->

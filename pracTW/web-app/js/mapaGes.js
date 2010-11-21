@@ -48,6 +48,15 @@ function anyadirAmigos(){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
+
+                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
+                            markerAmigo.title=UcontentString;
+
+                            GEvent.addListener(markerAmigo, 'click', function(){
+                                map.openInfoWindowHtml(markerAmigo.getLatLng(),markerAmigo.title);
+                                });
+                            markerAmigo.draggable=false;
+                            markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
                             //amigosArray[nAmigo][2]=infowindowAmigo
