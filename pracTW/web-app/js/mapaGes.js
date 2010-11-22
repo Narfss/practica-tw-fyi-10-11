@@ -3,7 +3,7 @@ var usuario=null;
 var MarkerUsuario;
 var amigosArray=new Array();
 var lapsoMin=2000
-
+var pulsado;
 function initialize(usu) {
 	usuario=usu
 	navigator.geolocation.getCurrentPosition(centrarMap);
@@ -107,6 +107,10 @@ function centrarMap(position) {
 		anyadirAmigos();
 		setInterval(anyadirAmigos,6000);
 		showinfomanual();
+                //mapa.show(MarkerUsuario.myInfowindow);
+                UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario.nombre+"</h1><div id=bodyContent><p>"+usuario.status+"</p></div></div>";
+                MarkerUsuario.title=UcontentString;
+                
 	}
 }
 
@@ -151,6 +155,13 @@ function guardarPosicionyEstado(position){
 	var req = new XMLHttpRequest();
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
+        
+        GEvent.trigger(MarkerUsuario, 'click')
+                    {
+                       console.log("dentro de trigger");
+                       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
+                    }
+
 }
 
 function guardarEstado(){
@@ -161,6 +172,11 @@ function guardarEstado(){
 	var req = new XMLHttpRequest();
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
+        GEvent.trigger(MarkerUsuario, 'click')
+                    {
+                       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
+                    }
+       
 }
 
 
@@ -182,12 +198,18 @@ function MostrarPosicionManual(){
 		} else {
 			console.log('No results found: ' + status); //deberiamso hacer lago si no se encuentra?
 		}
-	});
-}
+            });
+        }
+    GEvent.trigger(MarkerUsuario, 'click')
+    {
+       console.log("dentro de trigger");
+       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
+    }
 }
 
 function guardarEstado(){
 	modo=checkedRadio(document.formestado.posicion)
+
 	if(modo=="automatico"){
 		navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
 		//navigator.geolocation.watchPosition()   ????
