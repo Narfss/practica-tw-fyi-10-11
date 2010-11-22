@@ -2,7 +2,7 @@ var map=null;
 var usuario=null;
 var MarkerUsuario;
 var amigosArray=new Array();
-var lapsoMin=2
+var lapsoMin=2000
 
 function initialize(usu) {
 	usuario=usu
@@ -48,15 +48,18 @@ function anyadirAmigos(){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
-
-                            var now=amigos[i].localizacion.fecha.getTime();
-                            alert(now);
                             UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
+                            
+                            var now=amigos[i].localizacion.fecha.getTime();
+                          
+                            var timeact=calcularTiempo(now);
+                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>"+
+                                "<p>Actualice hace:"+timeact+" minutos</p></div></div>";
                             markerAmigo.title=UcontentString;
 
                             GEvent.addListener(markerAmigo, 'click', function(){
-                                map.openInfoWindowHtml(markerAmigo.getLatLng(),markerAmigo.title);
-                                });
+                                  map.openInfoWindowHtml(markerAmigo.getLatLng(),markerAmigo.title);
+                            });
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
@@ -69,6 +72,18 @@ function anyadirAmigos(){
 	}
 }
 
+function calcularTiempo(now){
+    var hoy=new Date();
+    var act=hoy.getTime()-now;
+
+    var retorno;
+    if(act<3600000){retorno=act/60000;}//minutos
+    else{
+        retorno=act/(3600000);//horas
+    }
+
+    return Math.floor(retorno);
+}
 function anyadirMarker(position, usuarioIcon){
 	var icon = new GIcon();
 
