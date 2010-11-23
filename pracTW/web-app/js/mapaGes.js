@@ -2,8 +2,8 @@ var map=null;
 var usuario=null;
 var MarkerUsuario;
 var amigosArray=new Array();
-var lapsoMin=2000
-var pulsado;
+var lapsoMin=60;
+
 function initialize(usu) {
 	usuario=usu
 	navigator.geolocation.getCurrentPosition(centrarMap);
@@ -19,16 +19,16 @@ function existeMarker(login){
 function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
-    console.log("Eliminamos?")
+    //console.log("Eliminamos?")
     for (i in amigosArray){
         var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
-        console.log(antes)
-        console.log(ahora)
+        //console.log(antes)
+        //console.log(ahora)
         if (antes<ahora){
             amigosArray[i][1].remove()
             //eliminar infowindow
             delete amigosArray[i]
-            console.log("Eliminadooooooo")
+            //console.log("Eliminadooooooo")
         }
     }
 }
@@ -41,25 +41,29 @@ function anyadirAmigos(){
 	if (req.status == 200){
 		var amigos = eval("{amigos: "+req.responseText+"}")
 		for(i in amigos){
-			//Umarker.draggable=false;
-			//Umarker.disableDragging();
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
-                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
+                            //UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
                             
-                            var now=amigos[i].localizacion.fecha.getTime();
+                            var fechaPost=amigos[i].localizacion.fecha.getTime();
                           
-                            var timeact=calcularTiempo(now);
-                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>"+
-                                "<p>Actualice hace:"+timeact+" minutos</p></div></div>";
+                            //var timeact=calcularTiempo(fechaPost);
+                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
+                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(fechaPost)+"</p>"
+                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+fechaPost+")\",6000)</script>"
+                            UcontentString+="</div></div>";
                             markerAmigo.title=UcontentString;
 
+                            //clickinfowindow(markerAmigo);
                             GEvent.addListener(markerAmigo, 'click', function(){
                                   map.openInfoWindowHtml(markerAmigo.getLatLng(),markerAmigo.title);
                             });
+
+                            //mostrarinfowindow(markerAmigo);
+                            
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
@@ -74,15 +78,30 @@ function anyadirAmigos(){
 
 function calcularTiempo(now){
     var hoy=new Date();
-    var act=hoy.getTime()-now;
+    var act=new Date(hoy.getTime()-now);
 
+    var retorno="";
+    switch (act.getHours()){
+        case 0 : retorno+=""; break
+        case 1 : retorno+=act.getHours()+" hora "; break;
+        default: retorno+=act.getHours()+" horas "; break;
+    }
+    switch (act.getMinutes()){
+        case 0 : retorno+=""; break
+        case 1 : retorno+=act.getMinutes()+" minuto "; break;
+        default: retorno+=act.getMinutes()+" minutos "; break;
+    }
+    return retorno;
+
+    //return act.getHours()+":"+act.getMinutes()+":"+act.getSeconds()
+    /*
     var retorno;
     if(act<3600000){retorno=act/60000;}//minutos
     else{
         retorno=act/(3600000);//horas
     }
 
-    return Math.floor(retorno);
+    return Math.floor(retorno);*/
 }
 function anyadirMarker(position, usuarioIcon){
 	var icon = new GIcon();
@@ -134,15 +153,29 @@ function checkedRadio(radioObj){
 
 function showinfomanual(){ 
 	modo=checkedRadio(document.formestado.posicion)
-	if((modo=="automatico") || (modo=="no mostrar")){
-		document.getElementById("infomanual").style.display = 'none';
-		MarkerUsuario.draggable=false;
-		MarkerUsuario.disableDragging();
-	}else if(modo=="manual"){
-		document.getElementById("infomanual").style.display = 'block';
-		MarkerUsuario.draggable=true;
-		MarkerUsuario.enableDragging();
-	}
+        if(document.getElementById("comment").value!=""){
+            document.getElementById("actualizarEstado").disabled=false;
+            if (modo=="no mostrar"){
+                //document.getElementById("comment").value=""
+                document.getElementById("comment").disabled=true
+                document.getElementById("actualizarEstado").value="Ocultar posición"
+            }else{
+                document.getElementById("comment").disabled=false
+                document.getElementById("actualizarEstado").value="Actualizar estado"
+            }
+        }else{
+            document.getElementById("actualizarEstado").disable=true
+            document.getElementById("actualizarEstado").value="¿Y el estado?"
+        }
+        if((modo=="automatico") || (modo=="no mostrar")){
+                document.getElementById("infomanual").style.display = 'none';
+                MarkerUsuario.draggable=false;
+                MarkerUsuario.disableDragging();
+        }else if(modo=="manual"){
+                document.getElementById("infomanual").style.display = 'block';
+                MarkerUsuario.draggable=true;
+                MarkerUsuario.enableDragging();
+        }
 }
 
 function guardarPosicionyEstado(position){
@@ -156,13 +189,9 @@ function guardarPosicionyEstado(position){
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
         
-        GEvent.trigger(MarkerUsuario, 'click')
-                    {
-                       console.log("dentro de trigger");
-                       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
-                    }
-
+        mostrarinfowindow(MarkerUsuario);
 }
+
 
 function guardarEstado(){
 	estado=document.getElementById("comment").value;
@@ -172,13 +201,22 @@ function guardarEstado(){
 	var req = new XMLHttpRequest();
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
-        GEvent.trigger(MarkerUsuario, 'click')
-                    {
-                       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
-                    }
-       
+
+        mostrarinfowindow(MarkerUsuario);
 }
 
+function mostrarinfowindow(marker){
+        GEvent.trigger(marker, 'click')
+                    {
+                       marker.openInfoWindow(marker.title);
+                    }
+}
+
+function clickinfowindow(marker){
+    GEvent.addListener(marker, 'click', function(){
+                              marker.openInfoWindowHtml(marker.title);
+                           });
+}
 
 function posicionManual(){
 	guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})
@@ -202,7 +240,7 @@ function MostrarPosicionManual(){
         }
     GEvent.trigger(MarkerUsuario, 'click')
     {
-       console.log("dentro de trigger");
+       //console.log("dentro de trigger");
        MarkerUsuario.openInfoWindow(MarkerUsuario.title);
     }
 }

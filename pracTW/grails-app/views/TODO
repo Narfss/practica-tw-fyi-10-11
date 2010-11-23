@@ -57,10 +57,15 @@ mapa.gsp:
                     P Markers se mueven en las actualizaciones
                     P Markers son eliminados si dejan de tener actualizacion
 		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
-			tiempo de actualizacion (hace 3 minutos, hace 4 horas)
-                - Guardar markers de amigso en un vector/Json
-                    ? El AJAX aporta los amigos ordenados por la fecha? nos podriamos ahorrar el buscar viejos
-                    ? La fecha de localizacion se cmabia al cambiar el estado?
+			P tiempo de actualizacion (hace 3 minutos, hace 4 horas)
+                        ? el infowindows se muestra en el mapa, no en el marker
+                        P Tiempo de actualizacion dinamico auto actualizado
+                            ? al eliminar el marker se elimina el intervalo?
+                            ? es necesario escribir en al funcion mas que las horas que han pasado?
+                P Guardar markers de amigos en un vector
+                    X El AJAX aporta los amigos ordenados por la fecha? nos podriamos ahorrar el buscar viejos
+                    ? La fecha de localizacion se cambia al cambiar el estado?
+                    - Al acabar el tiempo del usuario se deve de eliminar marker y infowindow
                 P Los markers de los amigos deben ser inamobibles
                 - Imagen de cargando en mapa
                 P La carga de amigos deve ser inmediata, no pasados 60 segundos
@@ -77,4 +82,6 @@ Adicional:
 		P Busqueda de direccion
 		P Actualizacion de posicion
 		P Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
-	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion,
+	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion
+                P Desabilidatar textarea
+                P Cambiar value de button
