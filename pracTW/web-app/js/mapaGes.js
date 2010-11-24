@@ -40,11 +40,20 @@ function anyadirAmigos(){
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
-
+                            //he de utilizar login
+                            clearInterval("timer"+amigos[i].nombre)
+                            //document.body.innerHTML+="<script>clearInterval(timer"+amigos[i].nombre+"); console.log('cerradointervalo')</script>"
                             UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
                             UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
-                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)</script>"
-                            UcontentString+="</div></div>";
+                                                    //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
+                            UcontentString+="<script>if(window['timer"+amigos[i].nombre+"'] != undefined) clearInterval(timer"+amigos[i].nombre+");"
+                            UcontentString+="timer"+amigos[i].nombre+"=setInterval(\"if(document.getElementById('timer-"+amigos[i].nombre+"')!=null){"
+                            UcontentString+="document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+"); "
+                            UcontentString+="console.log('actualizado"+amigos[i].localizacion.status+"')"
+                            UcontentString+="}else{"
+                            UcontentString+="console.log('NO SE pudo actualizado"+amigos[i].localizacion.status+"')"
+                            UcontentString+="}\",6000)"
+                            UcontentString+="</script></div></div>";
 
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,UcontentString,amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
@@ -53,20 +62,23 @@ function anyadirAmigos(){
                             GEvent.addListener(amigosArray[nAmigo][1], 'click', function(){
                                                                     amigosArray[nAmigo][1].openInfoWindowHtml(amigosArray[nAmigo][2]);
                                                                 });
-                            GEvent.trigger(amigosArray[nAmigo][1], 'click')
-                                                    {
-                                                       amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
-                                                    }
+                           // GEvent.trigger(amigosArray[nAmigo][1], 'click')
+                            //                        {
+                            //                           amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
+                             //                       }
                             
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
+
                             
                             UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
                             UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
-                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)</script>"
-                            UcontentString+="</div></div>";
+                            UcontentString+="<script>"
+                            UcontentString+="if(window['timer"+amigos[i].nombre+"'] != undefined) clearInterval(timer"+amigos[i].nombre+");"
+                            UcontentString+="timer"+amigos[i].nombre+"=setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)"
+                            UcontentString+="</script></div></div>";
                             amigosArray[nAmigo][2]=UcontentString
 
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
@@ -84,7 +96,7 @@ function anyadirAmigos(){
 function calcularTiempo(now){
     var hoy=new Date();
     var act=new Date(hoy.getTime()-now);
-    console.log(act)
+    
     var retorno="";
     switch (act.getHours()-1){
         case 0 : retorno+=""; break;
