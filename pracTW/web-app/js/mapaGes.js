@@ -19,16 +19,12 @@ function existeMarker(login){
 function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
-    //console.log("Eliminamos?")
     for (i in amigosArray){
         var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
-        //console.log(antes)
-        //console.log(ahora)
         if (antes<ahora){
             amigosArray[i][1].remove()
             //eliminar infowindow
             delete amigosArray[i]
-            //console.log("Eliminadooooooo")
         }
     }
 }
@@ -44,32 +40,41 @@ function anyadirAmigos(){
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
-                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,"aqui va el infowindow",amigos[i].localizacion.fecha)
-                            amigosArray.push(newAmigoArray)
-                            //UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p></div></div>";
-                            
-                            var fechaPost=amigos[i].localizacion.fecha.getTime();
-                          
-                            //var timeact=calcularTiempo(fechaPost);
+
                             UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
-                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(fechaPost)+"</p>"
-                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+fechaPost+")\",6000)</script>"
+                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
+                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)</script>"
                             UcontentString+="</div></div>";
-                            markerAmigo.title=UcontentString;
 
-                            //clickinfowindow(markerAmigo);
-                            GEvent.addListener(markerAmigo, 'click', function(){
-                                  map.openInfoWindowHtml(markerAmigo.getLatLng(),markerAmigo.title);
-                            });
+                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,UcontentString,amigos[i].localizacion.fecha)
+                            amigosArray.push(newAmigoArray)
+                            nAmigo=existeMarker(amigos[i].login)
 
-                            //mostrarinfowindow(markerAmigo);
+                            GEvent.addListener(amigosArray[nAmigo][1], 'click', function(){
+                                                                    amigosArray[nAmigo][1].openInfoWindowHtml(amigosArray[nAmigo][2]);
+                                                                });
+                            GEvent.trigger(amigosArray[nAmigo][1], 'click')
+                                                    {
+                                                       amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
+                                                    }
                             
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
-                            //amigosArray[nAmigo][2]=infowindowAmigo
+                            
+                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
+                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
+                            UcontentString+="<script>setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)</script>"
+                            UcontentString+="</div></div>";
+                            amigosArray[nAmigo][2]=UcontentString
+
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
+
+                            GEvent.trigger(amigosArray[nAmigo][1], 'click')
+                                                    {
+                                                       amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
+                                                    }
                         }
                 }
                 borrarAmigosViejos()
@@ -79,21 +84,22 @@ function anyadirAmigos(){
 function calcularTiempo(now){
     var hoy=new Date();
     var act=new Date(hoy.getTime()-now);
-
+    console.log(act)
     var retorno="";
-    switch (act.getHours()){
-        case 0 : retorno+=""; break
+    switch (act.getHours()-1){
+        case 0 : retorno+=""; break;
         case 1 : retorno+=act.getHours()+" hora "; break;
         default: retorno+=act.getHours()+" horas "; break;
     }
     switch (act.getMinutes()){
-        case 0 : retorno+=""; break
+        case 0 : retorno+=""; break;
         case 1 : retorno+=act.getMinutes()+" minuto "; break;
         default: retorno+=act.getMinutes()+" minutos "; break;
     }
+    if (retorno=="")
+            retorno="Menos de un minuto"
     return retorno;
 
-    //return act.getHours()+":"+act.getMinutes()+":"+act.getSeconds()
     /*
     var retorno;
     if(act<3600000){retorno=act/60000;}//minutos
@@ -108,7 +114,7 @@ function anyadirMarker(position, usuarioIcon){
 
 	icon.image = "../images/perfiles/" + usuarioIcon + "/icono.jpg";
 	icon.iconAnchor = new GPoint(32, 64);
-	icon.infoWindowAnchor = new GPoint(32, 0);
+	icon.infoWindowAnchor = new GPoint(42, 32);
 	icon.iconSize = new GSize(64, 64);
 	//icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
 	//icon.shadowSize = new GSize(32,32);
@@ -190,6 +196,8 @@ function guardarPosicionyEstado(position){
 	req.send(null);
         
         mostrarinfowindow(MarkerUsuario);
+        /*Aqui se actualiza el Infowindows?*/
+        mostrarInfowindowUsuario()
 }
 
 
