@@ -1,6 +1,7 @@
 var map=null;
 var usuario=null;
 var MarkerUsuario;
+var infowindowUsuario;
 var amigosArray=new Array();
 var lapsoMin=60;
 
@@ -22,11 +23,29 @@ function borrarAmigosViejos(){
     for (i in amigosArray){
         var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
         if (antes<ahora){
+            clearInterval("timer"+amigosArray[i][0])
             amigosArray[i][1].remove()
-            //eliminar infowindow
+            amigosArray[i][2]=""
             delete amigosArray[i]
         }
     }
+}
+
+function generarinfowindow(amigo){
+        //document.body.innerHTML+="<script>clearInterval(timer"+amigos[i].nombre+"); console.log('cerradointervalo')</script>"
+        UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigo.nombre+"</h1><div id=bodyContent><p>"+amigo.localizacion.status+"</p>";
+        UcontentString+="<p id=\"timer-"+amigo.nombre+"\">"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
+                                //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
+        UcontentString+="<script>if(window['timer"+amigo.nombre+"'] != undefined) clearInterval(timer"+amigo.nombre+");"
+        UcontentString+="timer"+amigo.nombre+"=setInterval(\"if(document.getElementById('timer-"+amigo.nombre+"')!=null){"
+        UcontentString+="document.getElementById('timer-"+amigo.nombre+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
+        UcontentString+="console.log('actualizado"+amigo.localizacion.status+"')"
+        UcontentString+="}else{"
+        UcontentString+="console.log('NO SE pudo actualizado"+amigo.localizacion.status+"')"
+        UcontentString+="}\",6000)"
+        UcontentString+="</script></div></div>";
+
+        return UcontentString;
 }
 
 function anyadirAmigos(){
@@ -42,20 +61,9 @@ function anyadirAmigos(){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
                             //he de utilizar login
                             clearInterval("timer"+amigos[i].nombre)
-                            //document.body.innerHTML+="<script>clearInterval(timer"+amigos[i].nombre+"); console.log('cerradointervalo')</script>"
-                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
-                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
-                                                    //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
-                            UcontentString+="<script>if(window['timer"+amigos[i].nombre+"'] != undefined) clearInterval(timer"+amigos[i].nombre+");"
-                            UcontentString+="timer"+amigos[i].nombre+"=setInterval(\"if(document.getElementById('timer-"+amigos[i].nombre+"')!=null){"
-                            UcontentString+="document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+"); "
-                            UcontentString+="console.log('actualizado"+amigos[i].localizacion.status+"')"
-                            UcontentString+="}else{"
-                            UcontentString+="console.log('NO SE pudo actualizado"+amigos[i].localizacion.status+"')"
-                            UcontentString+="}\",6000)"
-                            UcontentString+="</script></div></div>";
 
-                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,UcontentString,amigos[i].localizacion.fecha)
+
+                            var newAmigoArray=new Array(amigos[i].login,markerAmigo,generarinfowindow(amigos[i]),amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
                             nAmigo=existeMarker(amigos[i].login)
 
@@ -72,14 +80,7 @@ function anyadirAmigos(){
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
 
-                            
-                            UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigos[i].nombre+"</h1><div id=bodyContent><p>"+amigos[i].localizacion.status+"</p>";
-                            UcontentString+="<p id=\"timer-"+amigos[i].nombre+"\">"+calcularTiempo(amigos[i].localizacion.fecha.getTime())+"</p>"
-                            UcontentString+="<script>"
-                            UcontentString+="if(window['timer"+amigos[i].nombre+"'] != undefined) clearInterval(timer"+amigos[i].nombre+");"
-                            UcontentString+="timer"+amigos[i].nombre+"=setInterval(\"document.getElementById('timer-"+amigos[i].nombre+"').innerHTML=calcularTiempo("+amigos[i].localizacion.fecha.getTime()+")\",6000)"
-                            UcontentString+="</script></div></div>";
-                            amigosArray[nAmigo][2]=UcontentString
+                            amigosArray[nAmigo][2]=generarinfowindow(amigos[i])
 
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
 
@@ -171,7 +172,11 @@ function checkedRadio(radioObj){
 
 function showinfomanual(){ 
 	modo=checkedRadio(document.formestado.posicion)
-        if(document.getElementById("comment").value!=""){
+        if (modo=="no mostrar"){
+                //document.getElementById("comment").value=""
+                document.getElementById("comment").disabled=true
+                document.getElementById("actualizarEstado").value="Ocultar posición"
+        }else if(document.getElementById("comment").value!=""){
             document.getElementById("actualizarEstado").disabled=false;
             if (modo=="no mostrar"){
                 //document.getElementById("comment").value=""
@@ -185,6 +190,7 @@ function showinfomanual(){
             document.getElementById("actualizarEstado").disable=true
             document.getElementById("actualizarEstado").value="¿Y el estado?"
         }
+        
         if((modo=="automatico") || (modo=="no mostrar")){
                 document.getElementById("infomanual").style.display = 'none';
                 MarkerUsuario.draggable=false;
@@ -206,6 +212,20 @@ function guardarPosicionyEstado(position){
 	var req = new XMLHttpRequest();
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
+
+        var ahora=new Date();
+        UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario+"</h1><div id=bodyContent><p>"+estado+"</p>";
+        UcontentString+="<p id=\"timer-"+usuario+"\">"+calcularTiempo(ahora.getTime())+"</p>"
+                                //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
+        UcontentString+="<script>if(window['timer"+usuario+"'] != undefined) clearInterval(timer"+usuario+");"
+        UcontentString+="timer"+usuario+"=setInterval(\"if(document.getElementById('timer-"+usuario+"')!=null){"
+        UcontentString+="document.getElementById('timer-"+usuario+"').innerHTML=calcularTiempo("+ahora.getTime()+"); "
+        UcontentString+="console.log('actualizado"+estado+"')"
+        UcontentString+="}else{"
+        UcontentString+="console.log('NO SE pudo actualizado"+estado+"')"
+        UcontentString+="}\",6000)"
+        UcontentString+="</script></div></div>";
+        infowindowUsuario=UcontentString
         
         mostrarinfowindow(MarkerUsuario);
         /*Aqui se actualiza el Infowindows?*/
@@ -228,7 +248,7 @@ function guardarEstado(){
 function mostrarinfowindow(marker){
         GEvent.trigger(marker, 'click')
                     {
-                       marker.openInfoWindow(marker.title);
+                       marker.openInfoWindow(infowindowUsuario);
                     }
 }
 
@@ -265,16 +285,27 @@ function MostrarPosicionManual(){
     }
 }
 
+function ocultarPosicion(){
+	posAJAX="../locations/ocultarPosicion"
+
+	var req = new XMLHttpRequest();
+	req.open('GET', posAJAX, false);
+	req.send(null);
+}
+
 function guardarEstado(){
 	modo=checkedRadio(document.formestado.posicion)
-
+        document.getElementById("actualizarEstado").disable=false
 	if(modo=="automatico"){
 		navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
 		//navigator.geolocation.watchPosition()   ????
+                document.getElementById("actualizarEstado").value="Estado actualizado"
 	}else if(modo=="manual"){
 		posicionManual();
+                document.getElementById("actualizarEstado").value="Estado actualizado"
 	}else if(modo=="no mostrar"){
-		guardarEstado();
+		ocultarPosicion();
+                document.getElementById("actualizarEstado").value="Posicion ocultada"
 	}
 }
 

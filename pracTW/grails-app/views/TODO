@@ -28,7 +28,7 @@ perfil.gsp y registro.gsp:
 		P Dos passwords iguales y no vacios.
 		P Dia/mes/año valido
                     P Auto rellenar dias al cambiar fecha
-                    ? Los nombres de los mes tambien deben de ser autocompletados?
+                    X Los nombres de los mes tambien deben de ser autocompletados?
                     ? Hacemos la franja de edad dinamica a al fecha actual?
                     P Cuando el año o mes se cmabian el dia se vuelve a poner en el 1, no es comodo
 	Comprobar con AJAX
@@ -37,7 +37,6 @@ perfil.gsp y registro.gsp:
                 ? Deberiamos diferenciar el error de campo vacio y nombre ya existente?
 	Edicion perfil.gsp
 		P Mostrar fecha nacimiento
-                    ? hacemos los años dinamicos a la fecha?
 		P Mostrar sexo
 		- Imagen por defecto
 mapa.gsp:
@@ -56,16 +55,17 @@ mapa.gsp:
 		P Dibujar iconos (Marker) de amigos en su posicion del mapa
                     P Markers se mueven en las actualizaciones
                     P Markers son eliminados si dejan de tener actualizacion
-		- InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
+		P InfoWindows o ventana de informacion (status) al puslar sobre un amigo.
 			P tiempo de actualizacion (hace 3 minutos, hace 4 horas)
-                        ? el infowindows se muestra en el mapa, no en el marker
                         P Tiempo de actualizacion dinamico auto actualizado
-                            ? al eliminar el marker se elimina el intervalo?
+                            P al eliminar el marker se elimina el intervalo?
+                            P El intervalo se elimina al eliminar el usuario
                             ? es necesario escribir en al funcion mas que las horas que han pasado?
+                            ? Añadir infowindow del usuario con el ultimo comentario al arrancar ?
                 P Guardar markers de amigos en un vector
                     X El AJAX aporta los amigos ordenados por la fecha? nos podriamos ahorrar el buscar viejos
                     ? La fecha de localizacion se cambia al cambiar el estado?
-                    - Al acabar el tiempo del usuario se deve de eliminar marker y infowindow
+                    P Al acabar el tiempo del usuario se deve de eliminar marker y infowindow
                 P Los markers de los amigos deben ser inamobibles
                 - Imagen de cargando en mapa
                 P La carga de amigos deve ser inmediata, no pasados 60 segundos
