@@ -1,6 +1,6 @@
 var map=null;
 var usuario=null;
-var MarkerUsuario;
+var MarkerUsuario=null;
 var infowindowUsuario;
 var amigosArray=new Array();
 var lapsoMin=60;
@@ -23,7 +23,8 @@ function borrarAmigosViejos(){
     for (i in amigosArray){
         var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
         if (antes<ahora){
-            clearInterval("timer"+amigosArray[i][0])
+            if(window['timer'+amigosArray[i][0]] != undefined)
+                clearInterval("timer"+amigosArray[i][0])
             amigosArray[i][1].remove()
             amigosArray[i][2]=""
             delete amigosArray[i]
@@ -144,11 +145,10 @@ function centrarMap(position) {
 		MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
 		anyadirAmigos();
 		setInterval(anyadirAmigos,6000);
-		showinfomanual();
                 //mapa.show(MarkerUsuario.myInfowindow);
-                UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario.nombre+"</h1><div id=bodyContent><p>"+usuario.status+"</p></div></div>";
-                MarkerUsuario.title=UcontentString;
-                
+                //UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario.nombre+"</h1><div id=bodyContent><p>"+usuario.status+"</p></div></div>";
+                //MarkerUsuario.title=UcontentString;
+		showinfomanual();
 	}
 }
 
@@ -170,10 +170,15 @@ function checkedRadio(radioObj){
         /*for each (var i in r){if(i.checked)return i.value;}return "";*/
 }
 
-function showinfomanual(){ 
+function showinfomanual(){
+        //hay que limpiar esto
 	modo=checkedRadio(document.formestado.posicion)
+        if(window['MarkerUsuario'] != undefined)
+                MarkerUsuario.show()
         if (modo=="no mostrar"){
                 //document.getElementById("comment").value=""
+                if(window['MarkerUsuario'] != undefined)
+                    MarkerUsuario.hide()
                 document.getElementById("comment").disabled=true
                 document.getElementById("actualizarEstado").value="Ocultar posición"
         }else if(document.getElementById("comment").value!=""){
@@ -193,12 +198,16 @@ function showinfomanual(){
         
         if((modo=="automatico") || (modo=="no mostrar")){
                 document.getElementById("infomanual").style.display = 'none';
-                MarkerUsuario.draggable=false;
-                MarkerUsuario.disableDragging();
+                if(window['MarkerUsuario'] != undefined){
+                    MarkerUsuario.draggable=false;
+                    MarkerUsuario.disableDragging();
+                }
         }else if(modo=="manual"){
                 document.getElementById("infomanual").style.display = 'block';
-                MarkerUsuario.draggable=true;
-                MarkerUsuario.enableDragging();
+                if(window['MarkerUsuario'] != undefined){
+                    MarkerUsuario.draggable=true;
+                    MarkerUsuario.enableDragging();
+                }
         }
 }
 
