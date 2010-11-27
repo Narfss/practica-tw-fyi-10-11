@@ -283,25 +283,18 @@ function posicionManual(){
 
 
 function MostrarPosicionManual(){
-	//console.log(
-	nameManualPos=document.getElementById("namepos").value;
-	var geocoder = new google.maps.Geocoder();
-	if (geocoder) {
-		geocoder.geocode({'address': nameManualPos}, function (results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			posicion = new GLatLng(results[0].geometry.location.ra, results[0].geometry.location.sa)
-			map.setCenter(posicion, 13);
-			MarkerUsuario.setLatLng(posicion);
-		} else {
-			console.log('No results found: ' + status); //deberiamso hacer lago si no se encuentra?
-		}
-            });
-        }
-    GEvent.trigger(MarkerUsuario, 'click')
-    {
-       //console.log("dentro de trigger");
-       MarkerUsuario.openInfoWindow(MarkerUsuario.title);
-    }
+        nameManualPos=document.getElementById("namepos").value;
+        var geocoder = new GClientGeocoder();
+        geocoder.getLatLng(nameManualPos, function(point) {
+                                                  if (point){
+                                                    map.setCenter(point, 13);
+                                                    MarkerUsuario.setLatLng(point);
+                                                    MarkerUsuario.openInfoWindowHtml("Ahora estas situado en: "+nameManualPos);
+                                                  }else{
+                                                    MarkerUsuario.openInfoWindowHtml("Lo siento no he encontrado: "+nameManualPos);
+                                                  }
+                                                }
+                                            )
 }
 
 function ocultarPosicion(){
