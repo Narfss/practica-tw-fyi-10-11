@@ -36,15 +36,15 @@
               <h2>${usuario.nombre} comparte:</h2>
 
               <form name="formestado" action="" method="post">
-                <textarea id="comment" name="comment" cols="33" rows="4" onkeyup="showinfomanual()"></textarea><br/>
+                <textarea id="comment" name="comment" cols="33" rows="4" onKeyUp="showinfomanual()"></textarea><br/>
                 Localizacion:<br/>
                 <input type="radio" name="posicion" value="automatico" checked="true" onchange="showinfomanual();"/>Automatico<br/>
-                <input type="radio" name="posicion" value="manual" onclick="showinfomanual();"/>Manual<br/>
+                <input type="radio" name="posicion" value="manual" onchange="showinfomanual();"/>Manual<br/>
                 <center id="infomanual">
                   <input type="text"  name="namepos" id="namepos"/> <input type="button" value="Mostrar" class="button" onclick="MostrarPosicionManual()"/><br/>
                 </center>
                 <input type="radio" name="posicion" value="no mostrar" onchange="showinfomanual();"/>No mostrar<br/>
-                <input type="button" id="actualizarEstado" value="¿Algo que decir?" class="button" disabled="true" onclick="guardarEstado()"/>
+                <input type="button" id="actualizarEstado" value="¿Algo que decir?" class="button" disabled="disabled" onclick="guardarEstado()"/>
               </form>
             </div>
         </span>
