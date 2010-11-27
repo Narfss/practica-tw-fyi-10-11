@@ -171,44 +171,44 @@ function checkedRadio(radioObj){
 }
 
 function showinfomanual(){
-        //hay que limpiar esto
-	modo=checkedRadio(document.formestado.posicion)
-        if(window['MarkerUsuario'] != undefined)
-                MarkerUsuario.show()
-        if (modo=="no mostrar"){
-                //document.getElementById("comment").value=""
-                if(window['MarkerUsuario'] != undefined)
-                    MarkerUsuario.hide()
-                document.getElementById("comment").disabled=true
-                document.getElementById("actualizarEstado").value="Ocultar posición"
-        }else if(document.getElementById("comment").value!=""){
-            document.getElementById("actualizarEstado").disabled=false;
-            if (modo=="no mostrar"){
-                //document.getElementById("comment").value=""
-                document.getElementById("comment").disabled=true
-                document.getElementById("actualizarEstado").value="Ocultar posición"
-            }else{
-                document.getElementById("comment").disabled=false
-                document.getElementById("actualizarEstado").value="Actualizar estado"
-            }
-        }else{
-            document.getElementById("actualizarEstado").disable=true
-            document.getElementById("actualizarEstado").value="¿Y el estado?"
-        }
-        
-        if((modo=="automatico") || (modo=="no mostrar")){
-                document.getElementById("infomanual").style.display = 'none';
-                if(window['MarkerUsuario'] != undefined){
-                    MarkerUsuario.draggable=false;
-                    MarkerUsuario.disableDragging();
-                }
-        }else if(modo=="manual"){
-                document.getElementById("infomanual").style.display = 'block';
-                if(window['MarkerUsuario'] != undefined){
-                    MarkerUsuario.draggable=true;
-                    MarkerUsuario.enableDragging();
-                }
-        }
+    modo=checkedRadio(document.formestado.posicion)
+
+    infomanual=document.getElementById("infomanual");
+    comment=document.getElementById("comment");
+    actualizarEstado=document.getElementById("actualizarEstado");
+
+    //Modificacion de los elementos del form segun el modo de actualizacion
+    switch(modo){
+        case "automatico":  infomanual.style.display = 'none';
+                            comment.disabled=false;
+                            actualizarEstado.value="Actualizar estado"; break;
+        case "manual":      infomanual.style.display = 'block';
+                            comment.disabled=false;
+                            actualizarEstado.value="Actualizar estado"; break;
+        case "no mostrar":  infomanual.style.display = 'none';
+                            comment.disabled=true;
+                            actualizarEstado.value="Ocultar posicion"; break;
+    }
+
+    //modificacion del marker
+    if(window['MarkerUsuario'] != undefined)
+       switch(modo){
+        case "no mostrar":  MarkerUsuario.hide();
+                            MarkerUsuario.draggable=false;
+                            MarkerUsuario.disableDragging(); break;
+        case "automatico":  MarkerUsuario.show();
+                            MarkerUsuario.draggable=false;
+                            MarkerUsuario.disableDragging(); break;
+        case "manual":      MarkerUsuario.show();
+                            MarkerUsuario.draggable=true;
+                            MarkerUsuario.enableDragging; break;
+       }
+
+    //Modificacion del form en caso de campo vacio
+    if(comment.value!=""){
+            actualizarEstado.disable=true;
+            actualizarEstado.value="¿Y el estado?";
+    }
 }
 
 function guardarPosicionyEstado(position){
