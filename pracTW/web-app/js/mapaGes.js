@@ -205,7 +205,7 @@ function showinfomanual(){
        }
 
     //Modificacion del form en caso de campo vacio
-    if(comment.value!=""){
+    if(comment.value==""){
             actualizarEstado.disable=true;
             actualizarEstado.value="¿Y el estado?";
     }
