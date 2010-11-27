@@ -3,7 +3,7 @@ var usuario=null;
 var MarkerUsuario=null;
 var infowindowUsuario;
 var amigosArray=new Array();
-var lapsoMin=60;
+var lapsoMin=1440; //primero 24 horas 24*60=
 
 function initialize(usu) {
 	usuario=usu
@@ -21,7 +21,7 @@ function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
     for (i in amigosArray){
-        var antes=amigosArray[i][3].getTime()+(lapsoMin*60*1000)
+        var antes=amigosArray[i][3].getTime()+(24*60*1000); //se eliminan los que actualizaron hace mas de 24 horas(lapsoMin*60*1000)
         if (antes<ahora){
             if(window['timer'+amigosArray[i][0]] != undefined)
                 clearInterval("timer"+amigosArray[i][0])
@@ -51,7 +51,8 @@ function generarinfowindow(amigo){
 
 function anyadirAmigos(){
 	var req = new XMLHttpRequest();
-	req.open('GET', "../locations/getLocalizacionesAmigos?minutos="+lapsoMin, false); /*reducido el tiempo para test (60)*/
+	req.open('GET', "../locations/getLocalizacionesAmigos?minutos="+lapsoMin, false);
+        lapsoMin=1; //el tiempo de amigos actualizados pasa a ser de un minuto remplazando la primera peticion de 24 horas
 	req.send(null);
 
 	if (req.status == 200){
@@ -71,11 +72,7 @@ function anyadirAmigos(){
                             GEvent.addListener(amigosArray[nAmigo][1], 'click', function(){
                                                                     amigosArray[nAmigo][1].openInfoWindowHtml(amigosArray[nAmigo][2]);
                                                                 });
-                           // GEvent.trigger(amigosArray[nAmigo][1], 'click')
-                            //                        {
-                            //                           amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
-                             //                       }
-                            
+
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
@@ -85,10 +82,6 @@ function anyadirAmigos(){
 
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
 
-                            GEvent.trigger(amigosArray[nAmigo][1], 'click')
-                                                    {
-                                                       amigosArray[nAmigo][1].openInfoWindow(amigosArray[nAmigo][2]);
-                                                    }
                         }
                 }
                 borrarAmigosViejos()
@@ -247,8 +240,6 @@ function guardarPosicionyEstado(position){
         infowindowUsuario=UcontentString
         
         mostrarinfowindow(MarkerUsuario);
-        /*Aqui se actualiza el Infowindows?*/
-        mostrarInfowindowUsuario()
 }
 
 
