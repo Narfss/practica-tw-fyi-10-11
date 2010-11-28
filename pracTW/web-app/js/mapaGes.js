@@ -1,15 +1,15 @@
-var map=null;
-var usuario=null;
-var MarkerUsuario=null;
-var infowindowUsuario;
-var amigosArray=new Array();
-var lapsoMin=20//1440; //primero 24 horas 24*60=1440
-var callbackGetPos;
+var map=null; //identificador de mapa
+var usuario=null; //login del usuario
+var MarkerUsuario=null; //identificador marker del usuario
+var infowindowUsuario; //texto dle infowindow del usuario
+var amigosArray=new Array(); //array de amigos, en cada posicion existira un segudno array con nombre, marker, infowindow y fecha
+var lapsoMin=1440; //primero 24 horas 24*60=1440
+var callbackGetPos; //identificador del proceso de geolocalizacion
 
 
 /*Funcion initialize
  *param usu
- *Funcion encargada de inicializar el usuario y obtener su posicion actual
+ *Funcion encargada de inicializar el usuario e iniciar el mapa con la posicion obtenida actual.
  **/
 function initialize(usu) {
 	usuario=usu
@@ -19,7 +19,8 @@ function initialize(usu) {
 
 /*Funcion existeMarker
  *param login
- *Busca saber si ya existe el marker del usuario pasado por parametro en el array de amigos
+ *Busca saber si ya existe el marker del usuario pasado por parametro en el array de amigos.
+ *Devolviendo el indice del mismo en el array.
  *return i
  **/
 function existeMarker(login){
@@ -36,7 +37,7 @@ function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
     for (i in amigosArray){
-        var antes=amigosArray[i][3].getTime()+(24*60*1000); //se eliminan los que actualizaron hace mas de 24 horas(lapsoMin*60*1000)
+        var antes=amigosArray[i][3].getTime()+(24*60*1000); //se eliminan los que actualizaron hace mas de 24 horas
         if (antes<ahora){
             if(window['timer'+amigosArray[i][0]] != undefined)
                 clearInterval("timer"+amigosArray[i][0])
@@ -49,13 +50,15 @@ function borrarAmigosViejos(){
 
 /*Function generarinfowindow
  *param amigo
- *Genera el contenido que mostrara el infowindow para cada amigo con el que se llame a la funcion
+ *Genera el contenido que mostrara el infowindow para cada amigo con el que se llame a la funcion.
+ *La ventana infowindow tiene codigo javascript incluido para que el campo del tiempo sea actualizado
+ *cada minuto. Esta funcion de intervalo es finalizada al eliminar el marker y solo latente desde que
+ *se muestra el infowindow
  *return UcontentString: contenido del infowindow
  */
 function generarinfowindow(amigo){
         UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigo.nombre+"</h1><div id=bodyContent><p>"+amigo.localizacion.status+"</p>";
         UcontentString+="<p id=\"timer-"+amigo.login+"\">"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
-                                //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
         UcontentString+="<script>if(window['timer"+amigo.nombre+"'] != undefined) clearInterval(timer"+amigo.nombre+");"
         UcontentString+="timer"+amigo.nombre+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
         UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
@@ -69,7 +72,8 @@ function generarinfowindow(amigo){
 }
 
 /*Funcion anyadirAmigos
- *Añade amigos al mapa, que hayan actualizado hace menos de 24 horas
+ *Añade amigos al mapa, que hayan actualizado hace menos de 24 horas en la primera llamada, a continuacion las sucesibas
+ *seran de los usuarios que actualizaran en ese minuto de intervalo entre llamadas.
  */
 function anyadirAmigos(){
 	var req = new XMLHttpRequest();
@@ -97,7 +101,7 @@ function anyadirAmigos(){
 
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
-                        }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){ /*si cuela esto fiesta*/
+                        }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
 
                             amigosArray[nAmigo][2]=generarinfowindow(amigos[i])
@@ -105,7 +109,6 @@ function anyadirAmigos(){
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
 
                         }
-                       console.log(nAmigo);
                 }
                 borrarAmigosViejos()
 	}
@@ -114,7 +117,7 @@ function anyadirAmigos(){
 
 /*Function calcularTiempo
  *param now
- *Funcion que calcula hace cuanto tiempo se actualizo
+ *Funcion que calcula hace cuanto tiempo se actualizo (maximo 24 horas y 60 minutos)
  *return retorno: hace cuanto tiempo en minutos que se actualizo
  */
 function calcularTiempo(now){
@@ -129,21 +132,12 @@ function calcularTiempo(now){
     }
     switch (act.getMinutes()){
         case 0 : retorno+=""; break;
-        case 1 : retorno+=act.getMinutes()+" minuto "; break;
-        default: retorno+=act.getMinutes()+" minutos "; break;
+        case 1 : if (retorno!="") retorno+="y "; retorno+=act.getMinutes()+" minuto "; break;
+        default: if (retorno!="") retorno+="y "; retorno+=act.getMinutes()+" minutos "; break;
     }
     if (retorno=="")
             retorno="Menos de un minuto"
     return retorno;
-
-    /*
-    var retorno;
-    if(act<3600000){retorno=act/60000;}//minutos
-    else{
-        retorno=act/(3600000);//horas
-    }
-
-    return Math.floor(retorno);*/
 }
 
 /*anyadirMarker
@@ -170,6 +164,7 @@ function anyadirMarker(position, usuarioIcon){
 /*Funcion centrarMap
  *param position
  *Funcion que situa el mapa en el canvas indivado, y añade el marcador de usuario
+ *y comienza el una funcion con un intervalo de un minuto para añadir los amigos.
  */
 function centrarMap(position) {
 	if (GBrowserIsCompatible()) {
@@ -180,6 +175,12 @@ function centrarMap(position) {
 		setInterval(anyadirAmigos,6000);
 	}
 }
+
+/*checkedRadio
+ *param radioObj
+ *Esta funcion devuelve el value del primer seleccionado en un grupo de radio buttons.
+ *return: cadena value del radio.
+ */
 
 function checkedRadio(radioObj){
 	if(!radioObj)
@@ -196,11 +197,12 @@ function checkedRadio(radioObj){
 		}
 	}
 	return "";
-        /*for each (var i in r){if(i.checked)return i.value;}return "";*/
+        /*for each (var i in r){if(i.checked)return i.value;}return ""; //funcion mas corta que funciona en firefox pero no chrome*/
 }
 
 /*Funcion showinfomanual
- *Funcion que modifica el javascript en funcion del estado a actualizar.
+ *Funcion que modifica el javascript que cambia el aspecto y acceso formulario de envio de estado y el marker del usuario
+ *en funcion del estado seleccionado en los radio button.
  */
 function showinfomanual(){
     modo=checkedRadio(document.formestado.posicion)
@@ -254,22 +256,27 @@ function showinfomanual(){
 
 /*Funcion guardarPosicionyEstado
  *param posicion
- *Realiza la peticion ajax, para guardar el estado y la posicion
+ *Realiza la peticion ajax, para guardar el estado y la posicion.
+ *Posicion no siempre sera una llamada directa de geolocalizacion, por lo tanto no tendra todos los valores, vease 'posicionManual'
  */
 function guardarPosicionyEstado(position){
-	lat=position.coords.latitude;
-	lon=position.coords.longitude;
-	estado=document.getElementById("comment").value;
-	posAJAX="../locations/guardar"
-	params="?lat="+lat+"&lon="+lon+"&status="+estado;
+        lat=position.coords.latitude;
+        lon=position.coords.longitude;
+        estado=document.getElementById("comment").value;
+        posAJAX="../locations/guardar"
+        params="?lat="+lat+"&lon="+lon+"&status="+estado;
 
-	var req = new XMLHttpRequest();
-	req.open('GET', posAJAX+params, false);
-	req.send(null);
+        var req = new XMLHttpRequest();
+        req.open('GET', posAJAX+params, false);
+        req.send(null);
 
         if(req.status == 200){
             infowindowUsuario=generarinfowindow({"nombre":usuario, "login": usuario, "localizacion":{"status":estado, "fecha" :new Date()}})
-            mostrarinfowindow(MarkerUsuario);
+
+            GEvent.trigger(MarkerUsuario, 'click')
+                    {
+                       MarkerUsuario.openInfoWindow(infowindowUsuario);
+                    }
             
             document.getElementById("actualizarEstado").value="Estado actualizado"
       }else{
@@ -277,49 +284,17 @@ function guardarPosicionyEstado(position){
       }
 }
 
-/* //funcion de pruebas, ahora en desuso
-function guardarEstado(){
-	estado=document.getElementById("comment").value;
-	posAJAX="../locations/guardarStatus"
-	params="?status="+estado;
-
-	var req = new XMLHttpRequest();
-	req.open('GET', posAJAX+params, false);
-	req.send(null);
-
-        mostrarinfowindow(MarkerUsuario);
-}
-*/
-
-/*Funcion mostrarinfowindow
- *param marker
- *Abre el infowindow para el marcador pasado por parametro
- */
-function mostrarinfowindow(marker){
-        GEvent.trigger(marker, 'click')
-                    {
-                       marker.openInfoWindow(infowindowUsuario);
-                    }
-}
-
-/*Funcion clickinfowindow
- *Lanza un evento click sobre el markador pasado por parametro, abrira el infowindow asociado
- */
-function clickinfowindow(marker){
-    GEvent.addListener(marker, 'click', function(){
-                              marker.openInfoWindowHtml(marker.title);
-                           });
-}
-
 /*Funcion  posicionManual
  *Pasa a la funcion encargada de hacer la peticion ajax, la posicion a guardar en funcion de donde se situe el marker de usuario
+ *en uan extructura similar a uan llamada de geolocalizacion
  */
 function posicionManual(){
         guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})                
 }
 
 /*Funcion MostrarPosicionManual
- *Muestrala posicion del usuario mediante un infowindow
+ *Busca la posicion por Geocoder del nombre que se le proporciona por el campo.
+ *Mueve el Marker del usuario a esa posicion. Y muestra en un infowindow la informacion de si ha podido encontrarla o no.
  */
 function MostrarPosicionManual(){
         nameManualPos=document.getElementById("namepos").value;
@@ -351,22 +326,16 @@ function ocultarPosicion(){
             document.getElementById("actualizarEstado").value="Fallo en ocultar posicion"
 }
 
-/*Funcion noActualizado
- *Pone como texto del boton de actualizar.
- */
-function noActualizado(){
-    document.getElementById("actualizarEstado").value="No ha podido reconocerse la posicion";
-}
-
 /*Funcion guardarEstado
- *Guarda el estado en funcion del modo
+ *Dependiendo dle modo de guardado de estado que este seleccionado se gestiona en este punto
+ *que funcion debe ser llamada.
  */
 function guardarEstado(){
 	modo=checkedRadio(document.formestado.posicion)
         document.getElementById("actualizarEstado").disable=false
 	if(modo=="automatico"){
 		//navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
-                callbackGetPos=navigator.geolocation.watchPosition(guardarPosicionyEstado,noActualizado);
+                callbackGetPos=navigator.geolocation.watchPosition(guardarPosicionyEstado,function(){document.getElementById("actualizarEstado").value="No ha podido reconocerse la posicion";});
 	}else if(modo=="manual"){
                 if(window['callbackGetPos'] != undefined)
                      navigator.geolocation.clearWatch(callbackGetPos);
