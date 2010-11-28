@@ -3,7 +3,8 @@ var usuario=null;
 var MarkerUsuario=null;
 var infowindowUsuario;
 var amigosArray=new Array();
-var lapsoMin=1440; //primero 24 horas 24*60=
+var lapsoMin=1440; //primero 24 horas 24*60=1440
+var callbackGetPos;
 
 function initialize(usu) {
 	usuario=usu
@@ -139,10 +140,6 @@ function centrarMap(position) {
 		MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
 		anyadirAmigos();
 		setInterval(anyadirAmigos,6000);
-                //mapa.show(MarkerUsuario.myInfowindow);
-                //UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario.nombre+"</h1><div id=bodyContent><p>"+usuario.status+"</p></div></div>";
-                //MarkerUsuario.title=UcontentString;
-		showinfomanual();
 	}
 }
 
@@ -225,24 +222,29 @@ function guardarPosicionyEstado(position){
 	req.open('GET', posAJAX+params, false);
 	req.send(null);
 
-        var ahora=new Date();
-        UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario+"</h1><div id=bodyContent><p>"+estado+"</p>";
-        UcontentString+="<p id=\"timer-"+usuario+"\">"+calcularTiempo(ahora.getTime())+"</p>"
-                                //typeof timer"+amigos[i].nombre+" != 'undefined'   window['timer"+amigos[i].nombre+"'] != undefined
-        UcontentString+="<script>if(window['timer"+usuario+"'] != undefined) clearInterval(timer"+usuario+");"
-        UcontentString+="timer"+usuario+"=setInterval(\"if(document.getElementById('timer-"+usuario+"')!=null){"
-        UcontentString+="document.getElementById('timer-"+usuario+"').innerHTML=calcularTiempo("+ahora.getTime()+"); "
-        //UcontentString+="console.log('actualizado"+estado+"')"
-        //UcontentString+="}else{"
-        //UcontentString+="console.log('NO SE pudo actualizado"+estado+"')"
-        UcontentString+="}\",6000)"
-        UcontentString+="</script></div></div>";
-        infowindowUsuario=UcontentString
-        
-        mostrarinfowindow(MarkerUsuario);
+        if(req.status == 200){
+            var ahora=new Date();
+            UcontentString="<div id=content><div id=siteNotice></div><h1>"+usuario+"</h1><div id=bodyContent><p>"+estado+"</p>";
+            UcontentString+="<p id=\"timer-"+usuario+"\">"+calcularTiempo(ahora.getTime())+"</p>"
+            UcontentString+="<script>if(window['timer"+usuario+"'] != undefined) clearInterval(timer"+usuario+");"
+            UcontentString+="timer"+usuario+"=setInterval(\"if(document.getElementById('timer-"+usuario+"')!=null){"
+            UcontentString+="document.getElementById('timer-"+usuario+"').innerHTML=calcularTiempo("+ahora.getTime()+"); "
+            //UcontentString+="console.log('actualizado"+estado+"')"
+            //UcontentString+="}else{"
+            //UcontentString+="console.log('NO SE pudo actualizado"+estado+"')"
+            UcontentString+="}\",6000)"
+            UcontentString+="</script></div></div>";
+            infowindowUsuario=UcontentString
+
+            mostrarinfowindow(MarkerUsuario);
+            
+            document.getElementById("actualizarEstado").value="Estado actualizado"
+      }else{
+            document.getElementById("actualizarEstado").value="Fallo en la actualizacion"
+      }
 }
 
-
+/*
 function guardarEstado(){
 	estado=document.getElementById("comment").value;
 	posAJAX="../locations/guardarStatus"
@@ -254,6 +256,7 @@ function guardarEstado(){
 
         mostrarinfowindow(MarkerUsuario);
 }
+*/
 
 function mostrarinfowindow(marker){
         GEvent.trigger(marker, 'click')
@@ -269,9 +272,8 @@ function clickinfowindow(marker){
 }
 
 function posicionManual(){
-	guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})
+        guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})                
 }
-
 
 function MostrarPosicionManual(){
         nameManualPos=document.getElementById("namepos").value;
@@ -284,8 +286,7 @@ function MostrarPosicionManual(){
                                                   }else{
                                                     MarkerUsuario.openInfoWindowHtml("Lo siento no he encontrado: "+nameManualPos);
                                                   }
-                                                }
-                                            )
+                                                })
 }
 
 function ocultarPosicion(){
@@ -296,17 +297,23 @@ function ocultarPosicion(){
 	req.send(null);
 }
 
+function noActualizado(){
+    document.getElementById("actualizarEstado").value="No ha podido reconocerse la posicion";
+}
+
 function guardarEstado(){
 	modo=checkedRadio(document.formestado.posicion)
         document.getElementById("actualizarEstado").disable=false
 	if(modo=="automatico"){
 		//navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
-		navigator.geolocation.watchPosition(guardarPosicionyEstado)
-                document.getElementById("actualizarEstado").value="Estado actualizado"
+                callbackGetPos=navigator.geolocation.watchPosition(guardarPosicionyEstado,noActualizado);
 	}else if(modo=="manual"){
+                if(window['callbackGetPos'] != undefined)
+                     callbackGetPos.clearWatch();
 		posicionManual();
-                document.getElementById("actualizarEstado").value="Estado actualizado"
 	}else if(modo=="no mostrar"){
+                if(window['callbackGetPos'] != undefined)
+                     callbackGetPos.clearWatch();
 		ocultarPosicion();
                 document.getElementById("actualizarEstado").value="Posicion ocultada"
 	}

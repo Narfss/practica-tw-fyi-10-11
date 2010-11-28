@@ -20,7 +20,7 @@
     <script type="text/javascript" src="../js/mapaGes.js"></script>
     <title>Mapa</title>
   </head>
-  <body onload="initialize('${usuario.login}');" onunload="GUnload()">
+  <body onload="initialize('${usuario.login}'); showinfomanual();" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body" class="div">
       <span id="leftspan">
