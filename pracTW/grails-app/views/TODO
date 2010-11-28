@@ -29,7 +29,7 @@ perfil.gsp y registro.gsp:
 		P Dia/mes/año valido
                     P Auto rellenar dias al cambiar fecha
                     X Los nombres de los mes tambien deben de ser autocompletados?
-                    ? Hacemos la franja de edad dinamica a al fecha actual?
+                    X Hacemos la franja de edad dinamica a al fecha actual?
                     P Cuando el año o mes se cmabian el dia se vuelve a poner en el 1, no es comodo
 	Comprobar con AJAX
 		P Comprobar login disponible
@@ -45,13 +45,14 @@ mapa.gsp:
                     ? Comprobar cadena vacia
 	Mostrar el mapa:
 		P Incluir librerias
-			- Mapa.gsp tiene dos librerias de Gmap incluidas, ¿cual es la buena?
+			P Mapa.gsp tiene dos librerias de Gmap incluidas, ¿cual es la buena?
 		P Incluir mapa
                     P el mapa se auto centra a la posicion actual
                     ? el mapa no puede tener bordes redondeados
 		F Dibujar icono usuario (Marker)
 	Mostrar localizacion amigos en mapa (AJAX y temporizador):
-		F Pedir cada minuto la posicion de los amigos con AJAX
+		P Pedir cada minuto la posicion de los amigos con AJAX
+                    P primera peticion amigos actualizados en 24 horas
 		P Dibujar iconos (Marker) de amigos en su posicion del mapa
                     P Markers se mueven en las actualizaciones
                     P Markers son eliminados si dejan de tener actualizacion
@@ -60,18 +61,18 @@ mapa.gsp:
                         P Tiempo de actualizacion dinamico auto actualizado
                             P al eliminar el marker se elimina el intervalo?
                             P El intervalo se elimina al eliminar el usuario
-                            ? es necesario escribir en al funcion mas que las horas que han pasado?
-                            ? Añadir infowindow del usuario con el ultimo comentario al arrancar ?
+                            X es necesario escribir en al funcion mas que las horas que han pasado? (no, la practica dice actualizados en 24 horas)
+                            X Añadir infowindow del usuario con el ultimo comentario al arrancar ? (no, no se puede acceder al ultimo mensaje por diseño de grails)
                 P Guardar markers de amigos en un vector
                     X El AJAX aporta los amigos ordenados por la fecha? nos podriamos ahorrar el buscar viejos
-                    ? La fecha de localizacion se cambia al cambiar el estado?
+                    X La fecha de localizacion se cambia al cambiar el estado? (automaticamente, la fecha es actualizada por grails con el nuevo estado)
                     P Al acabar el tiempo del usuario se deve de eliminar marker y infowindow
                 P Los markers de los amigos deben ser inamobibles
                 - Imagen de cargando en mapa
                 P La carga de amigos deve ser inmediata, no pasados 60 segundos
 	Geolocalizacion:
 		P "Modo automatico" toma posicion de API (Marker inamobible)
-		- "No mostrar posicion" No enviar posicion al servidor.
+		P!!! "No mostrar posicion" No enviar posicion al servidor. (da error, al parecer de grails)
 
 Adicional:
 	P Permitir actualizar "status quo, is not quo"
