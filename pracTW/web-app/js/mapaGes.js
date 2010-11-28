@@ -59,8 +59,8 @@ function borrarAmigosViejos(){
 function generarinfowindow(amigo){
         UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigo.nombre+"</h1><div id=bodyContent><p>"+amigo.localizacion.status+"</p>";
         UcontentString+="<p id=\"timer-"+amigo.login+"\">"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
-        UcontentString+="<script>if(window['timer"+amigo.nombre+"'] != undefined) clearInterval(timer"+amigo.nombre+");"
-        UcontentString+="timer"+amigo.nombre+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
+        UcontentString+="<script>if(window['timer"+amigo.login+"'] != undefined) clearInterval(timer"+amigo.login+");"
+        UcontentString+="timer"+amigo.login+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
         UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
         //UcontentString+="console.log('actualizado"+amigo.localizacion.status+"')"
         //UcontentString+="}else{"
@@ -87,8 +87,7 @@ function anyadirAmigos(){
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
-                            //he de utilizar login
-                            clearInterval("timer"+amigos[i].nombre)
+                            clearInterval("timer"+amigos[i].login)
 
 
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,generarinfowindow(amigos[i]),amigos[i].localizacion.fecha)
