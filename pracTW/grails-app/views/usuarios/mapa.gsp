@@ -15,7 +15,7 @@
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
 
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true" type="text/javascript"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <!-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
 
     <script type="text/javascript" src="../js/mapaGes.js"></script>
     <title>Mapa</title>
