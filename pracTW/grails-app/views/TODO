@@ -1,7 +1,7 @@
 TODO (thinks TO DO)
 
 Javascript
-	Fecha limmite 28 Noviembre
+	Fecha limmite 19 Diciembre
 
 	Leyenda
 	   "-"= sin hacer
@@ -10,8 +10,29 @@ Javascript
            "*"=Reparar, corregir error (error a corregir)
 	   "X"=Hecho
            "?"=cuestionable
+           "e"=extra
 
+####################PRACTICA 3############################
+proyecto:
+    P actualizar codigo
+    - Agregar Jquery
 
+mapa.gps
+    - agregar espacio peticiones/notificaciones
+    - mostrar solicitudes de amistad ../solicitudes/getSolicitudesRecibidas
+        - responder peticion ../solicitudes/responderSolicidut?id=id_solicidud&respuesta=bool_respuesta
+    - lista de amigos con posicion conocida
+        - onclick, centrar mapa en amigo (mostrar infowindow)
+    - aviso de amigos conectados, animate jquery
+        - onclick, centrar mapa en amigo (mostrar infowindow)
+
+formbusqueda.gsp
+    - peticion ajax ../usuarios/buscar serialize campos del form
+    - mostrar datos en la tabla
+        - boton de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
+        e tabla ordenable
+
+####################PRACTICA 1############################
 Antiguos Errores cometidos
 	- hoja de estilo css, imagne de perfil sobre sale del bloque en el caso de paris/paris
 	- Las estrellas de los formulariso necesitan tags o globos de informacion.
@@ -20,7 +41,7 @@ Antiguos Errores cometidos
 	- Unir cambios de CSS, ¿añadir guardado de cookie?
         - Hacer el mapa más grande
 
-
+####################PRACTICA 2############################
 perfil.gsp y registro.gsp:
 	Comprobar campos antes de enviar:
 		P Login no vacio
@@ -76,13 +97,13 @@ mapa.gsp:
 
 Adicional:
 	P Permitir actualizar "status quo, is not quo"
-		- Una vez enviado el estao se deberia corrobolar
-			- Hacer boton cambiante segun el onchange de los campos y el envio
+		P Una vez enviado el estao se deberia corroborar
+			P Hacer boton cambiante segun el onchange de los campos y el envio
 	P Posicionamiento manual
 		P Al pulsar el radio button los campos pasaran a ser visibles
 		P Busqueda de direccion
 		P Actualizacion de posicion
 		P Marker movible para ajuste de posicion (al soltar enviar coordenadas con AJAX)
-	- "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion
+	P "No mostrar posicion"  en este modo lso maigos no deben de conocer tu posicion (falla AJAX)
                 P Desabilidatar textarea
                 P Cambiar value de button
