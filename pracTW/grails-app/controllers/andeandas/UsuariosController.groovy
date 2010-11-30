@@ -108,6 +108,7 @@ class UsuariosController {
             array {
                 for (u in result) {
                     usuario(login: u.login,
+                        tieneImagen: u.tieneImagen,
                         nombre:u.nombre,
                         apellidos:u.apellidos,
                         localidad:u.localidad) 

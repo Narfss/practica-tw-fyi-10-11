@@ -38,22 +38,32 @@ class LocationsController {
             u.attach();
         if (u.localizacion) {
             u.localizacion.status = params.status
-            if (u.save())
-                render("OK")
-            else
-                render("error")
+            u.save()
         }
     }
 
     def ocultarPosicion = {
-         //obtiene el usuario actual de la sesión HTTP
-        Usuario u = session.user;
-        //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
-        //hay que reattacharlo
-        if (!u.isAttached())
+        try {
+            //obtiene el usuario actual de la sesión HTTP
+            Usuario u = session.user;
+            //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
+            //hay que reattacharlo
+            if (!u.isAttached())
             u.attach();
-        if (u.localizacion)
-            u.localizacion.delete()
+            if (u.localizacion) {
+                def loc = u.localizacion
+                //borramos la localización del objeto usuario (pero no de la BD)
+                u.localizacion = null
+                //guardamos el usuario, ahora sin localización
+                u.save(flush:true)
+                //eliminamos la localización de la BD
+                loc.delete(flush:true)
+            }
+            render(text:"OK", content:"text/plain")
+        }
+        catch(Exception e) {
+             render(text:"error", content: "text/plain", status:500)
+        }
     }
 
     def getLocalizacionesAmigos = {
@@ -76,6 +86,7 @@ class LocationsController {
                         login = a.login
                         nombre = a.nombre
                         apellidos = a.apellidos
+                        tieneImagen = a.tieneImagen
                         localizacion =  {
                             status = a.localizacion.status
                             lat = a.localizacion.lat

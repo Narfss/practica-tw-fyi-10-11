@@ -6,13 +6,22 @@ class SolicitudesController {
     
     def enviarSolicitud = {
         //obtiene el usuario actual de la sesión HTTP
-        Usuario u = session.user;
-        //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
-        //hay que reattacharlo
-        if (!u.isAttached()) {
-            u.attach();
+        try {
+            //chequeo de parámetros HTTP
+            if (!params.idDest)
+                throw new Exception("Falta el parámetro idDest")
+            Usuario u = session.user;
+            //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
+            //hay que reattacharlo
+            if (!u.isAttached()) {
+               u.attach();
+            }
+            solicitudesService.enviarSolicitud(u, params.idDest)
+            render(text:"OK", contentType:"text/plain")
         }
-        solicitudesService.enviarSolicitud(u, params.idDest)
+        catch(Exception e) {
+            render(text:"error: " + e.message, contentType:"text/plain", status:500)
+        }
     }
 
     def getSolicitudesRecibidas = {
@@ -31,8 +40,7 @@ class SolicitudesController {
                         id: s.id,
                         login: s.remitente.login,
                         nombre: s.remitente.nombre,
-                        apellidos: s.remitente.apellidos,
-                        fechaEnvio: s.fechaEnvio)
+                        apellidos: s.remitente.apellidos)
                 }
             }
         }
