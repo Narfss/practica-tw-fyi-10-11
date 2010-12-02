@@ -16,11 +16,11 @@
 
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true" type="text/javascript"></script>
     <!-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../js/mapaGes.js"></script>
     <title>Mapa</title>
   </head>
-  <body onload="initialize('${usuario.login}'); showinfomanual();" onunload="GUnload()">
+  <body onload="initialize('${usuario.login}'); showinfomanual();comprobarPeticiones();" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
       <div id="body" class="div">
       <span id="leftspan">
@@ -33,6 +33,7 @@
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
               </center>
               <h1>Bienvenido</h1>
+              <p id="areaNotificacion" class="div"></p>
               <h2>${usuario.nombre} comparte:</h2>
 
               <form name="formestado" action="" method="post">

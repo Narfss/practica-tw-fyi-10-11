@@ -347,3 +347,37 @@ function guardarEstado(){
 }
 
 
+/*PRACTICA 3
+*/
+//$(document).ready(function(){
+//        $.ajax({
+//        });
+//});
+
+function comprobarPeticiones(){
+    $.ajax({
+        url: "../solicitudes/getSolicitudesRecibidas",
+        //context: $("#areaNotificacion"),
+        //type: "GET",
+        dataType: "json",
+        success: function(solicitudes){
+                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p id='solicitud"+value.login+"'>"+value.nombre+" "+value.apellidos+" <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></p>")})
+          },
+        error: function(e){ console.log(e); alert('Update failed!'+e); }
+        })
+}
+
+//<editor-dold desc="ResponderASolicitud">
+function responderASolicitudDe(id,respuesta){
+    console.log(id)
+    $.ajax({
+        url: "../solicitudes/responderSolicitud",
+        data: ({"id": id,"respuesta": respuesta}),
+        //context: $("#areaNotificacion"),
+        type: "POST",
+        dataType: "json",
+        success: function(){$("#solicitud"+id).remove()},
+        error:   function(){$("#solicitud"+id).html("No ha sido aceptado, intentelo más tarde.")}
+        })
+}
+//</editor-fold>

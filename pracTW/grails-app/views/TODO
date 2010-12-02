@@ -15,12 +15,12 @@ Javascript
 ####################PRACTICA 3############################
 proyecto:
     P actualizar codigo
-    - Agregar Jquery
+    P Agregar Jquery
 
 mapa.gps
-    - agregar espacio peticiones/notificaciones
+    F agregar espacio peticiones/notificaciones
     - mostrar solicitudes de amistad ../solicitudes/getSolicitudesRecibidas
-        - responder peticion ../solicitudes/responderSolicidut?id=id_solicidud&respuesta=bool_respuesta
+        - responder peticion ../solicitudes/responderSolicitud?id=id_solicitud&respuesta=bool_respuesta
     - lista de amigos con posicion conocida
         - onclick, centrar mapa en amigo (mostrar infowindow)
     - aviso de amigos conectados, animate jquery

@@ -44,6 +44,7 @@ class SolicitudesController {
                 }
             }
         }
+        render(text: "OK", contentType: "text/plain")
     }
 
     def responderSolicitud = {
@@ -53,11 +54,13 @@ class SolicitudesController {
                 idSol = params.id
                 respuesta = params.respuesta
             }
+            render(text:"OK", contentType:"text/plain")
         } catch (SolicitudException se) {
             render(contentType:"text/json") {
                 error = se.message
             }
         }
+        render(text:"OK", contentType:"text/plain")
     }
 
     def getSolicitudesAceptadas = {
