@@ -31,15 +31,22 @@ class LocationsController {
 
     def guardarStatus = {
         //obtiene el usuario actual de la sesión HTTP
-        Usuario u = session.user;
-        //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
-        //hay que reattacharlo
-        if (!u.isAttached())
-            u.attach();
-        if (u.localizacion) {
-            u.localizacion.status = params.status
-            u.save()
+        try {
+            Usuario u = session.user;
+            //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
+            //hay que reattacharlo
+            if (!u.isAttached())
+                u.attach();
+            println u.localizacion
+            if (u.localizacion) {
+                u.localizacion.status = params.status
+                u.save()
+            }
         }
+        catch(Exception e) {
+            render(text:"error", contenType: "text/plain", status: 500)
+        }
+        render(text: "OK", contentType: "text/plain")
     }
 
     def ocultarPosicion = {

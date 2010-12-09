@@ -7,6 +7,7 @@ var lapsoMin=1440; //primero 24 horas 24*60=1440
 var callbackGetPos; //identificador del proceso de geolocalizacion
 
 
+//<editor-fold defaultstate="collapsed" desc="Practica 2">
 /*Funcion initialize
  *param usu
  *Funcion encargada de inicializar el usuario e iniciar el mapa con la posicion obtenida actual.
@@ -346,28 +347,29 @@ function guardarEstado(){
 	}
 }
 
+//</editor-fold>
+
+//<editor-fold desc="Practica 3">
 
 /*PRACTICA 3
 */
-//$(document).ready(function(){
-//        $.ajax({
-//        });
-//});
+$(document).ready(
+            comprobarPeticiones()
+);
 
 function comprobarPeticiones(){
     $.ajax({
         url: "../solicitudes/getSolicitudesRecibidas",
         //context: $("#areaNotificacion"),
-        //type: "GET",
         dataType: "json",
         success: function(solicitudes){
                    $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p id='solicitud"+value.id+"'>"+value.nombre+" "+value.apellidos+" <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></p>")})
-          },
+                 },
         error: function(e){ console.log(e); alert('Update failed!'+e); }
         })
 }
 
-//<editor-dold desc="ResponderASolicitud">
+
 function responderASolicitudDe(id,respuesta){
     $.ajax({
         url: "../solicitudes/responderSolicitud",
@@ -379,4 +381,6 @@ function responderASolicitudDe(id,respuesta){
         error:   function(){$("#solicitud"+id).html("No ha sido aceptado, intentelo más tarde.")}
         })
 }
+
+
 //</editor-fold>

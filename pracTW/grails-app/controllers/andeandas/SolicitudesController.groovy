@@ -3,25 +3,30 @@ package andeandas
 class SolicitudesController {
 
     def solicitudesService
-    
+
     def enviarSolicitud = {
+        if (!params.idDest) {
+            render(text:"Error: falta parámetro idDest", contentType:"text/plain", status:500)
+            return
+        }
+
         //obtiene el usuario actual de la sesión HTTP
+        Usuario u = session.user;
+        //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
+        //hay que reattacharlo
+        if (!u.isAttached()) {
+            u.attach();
+        }
         try {
-            //chequeo de parámetros HTTP
-            if (!params.idDest)
-                throw new Exception("Falta el parámetro idDest")
-            Usuario u = session.user;
-            //seguramente estará "dettachado", por lo que para trabajar con GORM (guardarlo, etc)
-            //hay que reattacharlo
-            if (!u.isAttached()) {
-               u.attach();
-            }
             solicitudesService.enviarSolicitud(u, params.idDest)
             render(text:"OK", contentType:"text/plain")
+
         }
-        catch(Exception e) {
-            render(text:"error: " + e.message, contentType:"text/plain", status:500)
+        catch(SolicitudException se) {
+            println se
+            render(text:"Error: " + se, contentType:"text/plain", status:500)
         }
+
     }
 
     def getSolicitudesRecibidas = {
@@ -44,7 +49,6 @@ class SolicitudesController {
                 }
             }
         }
-        render(text: "OK", contentType: "text/plain")
     }
 
     def responderSolicitud = {
@@ -54,13 +58,11 @@ class SolicitudesController {
                 idSol = params.id
                 respuesta = params.respuesta
             }
-            render(text:"OK", contentType:"text/plain")
         } catch (SolicitudException se) {
             render(contentType:"text/json") {
                 error = se.message
             }
         }
-        render(text:"OK", contentType:"text/plain")
     }
 
     def getSolicitudesAceptadas = {
@@ -75,14 +77,11 @@ class SolicitudesController {
         render(contentType:"text/json") {
             array {
                 for (s in sols) {
-                    //FIXME: el serializador JSON serializa los enums de forma "rara". Ver si se puede cambiar
                     solicitud(
                         id: s.id,
                         login: s.destinatario.login,
                         nombre: s.destinatario.nombre,
-                        apellidos: s.destinatario.apellidos,
-                        estado: s.estado,
-                        fecha: s.fecha)
+                        apellidos: s.destinatario.apellidos)
                 }
             }
         }

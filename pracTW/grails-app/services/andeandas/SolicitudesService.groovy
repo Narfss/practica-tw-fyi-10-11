@@ -49,9 +49,19 @@ class SolicitudesService {
         else throw new SolicitudException("Solicitud no encontrada: " + id)
     }
 
-    void enviarSolicitud(Usuario u, int idDest) {
-        def dest = Usuario.get(params.idDest)
-        def sol = new Solicitud(remitente: u, destinatario: dest, fechaEnvio: new Date() )
-        sol.save()
+    void enviarSolicitud(Usuario u, String login) {
+        def dest = Usuario.findByLogin(login)
+        if (dest) {
+             //comprobar que la solicitud no exista ya. Si ya existe no hacemos nada
+             def solAnterior = Solicitud.findByRemitenteAndDestinatario(u,dest)
+             if (!solAnterior) {
+                def sol = new Solicitud(remitente: u, destinatario: dest, fechaEnvio: new Date(), estado:EstadoSolicitud.PENDIENTE)
+                if (!sol.save())
+                    throw new SolicitudException("Error intentando guardar solicitud")
+             }
+             else
+                println "Ya existía una solicitud de " + u.login + " para " + dest.login
+        }
+        else throw new SolicitudException("Usuario no encontrado: " + login)
     }
 }
