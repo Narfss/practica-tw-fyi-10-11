@@ -17,9 +17,14 @@ function amigosEncontrados()
        type:"Get",
        url:"http://localhost:8080/pracTW/usuarios/buscar",
        data:$('#quest').serialize(),
-       dataType: json,
+       dataType:"json",
        success:function(find){
-           $.each(find,rellenarTabla(i,amigo))
+           $.each(find,function(i,amigos){
+           console.log(amigos[i])
+           var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigos[i].nombre+"/icono.jpg\" class=\"icono\"></td>"
+            var td2="<td>"+amigos[i].nombre+"</td><td>"+amigos[i].apellidos+"</td><td>"+amigos[i].localizaion+"</td></tr><br>";
+            $(td1+td2).appendTo('busqueda');
+            })
        },
        error:function(error){
            $("<>No hay coincidencias para los patrones introducidos</p>").appendTo('div');}

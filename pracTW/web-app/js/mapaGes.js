@@ -361,7 +361,7 @@ function comprobarPeticiones(){
         //type: "GET",
         dataType: "json",
         success: function(solicitudes){
-                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p id='solicitud"+value.login+"'>"+value.nombre+" "+value.apellidos+" <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></p>")})
+                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p id='solicitud"+value.id+"'>"+value.nombre+" "+value.apellidos+" <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></p>")})
           },
         error: function(e){ console.log(e); alert('Update failed!'+e); }
         })
@@ -369,7 +369,6 @@ function comprobarPeticiones(){
 
 //<editor-dold desc="ResponderASolicitud">
 function responderASolicitudDe(id,respuesta){
-    console.log(id)
     $.ajax({
         url: "../solicitudes/responderSolicitud",
         data: ({"id": id,"respuesta": respuesta}),
