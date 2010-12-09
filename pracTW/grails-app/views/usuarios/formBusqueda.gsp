@@ -37,7 +37,7 @@
                               <input type="text" id="apellidos" name="apellidos" /><br/>
                       <label for="Localidad">Localidad: </label><br/>
                               <input type="text" id="localidad" name="localidad" /><br/>
-                      <center><input type="button" value="Buscar" class="button" onclick="amigosEncontrados(null)"/></center>
+                      <center><input type="button" value="Buscar" class="button" onclick="javascript:amigosEncontrados(null)"/></center>
               </fieldset>
               </form>
             </div>

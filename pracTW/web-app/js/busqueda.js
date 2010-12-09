@@ -12,18 +12,20 @@ function amigosEncontrados()
    //nombre=document.document.getElementById("nombre").value;
    //apellidos=document.document.getElementById("apellidos").value;
    //localidad=document.document.getElementById("localidad").value;
-
+   //
+   //primero se ha de vacair la tabla
    $.ajax({
        type:"Get",
        url:"http://localhost:8080/pracTW/usuarios/buscar",
        data:$('#quest').serialize(),
        dataType:"json",
-       success:function(find){
-           $.each(find,function(i,amigos){
-           console.log(amigos[i])
-           var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigos[i].nombre+"/icono.jpg\" class=\"icono\"></td>"
-            var td2="<td>"+amigos[i].nombre+"</td><td>"+amigos[i].apellidos+"</td><td>"+amigos[i].localizaion+"</td></tr><br>";
-            $(td1+td2).appendTo('busqueda');
+       success:function(find){           
+           $.each(find,function(i,amigo){
+                //amigo tiene un bool de tieneimagen
+               var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
+               var td2="<td>"+amigo.nombre+"</td><td>"+amigo.apellidos+"</td><td>"+amigo.localizaion+"</td></tr><br>";
+               //$(td1+td2).appendTo('busqueda');
+               $('#busqueda').append(td1+td2)
             })
        },
        error:function(error){
