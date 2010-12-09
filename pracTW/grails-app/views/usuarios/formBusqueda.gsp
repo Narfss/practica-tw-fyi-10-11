@@ -13,6 +13,8 @@
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
+    <script type="text/javascript" src="../js/busqueda.js"></script>
+    <script type="text/javascript" src="js/jquery­1.4.3.min.js"></script>
     <title>Pagina de busqueda</title>
   </head>
   <body>
@@ -27,7 +29,7 @@
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
               </center>
               <h1>Busqueda</h1>
-              <form method="get" action="buscar">
+              <form id="quest" method="get" action="busqueda" onSubmit="return amigosEncontrados(null)">
               <fieldset>
                       <label for="Nombre">Nombre: </label><br/>
                               <input type="text" id="nombre" name="nombre" /><br/>
@@ -45,10 +47,10 @@
           <div class="div">
             <table id="busqueda">
               <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
-              <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
+              /*<tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
-              <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br>
+              <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br>*/
             </table>
           </div>
         </span>
