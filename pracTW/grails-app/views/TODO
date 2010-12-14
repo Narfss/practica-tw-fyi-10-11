@@ -19,16 +19,16 @@ proyecto:
 
 mapa.gps
     F agregar espacio peticiones/notificaciones
-    - mostrar solicitudes de amistad ../solicitudes/getSolicitudesRecibidas
+    P mostrar solicitudes de amistad ../solicitudes/getSolicitudesRecibidas
         - responder peticion ../solicitudes/responderSolicitud?id=id_solicitud&respuesta=bool_respuesta
-    - lista de amigos con posicion conocida
+    P lista de amigos con posicion conocida
         - onclick, centrar mapa en amigo (mostrar infowindow)
     - aviso de amigos conectados, animate jquery
         - onclick, centrar mapa en amigo (mostrar infowindow)
 
 formbusqueda.gsp
-    - peticion ajax ../usuarios/buscar serialize campos del form
-    - mostrar datos en la tabla
+    P peticion ajax ../usuarios/buscar serialize campos del form
+    P mostrar datos en la tabla
         - boton de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
         e tabla ordenable
 

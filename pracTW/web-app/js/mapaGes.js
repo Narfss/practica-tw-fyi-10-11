@@ -13,8 +13,8 @@ var callbackGetPos; //identificador del proceso de geolocalizacion
  *Funcion encargada de inicializar el usuario e iniciar el mapa con la posicion obtenida actual.
  **/
 function initialize(usu) {
-	usuario=usu
-	navigator.geolocation.getCurrentPosition(centrarMap);
+        usuario=usu
+        navigator.geolocation.getCurrentPosition(centrarMap);
 }
 
 
@@ -77,14 +77,14 @@ function generarinfowindow(amigo){
  *seran de los usuarios que actualizaran en ese minuto de intervalo entre llamadas.
  */
 function anyadirAmigos(){
-	var req = new XMLHttpRequest();
-	req.open('GET', "../locations/getLocalizacionesAmigos?minutos="+lapsoMin, false);
+        var req = new XMLHttpRequest();
+        req.open('GET', "../locations/getLocalizacionesAmigos?minutos="+lapsoMin, false);
         lapsoMin=1; //el tiempo de amigos actualizados pasa a ser de un minuto remplazando la primera peticion de 24 horas
-	req.send(null);
+        req.send(null);
 
-	if (req.status == 200){
-		var amigos = eval("{amigos: "+req.responseText+"}")
-		for(i in amigos){
+        if (req.status == 200){
+                var amigos = eval("{amigos: "+req.responseText+"}")
+                for(i in amigos){
                         var nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
@@ -111,7 +111,7 @@ function anyadirAmigos(){
                         }
                 }
                 borrarAmigosViejos()
-	}
+        }
 }
 
 
@@ -123,7 +123,7 @@ function anyadirAmigos(){
 function calcularTiempo(now){
     var hoy=new Date();
     var act=new Date(hoy.getTime()-now);
-    
+
     var retorno="";
     switch (act.getHours()-1){
         case 0 : retorno+=""; break;
@@ -146,18 +146,18 @@ function calcularTiempo(now){
  *return marker: marcador ya ubicado en el mapa
  */
 function anyadirMarker(position, usuarioIcon){
-	var icon = new GIcon();
+        var icon = new GIcon();
 
-	icon.image = "../images/perfiles/" + usuarioIcon + "/icono.jpg";
-	icon.iconAnchor = new GPoint(32, 64);
-	icon.infoWindowAnchor = new GPoint(42, 32);
-	icon.iconSize = new GSize(64, 64);
-	//icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
-	//icon.shadowSize = new GSize(32,32);
+        icon.image = "../images/perfiles/" + usuarioIcon + "/icono.jpg";
+        icon.iconAnchor = new GPoint(32, 64);
+        icon.infoWindowAnchor = new GPoint(42, 32);
+        icon.iconSize = new GSize(64, 64);
+        //icon.shadow = "../images/default/marco.png"; //Queria poner la forma de la Y como marco, pero la sombra empieza en al posicion 0,0. Supongo que cuando nos expliquen como se guarda en formato icono tal vez podramos incluirle un marco o recortarla
+        //icon.shadowSize = new GSize(32,32);
 
-	marker=new GMarker(position,{icon: icon, draggable: true})
-	map.addOverlay(marker)
-	return marker;
+        marker=new GMarker(position,{icon: icon, draggable: true})
+        map.addOverlay(marker)
+        return marker;
 }
 
 
@@ -167,13 +167,13 @@ function anyadirMarker(position, usuarioIcon){
  *y comienza el una funcion con un intervalo de un minuto para añadir los amigos.
  */
 function centrarMap(position) {
-	if (GBrowserIsCompatible()) {
-		map = new GMap2(document.getElementById("map_canvas"));
-		map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
-		MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
-		anyadirAmigos();
-		setInterval(anyadirAmigos,6000);
-	}
+        if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_canvas"));
+                map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
+                MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
+                anyadirAmigos();
+                setInterval(anyadirAmigos,6000);
+        }
 }
 
 /*checkedRadio
@@ -183,20 +183,20 @@ function centrarMap(position) {
  */
 
 function checkedRadio(radioObj){
-	if(!radioObj)
-		return "";
-	var radioLength = radioObj.length;
-	if(radioLength == undefined)
-		if(radioObj.checked)
-			return radioObj.value;
-		else
-			return "";
+        if(!radioObj)
+                return "";
+        var radioLength = radioObj.length;
+        if(radioLength == undefined)
+                if(radioObj.checked)
+                        return radioObj.value;
+                else
+                        return "";
         for(var i = 0; i < radioLength; i++) {
-		if(radioObj[i].checked) {
-			return radioObj[i].value;
-		}
-	}
-	return "";
+                if(radioObj[i].checked) {
+                        return radioObj[i].value;
+                }
+        }
+        return "";
         /*for each (var i in r){if(i.checked)return i.value;}return ""; //funcion mas corta que funciona en firefox pero no chrome*/
 }
 
@@ -277,7 +277,7 @@ function guardarPosicionyEstado(position){
                     {
                        MarkerUsuario.openInfoWindow(infowindowUsuario);
                     }
-            
+
             document.getElementById("actualizarEstado").value="Estado actualizado"
       }else{
             document.getElementById("actualizarEstado").value="Fallo en la actualizacion"
@@ -289,7 +289,7 @@ function guardarPosicionyEstado(position){
  *en uan extructura similar a uan llamada de geolocalizacion
  */
 function posicionManual(){
-        guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})                
+        guardarPosicionyEstado({"coords" : {"latitude": ""+MarkerUsuario.B.lat(), "longitude": ""+MarkerUsuario.B.lng()}})
 }
 
 /*Funcion MostrarPosicionManual
@@ -314,11 +314,11 @@ function MostrarPosicionManual(){
  *Oculta la posicion del usuario, borrando la posicion en la bd.
  */
 function ocultarPosicion(){
-	posAJAX="../locations/ocultarPosicion"
+        posAJAX="../locations/ocultarPosicion"
 
-	var req = new XMLHttpRequest();
-	req.open('GET', posAJAX, false);
-	req.send(null);
+        var req = new XMLHttpRequest();
+        req.open('GET', posAJAX, false);
+        req.send(null);
 
         if(req.status == 200)
             document.getElementById("actualizarEstado").value="Posicion ocultada"
@@ -331,20 +331,20 @@ function ocultarPosicion(){
  *que funcion debe ser llamada.
  */
 function guardarEstado(){
-	modo=checkedRadio(document.formestado.posicion)
+        modo=checkedRadio(document.formestado.posicion)
         document.getElementById("actualizarEstado").disable=false
-	if(modo=="automatico"){
-		//navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
+        if(modo=="automatico"){
+                //navigator.geolocation.getCurrentPosition(guardarPosicionyEstado);
                 callbackGetPos=navigator.geolocation.watchPosition(guardarPosicionyEstado,function(){document.getElementById("actualizarEstado").value="No ha podido reconocerse la posicion";});
-	}else if(modo=="manual"){
+        }else if(modo=="manual"){
                 if(window['callbackGetPos'] != undefined)
                      navigator.geolocation.clearWatch(callbackGetPos);
-		posicionManual();
-	}else if(modo=="no mostrar"){
+                posicionManual();
+        }else if(modo=="no mostrar"){
                 if(window['callbackGetPos'] != undefined)
                      navigator.geolocation.clearWatch(callbackGetPos);
-		ocultarPosicion();
-	}
+                ocultarPosicion();
+        }
 }
 
 //</editor-fold>

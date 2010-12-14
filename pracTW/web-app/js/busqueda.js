@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -19,7 +19,7 @@ function amigosEncontrados()
        url:"http://localhost:8080/pracTW/usuarios/buscar",
        data:$('#quest').serialize(),
        dataType:"json",
-       success:function(find){           
+       success:function(find){
            $.each(find,function(i,amigo){
                 //amigo tiene un bool de tieneimagen
                var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
@@ -40,5 +40,5 @@ function rellenaTabla(amigos)
     var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigos.login+"/icono.jpg\" class=\"icono\"></td>"
     var td2="<td>"+amigos.nombre+"</td><td>"+amigos.apellidos+"</td><td>"+amigos.localizaion+"</td></tr><br>";
     $(td1+td2).appendTo('busqueda');
-    
+
 }
