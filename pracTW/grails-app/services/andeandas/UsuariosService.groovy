@@ -25,7 +25,7 @@ class UsuariosService {
                     eq('sexo', sexo)
                 }
             }
-            join 'amigos'
+            //join 'amigos' //para evitar repeticion
         }
         return result
     }

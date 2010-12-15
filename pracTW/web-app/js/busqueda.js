@@ -14,15 +14,16 @@ function amigosEncontrados()
    //localidad=document.document.getElementById("localidad").value;
    //
    //primero se ha de vacair la tabla
+   $(".fila").remove();
    $.ajax({
        type:"Get",
-       url:"http://localhost:8080/pracTW/usuarios/buscar",
+       url:"../usuarios/buscar",
        data:$('#quest').serialize(),
        dataType:"json",
        success:function(find){
            $.each(find,function(i,amigo){
                 //amigo tiene un bool de tieneimagen
-               var td1="<tr><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
+               var td1="<tr class=\"fila\"><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
                var td2="<td>"+amigo.nombre+"</td><td>"+amigo.apellidos+"</td><td>"+amigo.localizaion+"</td></tr><br>";
                //$(td1+td2).appendTo('busqueda');
                $('#busqueda').append(td1+td2)

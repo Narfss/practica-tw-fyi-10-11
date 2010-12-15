@@ -20,8 +20,10 @@ proyecto:
 mapa.gps
     F agregar espacio peticiones/notificaciones
     P mostrar solicitudes de amistad ../solicitudes/getSolicitudesRecibidas
-        - responder peticion ../solicitudes/responderSolicitud?id=id_solicitud&respuesta=bool_respuesta
-    P lista de amigos con posicion conocida
+        P en caso de no tener eliminar campo
+        P responder peticion ../solicitudes/responderSolicitud?id=id_solicitud&respuesta=bool_respuesta
+            P notificaciones: "ha sido aceptado", "ha sido rechazado", "intentelo de nuevo"
+    - lista de amigos con posicion conocida
         - onclick, centrar mapa en amigo (mostrar infowindow)
     - aviso de amigos conectados, animate jquery
         - onclick, centrar mapa en amigo (mostrar infowindow)

@@ -363,7 +363,8 @@ function comprobarPeticiones(){
         //context: $("#areaNotificacion"),
         dataType: "json",
         success: function(solicitudes){
-                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p id='solicitud"+value.id+"'>"+value.nombre+" "+value.apellidos+" <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></p>")})
+                   if(solicitudes.length==0) $("#areaNotificacion").remove();
+                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p>"+value.nombre+" "+value.apellidos+"<span id='solicitud"+value.id+"'> <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></span></p>")})
                  },
         error: function(e){ console.log(e); alert('Update failed!'+e); }
         })
@@ -377,8 +378,9 @@ function responderASolicitudDe(id,respuesta){
         //context: $("#areaNotificacion"),
         type: "POST",
         dataType: "json",
-        success: function(){$("#solicitud"+id).remove()},
-        error:   function(){$("#solicitud"+id).html("No ha sido aceptado, intentelo más tarde.")}
+        success: function(resp){if(respuesta) $("#solicitud"+id).html(", ha sido aceptado.")
+                                         else $("#solicitud"+id).html(", ha sido rechazado.")},
+        error:   function(){$("#solicitud"+id).html(", intentelo más tarde.")}
         })
 }
 
