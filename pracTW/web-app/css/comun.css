@@ -366,3 +366,43 @@ img{
 #infomanual{
     display:none;
 }
+
+#lista{
+        width: 300px;
+        padding:0px;
+        margin: 0px;
+        border-spacing: 0px;
+}
+
+#lista tr{
+
+        border: 1px white solid;
+        margin: 5px;
+        padding:2.5px;
+        padding:0px;
+        margin: 0px;
+
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        opacity: 1;
+}
+
+#lista td{
+        padding:0px;
+        margin: 0px;
+}
+/*
+#lista td{
+    border-top: 1px blue solid;
+}
+*/
+/*
+#lista tr:nth-child(even) {
+    background-color:rgba(255,255,255,0.75);
+}
+*/
+#lista tr:nth-child(odd) {
+        background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
+        /*background-color:rgba(255,255,255,0.5);*/
+}

@@ -48,6 +48,11 @@
                 <input type="button" id="actualizarEstado" value="¿Algo que decir?" class="button" disabled="disabled" onclick="guardarEstado()"/>
               </form>
             </div>
+        <div class="div">
+               <table id="lista">
+                <tr><th>Icono</th><th>Usuario</th></tr>
+              </table>
+      </div>
         </span>
         <span id="rightspan">
           <!--<a href="index"><img src="../images/default/comunlogo.png" id="generallogo" alt="Skyks"></a>-->

@@ -38,7 +38,7 @@ function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
     for (i in amigosArray){
-        var antes=amigosArray[i][3].getTime()+(24*60*1000); //se eliminan los que actualizaron hace mas de 24 horas
+        var antes=amigosArray[i][3].getTime()+(24*60*60*1000); //se eliminan los que actualizaron hace mas de 24 horas //error se eliminaba a los 24 minutos
         if (antes<ahora){
             if(window['timer'+amigosArray[i][0]] != undefined)
                 clearInterval("timer"+amigosArray[i][0])
@@ -101,6 +101,8 @@ function anyadirAmigos(){
 
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
+
+                            anyadirAmigoALista(amigos[i].login,amigos[i].localizacion.fecha)
                         }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
 
@@ -171,6 +173,7 @@ function centrarMap(position) {
                 map = new GMap2(document.getElementById("map_canvas"));
                 map.setCenter(new GLatLng(position.coords.latitude, position.coords.longitude), 13);
                 MarkerUsuario=anyadirMarker(new GLatLng(position.coords.latitude, position.coords.longitude), usuario);
+                showinfomanual(); //solucion de marker usuario movil posentrega practica2
                 anyadirAmigos();
                 setInterval(anyadirAmigos,6000);
         }
@@ -382,6 +385,26 @@ function responderASolicitudDe(id,respuesta){
                                          else $("#solicitud"+id).html(", ha sido rechazado.")},
         error:   function(){$("#solicitud"+id).html(", intentelo más tarde.")}
         })
+}
+
+function abrirInfoWin(login){
+    if(amigosArray[existeMarker(login)][1]>=0)
+        GEvent.trigger(amigosArray[existeMarker(login)][1], 'click')
+            {
+               amigosArray[existeMarker(login)][1].openInfoWindow(amigosArray[existeMarker(login)][2]);
+            }
+    //console.log(amigosArray[existeMarker(login)][1].id)
+    //$(amigosArray[existeMarker(login)][1].id).trigger('click');
+    //$("#marker"+login).trigger('click');
+    //$(amigosArray[existeMarker(login)][1]).trigger('click');
+    //$(amigosArray[existeMarker(login)][1]).click();
+    //amigosArray[existeMarker(login)][1].click();
+}
+
+function anyadirAmigoALista(login, fecha){
+    var fila="<tr><td style=\"text-align: center\"><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
+        fila+="<td><a href='javascript:abrirInfoWin(\""+login+"\")'>"+login+"</a></td></tr>" <!--<td>"+calcularTiempo(fecha.getTime())+"</td>-->
+    $("#lista").append(fila)
 }
 
 

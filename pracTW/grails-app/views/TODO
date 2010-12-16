@@ -12,6 +12,12 @@ Javascript
            "?"=cuestionable
            "e"=extra
 
+
+####################ALERTS################################
+    P Porque se puede arrastarar el marker en automatico? (solucionado)
+    - Imagne por defecto
+    - ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
+
 ####################PRACTICA 3############################
 proyecto:
     P actualizar codigo
@@ -23,8 +29,10 @@ mapa.gps
         P en caso de no tener eliminar campo
         P responder peticion ../solicitudes/responderSolicitud?id=id_solicitud&respuesta=bool_respuesta
             P notificaciones: "ha sido aceptado", "ha sido rechazado", "intentelo de nuevo"
-    - lista de amigos con posicion conocida
-        - onclick, centrar mapa en amigo (mostrar infowindow)
+    P lista de amigos con posicion conocida
+        P onclick, centrar mapa en amigo (mostrar infowindow) //Metodo google, es necesario metodo jquery .trigger('click')?
+        - Eliminar fila de los contactos no actualizados
+        - Espacio no visible si no hay contactos
     - aviso de amigos conectados, animate jquery
         - onclick, centrar mapa en amigo (mostrar infowindow)
 
