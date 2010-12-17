@@ -22,6 +22,7 @@
   </head>
   <body onload="initialize('${usuario.login}'); showinfomanual();" onunload="GUnload()">
     <img src="../images/default/marcaagua.png" id="marcaagua"/>
+      <div id="areaAlerts"></div>
       <div id="body" class="div">
       <span id="leftspan">
             <div class="div">
@@ -33,7 +34,7 @@
                 <a href="logout"><img src="../images/default/salir.png" alt="Salir"/></a>
               </center>
               <h1>Bienvenido</h1>
-              <p id="areaNotificacion" class="div"></p>
+              <p id="areaNotificacion" class="div"> </p>
               <h2>${usuario.nombre} comparte:</h2>
 
               <form name="formestado" action="" method="post">
@@ -48,7 +49,7 @@
                 <input type="button" id="actualizarEstado" value="¿Algo que decir?" class="button" disabled="disabled" onclick="guardarEstado()"/>
               </form>
             </div>
-        <div class="div">
+        <div id="divlista" class="div">
                <table id="lista">
                 <tr><th>Icono</th><th>Usuario</th></tr>
               </table>

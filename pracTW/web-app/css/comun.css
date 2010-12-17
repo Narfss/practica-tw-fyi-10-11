@@ -406,3 +406,17 @@ img{
         background-image: url("../images/default/BlancoAl20.png"); /*Por IE, comprobar qus e vea el texto*/
         /*background-color:rgba(255,255,255,0.5);*/
 }
+
+#areaAlerts{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 300px;
+    z-index: 10;
+    boder: 1px solid black;
+}
+
+.alertPic{
+    float: right;
+}

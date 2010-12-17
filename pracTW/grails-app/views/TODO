@@ -16,7 +16,8 @@ Javascript
 ####################ALERTS################################
     P Porque se puede arrastarar el marker en automatico? (solucionado)
     - Imagne por defecto
-    - ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
+    P ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
+    P error al entrar un nuevo usuario, tras actualizar luisma con tw arrancado sale erro ren 112 y en 115  //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
 
 ####################PRACTICA 3############################
 proyecto:
@@ -31,9 +32,13 @@ mapa.gps
             P notificaciones: "ha sido aceptado", "ha sido rechazado", "intentelo de nuevo"
     P lista de amigos con posicion conocida
         P onclick, centrar mapa en amigo (mostrar infowindow) //Metodo google, es necesario metodo jquery .trigger('click')?
-        - Eliminar fila de los contactos no actualizados
-        - Espacio no visible si no hay contactos
+        P Eliminar fila de los contactos no actualizados //a remplazar por el que haga ISA en formBusqueda
+        P Espacio no visible si no hay contactos
+        - show infowindow no centra el mapa
     - aviso de amigos conectados, animate jquery
+        P zona de alertas
+        - auto ocutar alertas
+        - emerjer alertas
         - onclick, centrar mapa en amigo (mostrar infowindow)
 
 formbusqueda.gsp

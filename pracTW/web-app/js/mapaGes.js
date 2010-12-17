@@ -13,6 +13,7 @@ var callbackGetPos; //identificador del proceso de geolocalizacion
  *Funcion encargada de inicializar el usuario e iniciar el mapa con la posicion obtenida actual.
  **/
 function initialize(usu) {
+        $("#divlista").hide()
         usuario=usu
         navigator.geolocation.getCurrentPosition(centrarMap);
 }
@@ -25,9 +26,12 @@ function initialize(usu) {
  *return i
  **/
 function existeMarker(login){
-    for (i in amigosArray)
+    console.log("busca a "+login)
+    for (i=0; i<amigosArray.length; i++){
+        console.log("bus "+i+" name "+amigosArray[i][0])
         if (amigosArray[i][0]==login)
             return i
+    }
     return -1
 }
 
@@ -37,16 +41,22 @@ function existeMarker(login){
 function borrarAmigosViejos(){
     var d=new Date()
     var ahora=d.getTime()
+    //Markers
     for (i in amigosArray){
         var antes=amigosArray[i][3].getTime()+(24*60*60*1000); //se eliminan los que actualizaron hace mas de 24 horas //error se eliminaba a los 24 minutos
         if (antes<ahora){
             if(window['timer'+amigosArray[i][0]] != undefined)
                 clearInterval("timer"+amigosArray[i][0])
             amigosArray[i][1].remove()
+            $("#item"+amigosArray[i][0]).remove() //probar metodo de formBusqueda
             amigosArray[i][2]=""
             delete amigosArray[i]
         }
     }
+
+    //Ocultar espacio de lista
+    if(amigosArray.lenght==0)
+        $("#divlista").hide()
 }
 
 /*Function generarinfowindow
@@ -59,16 +69,16 @@ function borrarAmigosViejos(){
  */
 function generarinfowindow(amigo){
         UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigo.nombre+"</h1><div id=bodyContent><p>"+amigo.localizacion.status+"</p>";
-        UcontentString+="<p id=\"timer-"+amigo.login+"\">"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
-        UcontentString+="<script>if(window['timer"+amigo.login+"'] != undefined) clearInterval(timer"+amigo.login+");"
-        UcontentString+="timer"+amigo.login+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
-        UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
+        UcontentString+="<p id='timer-"+amigo.login+"'>"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
+        //UcontentString+="<script>if(window['timer"+amigo.login+"'] != undefined) clearInterval(timer"+amigo.login+");"
+        //UcontentString+="timer"+amigo.login+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
+        //UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
         //UcontentString+="console.log('actualizado"+amigo.localizacion.status+"')"
         //UcontentString+="}else{"
         //UcontentString+="console.log('NO SE pudo actualizado"+amigo.localizacion.status+"')"
-        UcontentString+="}\",6000)"
-        UcontentString+="</script></div></div>";
-
+        //UcontentString+="}\",6000)"
+        //UcontentString+="</script>"
+        UcontentString+="</div>";
         return UcontentString;
 }
 
@@ -84,16 +94,22 @@ function anyadirAmigos(){
 
         if (req.status == 200){
                 var amigos = eval("{amigos: "+req.responseText+"}")
-                for(i in amigos){
-                        var nAmigo=existeMarker(amigos[i].login)
+                console.log(amigos.length)
+                for(var i = 0; i<amigos.length; i++){
+                        console.log(amigos[i].login)
+                        nAmigo=existeMarker(amigos[i].login)
                         if (nAmigo<0){
                             var markerAmigo=anyadirMarker(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon), amigos[i].login)
                             clearInterval("timer"+amigos[i].login)
 
-
+                            console.log("tam "+amigosArray.length)
                             var newAmigoArray=new Array(amigos[i].login,markerAmigo,generarinfowindow(amigos[i]),amigos[i].localizacion.fecha)
                             amigosArray.push(newAmigoArray)
+                            console.log("tam now "+amigosArray.length)
+
                             nAmigo=existeMarker(amigos[i].login)
+                            console.log(nAmigo)
+                            console.log(amigosArray[nAmigo])
 
                             GEvent.addListener(amigosArray[nAmigo][1], 'click', function(){
                                                                     amigosArray[nAmigo][1].openInfoWindowHtml(amigosArray[nAmigo][2]);
@@ -103,13 +119,18 @@ function anyadirAmigos(){
                             markerAmigo.disableDragging();
 
                             anyadirAmigoALista(amigos[i].login,amigos[i].localizacion.fecha)
-                        }else if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha){
+                            $("#divlista").show()
+                            notificarNuevo(amigos[i].login, amigos[i].localizacion.status)
+                        
+                        }else{ //if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha)    //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
+                            console.log(amigos[i].login+" "+nAmigo)
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
 
                             amigosArray[nAmigo][2]=generarinfowindow(amigos[i])
 
                             amigosArray[nAmigo][3]=amigos[i].localizacion.fecha
-
+                            
+                            notificarNuevo(amigos[i].login)
                         }
                 }
                 borrarAmigosViejos()
@@ -388,11 +409,14 @@ function responderASolicitudDe(id,respuesta){
 }
 
 function abrirInfoWin(login){
-    if(amigosArray[existeMarker(login)][1]>=0)
+    if(existeMarker(login)>=0){
+        console.log(amigosArray[existeMarker(login)][1])
+        map.setCenter((amigosArray[existeMarker(login)][1]).getPoint(),13)
         GEvent.trigger(amigosArray[existeMarker(login)][1], 'click')
             {
                amigosArray[existeMarker(login)][1].openInfoWindow(amigosArray[existeMarker(login)][2]);
             }
+    }
     //console.log(amigosArray[existeMarker(login)][1].id)
     //$(amigosArray[existeMarker(login)][1].id).trigger('click');
     //$("#marker"+login).trigger('click');
@@ -402,10 +426,14 @@ function abrirInfoWin(login){
 }
 
 function anyadirAmigoALista(login, fecha){
-    var fila="<tr><td style=\"text-align: center\"><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
+    var fila="<tr id='item"+login+"'><td style=\"text-align: center\"><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
         fila+="<td><a href='javascript:abrirInfoWin(\""+login+"\")'>"+login+"</a></td></tr>" <!--<td>"+calcularTiempo(fecha.getTime())+"</td>-->
     $("#lista").append(fila)
 }
 
-
+function notificarNuevo(login, estado){
+    var notificador="<div class='div notificador'> <a href='javascript:abrirInfoWin(\""+login+"\")'><img class='alertPic' src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></br>"
+        notificador+="<a href='javascript:abrirInfoWin(\""+login+"\")'>"+login+"</a><p>"+estado+"</p></div>"
+    $("#areaAlerts").append(notificador)
+}
 //</editor-fold>
