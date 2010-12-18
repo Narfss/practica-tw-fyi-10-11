@@ -26,7 +26,7 @@ function amigosEncontrados()
            $.each(find,function(i,amigo){
                 //amigo tiene un bool de tieneimagen
                var td1="<tr class=\"fila\"><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
-               var td2="<td><a href=javascript:solicitarAmistad("+amigo.login+")'>"+amigo.nombre+"</a></td><td>"+amigo.apellidos+"</td><td>"+amigo.localizaion+"</td></tr><br>";
+               var td2="<td>"+amigo.nombre+"</td><td>"+amigo.apellidos+"</td><td>"+amigo.localizaion+"</td><td><input type=\"button\" value=\"peticion\" onclick=javascript:solicitarAmistad(\""+amigo.login+"\")></tr><br>";
                //$(td1+td2).appendTo('busqueda');
                $('#busqueda').append(td1+td2)
             })
