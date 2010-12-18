@@ -32,6 +32,7 @@ function amigosEncontrados()
             })
        },
        error:function(error){
+           alert("error");
            $("<>No hay coincidencias para los patrones introducidos</p>").appendTo('div');}
    })
 }
