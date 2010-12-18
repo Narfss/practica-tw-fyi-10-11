@@ -40,15 +40,17 @@ function amigosEncontrados()
 
 function solicitarAmistad(idDest)
 {
+    var a='\''+idDest+'\' '
     alert(idDest);
-    $.ajax({
-        url: "../solicitudes/enviarSolicitud",
-        dataType: "json",
-        data:idDest,
+        $.ajax({
+        url: "../solicitudes/enviarSolicitud?idDest=luisma",
+        //data:({idDest:'luisma'}),
+        type: "GET",
+        dataType:"json",
         success:function(){
             var p="<p>Peticion realizada</p>";
             $('#busqueda').append(p)},
-        error: function(){alert('No puede realizarse la peticion'); }
+        error: function(){alert('No puede realizarse la peticion');}
         })
 
 }
