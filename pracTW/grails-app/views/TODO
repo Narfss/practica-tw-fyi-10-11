@@ -18,7 +18,9 @@ Javascript
     - Imagne por defecto
     P ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
     P error al entrar un nuevo usuario, tras actualizar luisma con tw arrancado sale erro ren 112 y en 115  //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
-
+    - En chrome no se oculta el espacio de peticiones ni lista si estan vacias
+    - al tener dos notificacioesn de maigos chrome se cierra
+    - Revisar auto temporizador en Chrome
 ####################PRACTICA 3############################
 proyecto:
     P actualizar codigo
@@ -34,12 +36,13 @@ mapa.gps
         P onclick, centrar mapa en amigo (mostrar infowindow) //Metodo google, es necesario metodo jquery .trigger('click')?
         P Eliminar fila de los contactos no actualizados //a remplazar por el que haga ISA en formBusqueda
         P Espacio no visible si no hay contactos
-        - show infowindow no centra el mapa
-    - aviso de amigos conectados, animate jquery
+        P show infowindow no centra el mapa
+    P aviso de amigos conectados, animate jquery
         P zona de alertas
-        - auto ocutar alertas
-        - emerjer alertas
-        - onclick, centrar mapa en amigo (mostrar infowindow)
+        P auto ocutar alertas
+        P emerjer alertas
+        P onclick, centrar mapa en amigo (mostrar infowindow)
+        P los alerts se mantienen visibles conel curosr encima
 
 formbusqueda.gsp
     P peticion ajax ../usuarios/buscar serialize campos del form

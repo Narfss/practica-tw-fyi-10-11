@@ -416,7 +416,9 @@ img{
     z-index: 10;
     boder: 1px solid black;
 }
-
+.alert{
+    display: none;
+}
 .alertPic{
     float: right;
 }
