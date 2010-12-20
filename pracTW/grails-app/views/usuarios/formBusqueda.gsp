@@ -46,7 +46,10 @@
           <div id="generallogo" class="div"</div>
           <div class="div">
             <table id="busqueda">
-              <tr><th>Icono</th><th>Usuario</th><th>Apellidos</th><th>Localidad</th></tr>
+              <tr>
+                <th>Icono</th><th>Usuario<img src="../images/default/arrownone.gif" onclick="ordenarFichas(nombre)"></th>
+                <th onclick="ordenarFichas(apellidos)">Apellidos<img src="../images/default/arrownone.gif" onclick="ordenarFichas(apellidos)"></th>
+                <th onclick="ordenarFichas(localidad)">Localidad<img src="../images/default/arrownone.gif" onclick="ordenarFichas(localidad)"></th></tr>
               <!--tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
