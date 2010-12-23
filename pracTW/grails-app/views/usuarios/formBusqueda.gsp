@@ -51,11 +51,11 @@
             <table id="busqueda" class="tablesorter">
               <thead>
               <tr>
-                <th>Icono</th>
+                <th align="center">Icono</th>
                 <th>Usuario</th>
                 <th>Apellidos</th>
                 <th>Localidad</th>
-                <th>Petición</th>
+                <th align="center">Petición</th>
               </tr>
               </thead>
               <tbody>

@@ -15,7 +15,7 @@ Javascript
 
 ####################ALERTS################################
     P Porque se puede arrastarar el marker en automatico? (solucionado)
-    - Imagne por defecto
+    P Imagne por defecto
     P ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
     P error al entrar un nuevo usuario, tras actualizar luisma con tw arrancado sale erro ren 112 y en 115  //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
     - En chrome no se oculta el espacio de peticiones ni lista si estan vacias
@@ -49,12 +49,13 @@ formbusqueda.gsp
     P peticion ajax ../usuarios/buscar serialize campos del form
     P mostrar datos en la tabla
         - ajax de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
-            - tras hacer click cambiar/eliminar boton/imagen o lo que sea
+            P tras hacer click cambiar/eliminar boton/imagen o lo que sea
         P tabla ordenable
-            - mejorar aspecto de tabla ordenada, crear css de ordenables http://tablesorter.com/docs/#Configuration
+            P mejorar aspecto de tabla ordenada, crear css de ordenables http://tablesorter.com/docs/#Configuration
         X Añadir columna para solicitud
-        - añadir icono solicitud
-        - no mostar undefinets en fechas o en cualquier otro
+        P añadir icono solicitud (icono peticion, icono espera aceptacion e icono error)
+        P busqueda vacia
+        P error de servidor AJAX
 
 ####################PRACTICA 1############################
 Antiguos Errores cometidos
