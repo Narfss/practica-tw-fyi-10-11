@@ -16,7 +16,7 @@ function amigosEncontrados()
    //
    //primero se ha de vacair la tabla
 
-   $(".fila").remove();
+   $('#busqueda tbody').html("");
    $.ajax({
        type:"Get",
        url:"../usuarios/buscar",
@@ -25,10 +25,15 @@ function amigosEncontrados()
        success:function(find){
            $.each(find,function(i,amigo){
                 //amigo tiene un bool de tieneimagen
-               var td1="<tr class=\"fila\"><td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
-               var td2="<td>"+amigo.nombre+"</td><td>"+amigo.apellidos+"</td><td>"+amigo.localizaion+"</td><td><input type=\"button\" value=\"peticion\" onclick=javascript:solicitarAmistad(\""+amigo.login+"\")></tr><br>";
-               //$(td1+td2).appendTo('busqueda');
-               $('#busqueda').append(td1+td2)
+               fila="<tr class=\"fila\">"
+               fila+="<td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
+               fila+="<td>"+amigo.nombre+"</td>"
+               fila+="<td>"+amigo.apellidos+"</td>"
+               fila+="<td>"+amigo.localizaion+"</td>"
+               fila+='<td><a href="javascript:solicitarAmistad(\''+amigo.login+'\')">Solicitar</a></td>'
+               fila+="</tr>";
+               $('#busqueda tbody').append(fila)
+               $("#busqueda").tablesorter();
             })
        },
        error:function(error){
@@ -40,22 +45,20 @@ function amigosEncontrados()
 
 function solicitarAmistad(idDest)
 {
-    var a='\''+idDest+'\' '
-    alert(idDest);
-        $.ajax({
-        url: "../solicitudes/enviarSolicitud?idDest=luisma",
-        //data:({idDest:'luisma'}),
+    $.ajax({
+        url: "../solicitudes/enviarSolicitud",
+        data:({"idDest":idDest}),
         type: "GET",
         dataType:"json",
         success:function(){
             var p="<p>Peticion realizada</p>";
             $('#busqueda').append(p)},
         error: function(){alert('No puede realizarse la peticion');}
-        })
+    })
 
 }
 
-
+/*
 //Funcion que se usa para ordenar las fichas en el DOM
 function ordenarFichas(valor)
 {
@@ -185,4 +188,4 @@ function ordenarFichas(valor)
 		fichas[0].getElementsByTagName("td")[2].getElementsByTagName("img")[0].src = "../images/default/arrownone.gif";
 		fichas[0].getElementsByTagName("td")[4].getElementsByTagName("img")[0].src = "../images/default/arrownone.gif";
 	}
-}
+}*/

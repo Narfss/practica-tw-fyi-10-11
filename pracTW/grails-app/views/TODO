@@ -21,6 +21,7 @@ Javascript
     - En chrome no se oculta el espacio de peticiones ni lista si estan vacias
     - al tener dos notificacioesn de maigos chrome se cierra
     - Revisar auto temporizador en Chrome
+    
 ####################PRACTICA 3############################
 proyecto:
     P actualizar codigo
@@ -47,8 +48,13 @@ mapa.gps
 formbusqueda.gsp
     P peticion ajax ../usuarios/buscar serialize campos del form
     P mostrar datos en la tabla
-        - boton de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
-        e tabla ordenable
+        - ajax de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
+            - tras hacer click cambiar/eliminar boton/imagen o lo que sea
+        P tabla ordenable
+            - mejorar aspecto de tabla ordenada, crear css de ordenables http://tablesorter.com/docs/#Configuration
+        X Añadir columna para solicitud
+        - añadir icono solicitud
+        - no mostar undefinets en fechas o en cualquier otro
 
 ####################PRACTICA 1############################
 Antiguos Errores cometidos

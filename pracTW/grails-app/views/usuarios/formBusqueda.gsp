@@ -13,8 +13,11 @@
 
     <link href='../images/default/favicon.png' rel='shortcut icon' type='image/x-icon'/>
     <link href='../images/default/favicon.png' rel='icon' type='image/x-icon'/>
-    <script type="text/javascript" src="../js/busqueda.js"></script>
+    
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="http://tablesorter.com/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="../js/busqueda.js"></script>
+
     <title>Pagina de busqueda</title>
   </head>
   <body>
@@ -45,15 +48,22 @@
         <span id="rightspan">
           <div id="generallogo" class="div"</div>
           <div class="div">
-            <table id="busqueda">
+            <table id="busqueda" class="tablesorter">
+              <thead>
               <tr>
-                <th>Icono</th><th>Usuario<img src="../images/default/arrownone.gif" onclick="ordenarFichas(nombre)"></th>
-                <th onclick="ordenarFichas(apellidos)">Apellidos<img src="../images/default/arrownone.gif" onclick="ordenarFichas(apellidos)"></th>
-                <th onclick="ordenarFichas(localidad)">Localidad<img src="../images/default/arrownone.gif" onclick="ordenarFichas(localidad)"></th></tr>
+                <th>Icono</th>
+                <th>Usuario</th>
+                <th>Apellidos</th>
+                <th>Localidad</th>
+                <th>Petición</th>
+              </tr>
+              </thead>
+              <tbody>
               <!--tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/paris/icono.jpg" class="icono"></td><td>Narf</td><td>Sirvent</td><td>Alicante</td></tr><br>
               <tr><td style="text-align: center"><img src="../images/perfiles/luisma/icono.jpg" class="icono"></td><td>Isa</td><td>Martin</td><td>Alicante</td></tr><br-->
+              </tbody>
             </table>
           </div>
         </span>

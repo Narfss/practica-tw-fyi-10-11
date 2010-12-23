@@ -378,8 +378,8 @@ function comprobarPeticiones(){
         //context: $("#areaNotificacion"),
         dataType: "json",
         success: function(solicitudes){
-                   if(solicitudes.length==0) $("#areaNotificacion").remove();
-                   $.each(solicitudes,function(i,value){$("#areaNotificacion").append("<p>"+value.nombre+" "+value.apellidos+"<span id='solicitud"+value.id+"'> <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></span></p>")})
+                   $("#areaNotificacion").hide();
+                   $.each(solicitudes,function(i,value){$("#areaNotificacion").show(); $("#areaNotificacion").append("<p>"+value.nombre+" "+value.apellidos+"<span id='solicitud"+value.id+"'> <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></span></p>")})
                  },
         error: function(e){ console.log(e); alert('Update failed!'+e); }
         })
