@@ -6,15 +6,14 @@
 var usu=null;
 var find=null;//variable que contendra los datos obtenidos de la busqueda;
 
+function rutadeimagen(login, tieneImagen){
+    if(tieneImagen)
+        return "../images/perfiles/"+login+"/icono.jpg"
+    return "../images/default/perfil.jpg"
+}
+
 function amigosEncontrados()
 {
-    //hacer la peticion ajax con jQuery
-
-   //nombre=document.document.getElementById("nombre").value;
-   //apellidos=document.document.getElementById("apellidos").value;
-   //localidad=document.document.getElementById("localidad").value;
-   //
-   //primero se ha de vacair la tabla
 
    $('#busqueda tbody').html("");
    $.ajax({
@@ -24,21 +23,19 @@ function amigosEncontrados()
        dataType:"json",
        success:function(find){
            $.each(find,function(i,amigo){
-                //amigo tiene un bool de tieneimagen
                fila="<tr class=\"fila\">"
-               fila+="<td style=\"text-align: center\"><img src=\"../images/perfiles/"+amigo.login+"/icono.jpg\" class=\"icono\"></td>"
+               fila+="<td align='center'><img src='"+rutadeimagen(amigo.login, amigo.tieneImagen)+"'class=\"icono\"></td>"
                fila+="<td>"+amigo.nombre+"</td>"
                fila+="<td>"+amigo.apellidos+"</td>"
-               fila+="<td>"+amigo.localizaion+"</td>"
-               fila+='<td><a href="javascript:solicitarAmistad(\''+amigo.login+'\')">Solicitar</a></td>'
+               fila+="<td>"+amigo.localidad+"</td>"
+               fila+='<td align="center" id="solicitud'+amigo.login+'"><a href="javascript:solicitarAmistad(\''+amigo.login+'\')"><img src="../images/default/enviasolicitud.png" alt="Solicitar amistad"/></a></td>'
                fila+="</tr>";
                $('#busqueda tbody').append(fila)
                $("#busqueda").tablesorter();
             })
+            if(find.length==0) $('#busqueda tbody').append("<tr><td colspan='5' align='center'>No hay coincidencias para los patrones introducidos.</td></tr>")
        },
-       error:function(error){
-           alert("error");
-           $("<>No hay coincidencias para los patrones introducidos</p>").appendTo('div');}
+       error:function(error){$('#busqueda tbody').append("<tr><td colspan='5' align='center'>Ha habido un error en el servidor, intentelo mas tarde.</td></tr>")}
    })
 }
 
@@ -50,10 +47,8 @@ function solicitarAmistad(idDest)
         data:({"idDest":idDest}),
         type: "GET",
         dataType:"json",
-        success:function(){
-            var p="<p>Peticion realizada</p>";
-            $('#busqueda').append(p)},
-        error: function(){alert('No puede realizarse la peticion');}
+        success:function(){$("#solicitud"+idDest).html('<img src="../images/default/enviadasolicitud.png" alt="Esperando aceptación"/>')},
+        error:  function(){$("#solicitud"+idDest).html('<img src="../images/default/enviadasolicitudFallo.png" alt="Ha ocurrido algun error en el servidor, intentelo más tarde."/>')}
     })
 
 }

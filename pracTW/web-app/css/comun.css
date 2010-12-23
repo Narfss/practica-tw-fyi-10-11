@@ -247,6 +247,29 @@ img{
         background-image: url("../images/default/BlancoAl20.png"); 
 }
 
+th.header {
+    background-image: url(../images/default/arrownone.gif);
+    cursor: pointer;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+    border-right: 1px solid #dad9c7;
+    margin-left: -1px;
+}
+
+th.headerSortUp {
+    background-image: url(../images/default/arrowup.gif);
+    background-color: #3399FF;
+}
+
+th.headerSortDown {
+    background-image: url(../images/default/arrowdown.gif);
+    background-color: #3399FF;
+}
+
+
+
 img{
         vertical-align: middle;
         background-color: none;
