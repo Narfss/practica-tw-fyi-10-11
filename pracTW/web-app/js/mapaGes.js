@@ -67,15 +67,15 @@ function borrarAmigosViejos(){
  */
 function generarinfowindow(amigo){
         UcontentString="<div id=content><div id=siteNotice></div><h1>"+amigo.nombre+"</h1><div id=bodyContent><p>"+amigo.localizacion.status+"</p>";
-        UcontentString+="<p id='timer-"+amigo.login+"'>"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
-        UcontentString+="<script>if(window['timer"+amigo.login+"'] != undefined) clearInterval(timer"+amigo.login+");"
-        UcontentString+="timer"+amigo.login+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
-        UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
+        UcontentString+="<p class='timer-"+amigo.login+"'>"+calcularTiempo(amigo.localizacion.fecha.getTime())+"</p>"
+        //UcontentString+="<script>if(window['timer"+amigo.login+"'] != undefined) clearInterval(timer"+amigo.login+");"
+        //UcontentString+="timer"+amigo.login+"=setInterval(\"if(document.getElementById('timer-"+amigo.login+"')!=null){"
+        //UcontentString+="document.getElementById('timer-"+amigo.login+"').innerHTML=calcularTiempo("+amigo.localizacion.fecha.getTime()+"); "
         //UcontentString+="console.log('actualizado"+amigo.localizacion.status+"')"
         //UcontentString+="}else{"
         //UcontentString+="console.log('NO SE pudo actualizado"+amigo.localizacion.status+"')"
-        UcontentString+="}\",6000)"
-        UcontentString+="</script>" //test pre error de infowindow counter
+        //UcontentString+="}\",6000)"
+        //UcontentString+="</script>" //test pre error de infowindow counter
         UcontentString+="</div>";
         return UcontentString;
 }
@@ -110,9 +110,9 @@ function anyadirAmigos(){
                             markerAmigo.draggable=false;
                             markerAmigo.disableDragging();
 
-                            anyadirAmigoALista(amigos[i].login,amigos[i].localizacion.fecha)
+                            anyadirAmigoALista(amigos[i].nombre, amigos[i].login,amigos[i].localizacion.fecha)
                             $("#divlista").show()
-                            notificarNuevo(amigos[i].login, amigos[i].localizacion.status)
+                            notificarNuevo(amigos[i].nombre, amigos[i].login, amigos[i].localizacion.status)
                         
                         }else{ //if (amigosArray[nAmigo][3] < amigos[i].localizacion.fecha)    //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
                             amigosArray[nAmigo][1].setLatLng(new GLatLng(amigos[i].localizacion.lat, amigos[i].localizacion.lon))
@@ -379,7 +379,7 @@ function comprobarPeticiones(){
         dataType: "json",
         success: function(solicitudes){
                    $("#areaNotificacion").hide();
-                   $.each(solicitudes,function(i,value){$("#areaNotificacion").show(); $("#areaNotificacion").append("<p>"+value.nombre+" "+value.apellidos+"<span id='solicitud"+value.id+"'> <a href='javascript:responderASolicitudDe("+value.id+",true)'>Si</a> <a href='javascript:responderASolicitudDe("+value.id+",false)'>No</a></span></p>")})
+                   $.each(solicitudes,function(i,value){$("#areaNotificacion").show(); $("#areaNotificacion").append("<p>"+value.nombre+" "+value.apellidos+"<span id='solicitud"+value.id+"'> <a href='javascript:responderASolicitudDe("+value.id+",true)'><img src='../images/default/ok.png' alt='Aceptar'/></a> <a href='javascript:responderASolicitudDe("+value.id+",false)'><img src='../images/default/no.png' alt='Recharzar'/></a></span></p>")})
                  },
         error: function(e){ console.log(e); alert('Update failed!'+e); }
         })
@@ -393,8 +393,8 @@ function responderASolicitudDe(id,respuesta){
         //context: $("#areaNotificacion"),
         type: "POST",
         dataType: "json",
-        success: function(resp){if(respuesta) $("#solicitud"+id).html(", ha sido aceptado.")
-                                         else $("#solicitud"+id).html(", ha sido rechazado.")},
+        success: function(resp){if(respuesta) $("#solicitud"+id).html(", ha sido aceptado.<img src='../images/default/ok.png' alt='Aceptado'/>")
+                                         else $("#solicitud"+id).html(", ha sido rechazado.<img src='../images/default/no.png' alt='Rechazado'/>")},
         error:   function(){$("#solicitud"+id).html(", intentelo más tarde.")}
         })
 }
@@ -415,19 +415,23 @@ function abrirInfoWin(login){
     //amigosArray[existeMarker(login)][1].click();
 }
 
-function anyadirAmigoALista(login, fecha){
-    var fila="<tr id='item"+login+"'><td style=\"text-align: center\"><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
-        fila+="<td><a href='javascript:abrirInfoWin(\""+login+"\")'>"+login+"</a></td></tr>" <!--<td>"+calcularTiempo(fecha.getTime())+"</td>-->
+function anyadirAmigoALista(nombre, login, fecha){
+    fila="<tr id='item"+login+"'><td align='center'><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
+    fila+="<td align='center'><a href='javascript:abrirInfoWin(\""+login+"\")'>"+nombre+"</a></td><td align='center' class='timer-"+login+"'>"+calcularTiempo(fecha.getTime())+"</td></tr>"
     $("#lista").append(fila)
+
+    scripttiempo="<script>"
+    scripttiempo+="timer"+login+"=setInterval(\"$('.timer-"+login+"').html(calcularTiempo('"+fecha.getTime()+"'))\",6000)"
+    scripttiempo+="</script>"
+    $("#body").append(scripttiempo)
 }
 
-function notificarNuevo(login, estado){
-    console.log("alert"+login)
-    var notificador="<div id='alert"+login+"' class='div alert'> <a href='javascript:abrirInfoWin(\""+login+"\")'><img class='alertPic' src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></br>"
-        notificador+="<a href='javascript:abrirInfoWin(\""+login+"\")'>"+login+"</a><p>"+estado+"</p></div>"
-        notificador+="<script>alert"+login+"=setTimeout(function() {$('#alert"+login+"').fadeOut('slow',function(){$('#alert"+login+"').remove()}) }, 10000);"
-        notificador+="$('#alert"+login+"').mouseenter(function(){clearInterval(alert"+login+");}).mouseleave(function(){alert"+login+"=setTimeout(function() {$('#alert"+login+"').fadeOut('slow',function(){$('#alert"+login+"').remove()}); } , 2000);})"
-        notificador+="</script>"
+function notificarNuevo(nombre, login, estado){
+    notificador="<div id='alert"+login+"' class='div alert'> <a href='javascript:abrirInfoWin(\""+login+"\")'><img class='alertPic' src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></br>"
+    notificador+="<a href='javascript:abrirInfoWin(\""+login+"\")'>"+nombre+"</a><p>"+estado+"</p></div>"
+    notificador+="<script>alert"+login+"=setTimeout(function() {$('#alert"+login+"').fadeOut('slow',function(){$('#alert"+login+"').remove()}) }, 10000);"
+    notificador+="$('#alert"+login+"').mouseenter(function(){clearInterval(alert"+login+");}).mouseleave(function(){alert"+login+"=setTimeout(function() {$('#alert"+login+"').fadeOut('slow',function(){$('#alert"+login+"').remove()}); } , 2000);})"
+    notificador+="</script>"
     $("#areaAlerts").append(notificador)
     $("#alert"+login).slideDown(5000)
 }

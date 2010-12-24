@@ -51,7 +51,7 @@
             </div>
         <div id="divlista" class="div">
                <table id="lista">
-                <tr><th>Icono</th><th>Usuario</th></tr>
+                <tr><th>Icono</th><th>Usuario</th><th>Tiempo</th></tr>
               </table>
       </div>
         </span>
