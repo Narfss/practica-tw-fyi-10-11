@@ -1,0 +1,9 @@
+Nombres:
+Francisco Manuel Sirvent Sala 48560513-S
+Isabel Martin Herrero 48539974-S
+
+En esta tercera parte de la practica, hemos implementado los requierimientos adicionales:
+Busqueda de usuarios mediante peticiones al servidor Ajax con JQuery.
+La odenacion de la tabla se realiza mediante la libreria de JQuery tablesorter.
+Aviso de nuevo amigo conectado, empleando animate de JQuery
+
