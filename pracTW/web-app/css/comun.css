@@ -185,9 +185,7 @@ span{
         left: auto;
         margin: 0px;
         padding: 0px;
-        padding-bottom:-100px;
-        margin-bottom:-100px;
-        z-index: -1;
+        z-index: 1;
 
         border: none;
         border-radius: none;

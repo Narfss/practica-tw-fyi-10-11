@@ -7,7 +7,6 @@ var lapsoMin=1440; //primero 24 horas 24*60=1440
 var callbackGetPos; //identificador del proceso de geolocalizacion
 
 
-//<editor-fold defaultstate="collapsed" desc="Practica 2">
 /*Funcion initialize
  *param usu
  *Funcion encargada de inicializar el usuario e iniciar el mapa con la posicion obtenida actual.
@@ -362,16 +361,25 @@ function guardarEstado(){
         }
 }
 
-//</editor-fold>
-
-//<editor-fold desc="Practica 3">
-
 /*PRACTICA 3
-*/
+ * A continuacion se encuentran las funciones sobre la practica 3.
+ */
+
+/* Document ready de comprobarPeticiones
+ * Esta función se carga cuando el documento esta preparado, llamando a la funcion
+ * comprobarPeticiones()
+ */
 $(document).ready(
             comprobarPeticiones()
 );
 
+/* ComprobarPeticiones
+ * Esta funcion añade al area de peticiones una lita de los usuarios que han
+ * hecho una peticion de amistad para este usuario.
+ * En caso de no tener ninguna el area sera escondida.
+ * Cada petición tiene dos enlaces para aceptar o rechazar al usuario, y mostrara
+ * un mensaje con el resultado.
+ */
 function comprobarPeticiones(){
     $.ajax({
         url: "../solicitudes/getSolicitudesRecibidas",
@@ -385,7 +393,15 @@ function comprobarPeticiones(){
         })
 }
 
-
+/* Funcion responderASolicitudDe
+ * Esta funcion sera lamada en la lista de peticiones de usuario, en el momento
+ * de responder a una de ellas.
+ * Una vez ejecutada, el campo se modificara con la resolución de la petición,
+ * remplazando los links por un texto aclaratorio.
+ * Sus paremostros son:
+ * id: identificador (login) del usuario
+ * respuesta: True o false, responde a si la pregunta a sido aceptado o no.
+ */
 function responderASolicitudDe(id,respuesta){
     $.ajax({
         url: "../solicitudes/responderSolicitud",
@@ -399,6 +415,12 @@ function responderASolicitudDe(id,respuesta){
         })
 }
 
+/*Funcion abrirInfoWin
+ * Esta funcion centra el mapa y abre el infowindow de un usuario que se
+ * encuentre en el mapa.
+ * Parametros:
+ * login: id del usuario
+ */
 function abrirInfoWin(login){
     if(existeMarker(login)>=0){
         map.setCenter((amigosArray[existeMarker(login)][1]).getPoint(),13)
@@ -415,6 +437,16 @@ function abrirInfoWin(login){
     //amigosArray[existeMarker(login)][1].click();
 }
 
+
+/* Funcion anyadirAmigoALista
+ * Añade a la lista de amigos conectados, los amigos que han actualizado
+ * El icono y nombre centraran al usuario en el mapa.
+ * El tiempo que hace de su mensaje, se actualiza automaticamente.
+ * Prametros:
+ * nombre: nombre real del usuario
+ * login: id del usuario
+ * fecha: fecha en la cual se ha dejado el mensaje
+ */
 function anyadirAmigoALista(nombre, login, fecha){
     fila="<tr id='item"+login+"'><td align='center'><a href='javascript:abrirInfoWin(\""+login+"\")'><img src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></td>"
     fila+="<td align='center'><a href='javascript:abrirInfoWin(\""+login+"\")'>"+nombre+"</a></td><td align='center' class='timer-"+login+"'>"+calcularTiempo(fecha.getTime())+"</td></tr>"
@@ -426,6 +458,19 @@ function anyadirAmigoALista(nombre, login, fecha){
     $("#body").append(scripttiempo)
 }
 
+/* notificarNuevo
+ * Muestra un notificador flotante en el extremo derehco superior de la pagina.
+ * Este notificador se expandira, mostrando el nombre, imagen, y mensaje de el usuario.
+ * Pasados 10 segundos el notificador se desvanecera.
+ * Si el usuario quiere mantener el notificador mas de 10 segundos para terminar
+ * de leer el mensaje, solo debe posicionar el cursor sobre el mismo.
+ * Una vez retirado el cursor, transcurridos 10 segundos el notificador se
+ * desvanecera.
+ * Pametros:
+ * nombre: nombre real del usuario
+ * login: id del usuario
+ * estado: estado actualizado del usuario
+ */
 function notificarNuevo(nombre, login, estado){
     notificador="<div id='alert"+login+"' class='div alert'> <a href='javascript:abrirInfoWin(\""+login+"\")'><img class='alertPic' src=\"../images/perfiles/"+login+"/icono.jpg\" class=\"icono\"></a></br>"
     notificador+="<a href='javascript:abrirInfoWin(\""+login+"\")'>"+nombre+"</a><p>"+estado+"</p></div>"
@@ -435,4 +480,3 @@ function notificarNuevo(nombre, login, estado){
     $("#areaAlerts").append(notificador)
     $("#alert"+login).slideDown(5000)
 }
-//</editor-fold>

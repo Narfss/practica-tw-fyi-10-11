@@ -6,10 +6,10 @@
 var usu=null;
 var find=null;//variable que contendra los datos obtenidos de la busqueda;
 
-function rutadeimagen(login, tieneImagen){
-    if(tieneImagen)
+function rutadeimagen(login){
+    //if(tieneImagen)
         return "../images/perfiles/"+login+"/icono.jpg"
-    return "../images/default/perfil.jpg"
+    //return "../images/default/perfil.jpg"
 }
 
 function amigosEncontrados()
@@ -24,11 +24,11 @@ function amigosEncontrados()
        success:function(find){
            $.each(find,function(i,amigo){
                fila="<tr class=\"fila\">"
-               fila+="<td align='center'><img src='"+rutadeimagen(amigo.login, amigo.tieneImagen)+"'class=\"icono\"></td>"
+               fila+="<td align='center'><img src='"+rutadeimagen(amigo.login)+"'class=\"icono\"></td>"
                fila+="<td>"+amigo.nombre+"</td>"
                fila+="<td>"+amigo.apellidos+"</td>"
                fila+="<td>"+amigo.localidad+"</td>"
-               fila+='<td align="center" id="solicitud'+amigo.login+'"><a href="javascript:solicitarAmistad(\''+amigo.login+'\')"><img src="../images/default/enviasolicitud.png" alt="Solicitar amistad"/></a></td>'
+               fila+="<td align='center' id='solicitud"+amigo.login+"'><a href='javascript:solicitarAmistad(\""+amigo.login+"\")'><img src='../images/default/enviasolicitud.png' alt='Solicitar amistad'/></a></td>";
                fila+="</tr>";
                $('#busqueda tbody').append(fila)
                $("#busqueda").tablesorter();
