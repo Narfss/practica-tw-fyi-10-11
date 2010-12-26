@@ -18,9 +18,9 @@ Javascript
     P Imagne por defecto
     P ¿Porque los marq  ues desaparen a las 2 horas?  dios que triste! en fecha contbamso minutos, nos falta un *60
     P error al entrar un nuevo usuario, tras actualizar luisma con tw arrancado sale erro ren 112 y en 115  //al hacer recvisiones cada minuto, no es necesario mirar si el mensaje es antiguo
-    - En chrome no se oculta el espacio de peticiones ni lista si estan vacias
-    - al tener dos notificacioesn de maigos chrome se cierra
-    - Revisar auto temporizador en Chrome
+    P En chrome no se oculta el espacio de peticiones ni lista si estan vacias
+    P al tener dos notificacioesn de maigos chrome se cierra
+    P Revisar auto temporizador en Chrome
     
 ####################PRACTICA 3############################
 proyecto:
@@ -48,7 +48,7 @@ mapa.gps
 formbusqueda.gsp
     P peticion ajax ../usuarios/buscar serialize campos del form
     P mostrar datos en la tabla
-        - ajax de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
+        ? ajax de solicitud de amistad ../solicitudes/enviarSolicitud?idDest=login_amigo
             P tras hacer click cambiar/eliminar boton/imagen o lo que sea
         P tabla ordenable
             P mejorar aspecto de tabla ordenada, crear css de ordenables http://tablesorter.com/docs/#Configuration

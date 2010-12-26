@@ -1,0 +1,14 @@
+Nombres:
+Francisco Manuel Sirvent Sala 48560513-S
+Isabel Martin Herrero 48539974-S
+
+En esta tercera parte de la practica, el codigo de la parte basica de la practica
+se puede encontrar añadido al final del archivo mapaGes.js y el nuevo archivo
+busqueda.js.
+
+Los requierimientos adicionales se pueden encontrar en:
+Busqueda de usuarios mediante peticiones al servidor Ajax con JQuery. (busqueda.js funcion amigosEncontrados())
+La ordenacion de la tabla se realiza mediante la libreria de JQuery tablesorter. (busqueda.js funcion amigosEncontrados())
+La solicitud de amistad, esta planteada en el fichero busqueda.js funcion solicitarAmistad, pero no funciona corractamente
+Aviso de nuevo amigo conectado, empleando animate de JQuery. (mapaGes.js funcion notificarNuevo())
+
